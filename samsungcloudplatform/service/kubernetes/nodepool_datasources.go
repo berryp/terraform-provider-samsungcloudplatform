@@ -2,6 +2,7 @@ package kubernetes
 
 import (
 	"context"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/common"
@@ -70,32 +71,33 @@ func dataSourceNodePoolList(ctx context.Context, rd *schema.ResourceData, meta i
 func datasourceNodePoolElem() *schema.Resource {
 	return &schema.Resource{
 		Schema: map[string]*schema.Schema{
-			"project_id":         {Type: schema.TypeString, Computed: true, Description: "Project id"},
-			"auto_recovery":      {Type: schema.TypeBool, Computed: true, Description: "Enable auto recovery"},
-			"auto_scale":         {Type: schema.TypeBool, Computed: true, Description: "Enable auto scale"},
-			"contract_id":        {Type: schema.TypeString, Computed: true, Description: "Contract id"},
-			"current_node_count": {Type: schema.TypeInt, Computed: true, Description: "Current node count in the pool"},
-			"desired_node_count": {Type: schema.TypeInt, Computed: true, Description: "Desired node count in the pool"},
-			"image_id":           {Type: schema.TypeString, Computed: true, Description: "Image id"},
-			"in_progress":        {Type: schema.TypeBool, Computed: true, Description: "Check inProgress status"},
-			"k8s_version":        {Type: schema.TypeString, Computed: true, Description: "K8s version"},
-			"max_node_count":     {Type: schema.TypeInt, Computed: true, Description: "Maximum node count"},
-			"min_node_count":     {Type: schema.TypeInt, Computed: true, Description: "Minimum node count"},
-			"node_pool_id":       {Type: schema.TypeString, Computed: true, Description: "NodePool id"},
-			"node_pool_name":     {Type: schema.TypeString, Computed: true, Description: "NodePool name"},
-			"node_pool_state":    {Type: schema.TypeString, Computed: true, Description: "NodePool status"},
-			"product_group_id":   {Type: schema.TypeString, Computed: true, Description: "Product group id"},
-			"scale_id":           {Type: schema.TypeString, Computed: true, Description: "Scale id"},
-			"service_level_id":   {Type: schema.TypeString, Computed: true, Description: "Service level id"},
-			"storage_id":         {Type: schema.TypeString, Computed: true, Description: "Storage id"},
-			"storage_size":       {Type: schema.TypeString, Computed: true, Description: "Storage size in GB"},
-			"os_type":            {Type: schema.TypeString, Computed: true, Description: "Host OS type (Ubuntu, Window,..)"},
-			"upgradable":         {Type: schema.TypeBool, Computed: true, Description: "Where to enable upgrade"},
-			"created_by":         {Type: schema.TypeString, Computed: true, Description: "The person who created the resource"},
-			"created_dt":         {Type: schema.TypeString, Computed: true, Description: "Creation Date"},
-			"modified_by":        {Type: schema.TypeString, Computed: true, Description: "The person who modified the resource"},
-			"modified_dt":        {Type: schema.TypeString, Computed: true, Description: "Modification Date"},
-			"region":             {Type: schema.TypeString, Computed: true, Description: "Modification Date"},
+			"project_id":             {Type: schema.TypeString, Computed: true, Description: "Project id"},
+			"auto_recovery":          {Type: schema.TypeBool, Computed: true, Description: "Enable auto recovery"},
+			"auto_scale":             {Type: schema.TypeBool, Computed: true, Description: "Enable auto scale"},
+			"contract_id":            {Type: schema.TypeString, Computed: true, Description: "Contract id"},
+			"current_node_count":     {Type: schema.TypeInt, Computed: true, Description: "Current node count in the pool"},
+			"desired_node_count":     {Type: schema.TypeInt, Computed: true, Description: "Desired node count in the pool"},
+			"image_id":               {Type: schema.TypeString, Computed: true, Description: "Image id"},
+			"in_progress":            {Type: schema.TypeBool, Computed: true, Description: "Check inProgress status"},
+			"k8s_version":            {Type: schema.TypeString, Computed: true, Description: "K8s version"},
+			"max_node_count":         {Type: schema.TypeInt, Computed: true, Description: "Maximum node count"},
+			"min_node_count":         {Type: schema.TypeInt, Computed: true, Description: "Minimum node count"},
+			"node_pool_id":           {Type: schema.TypeString, Computed: true, Description: "NodePool id"},
+			"node_pool_name":         {Type: schema.TypeString, Computed: true, Description: "NodePool name"},
+			"node_pool_state":        {Type: schema.TypeString, Computed: true, Description: "NodePool status"},
+			"product_group_id":       {Type: schema.TypeString, Computed: true, Description: "Product group id"},
+			"scale_id":               {Type: schema.TypeString, Computed: true, Description: "Scale id"},
+			"service_level_id":       {Type: schema.TypeString, Computed: true, Description: "Service level id"},
+			"storage_id":             {Type: schema.TypeString, Computed: true, Description: "Storage id"},
+			"storage_size":           {Type: schema.TypeString, Computed: true, Description: "Storage size in GB"},
+			"os_type":                {Type: schema.TypeString, Computed: true, Description: "Host OS type (Ubuntu, Window,..)"},
+			"upgradable":             {Type: schema.TypeBool, Computed: true, Description: "Where to enable upgrade"},
+			"created_by":             {Type: schema.TypeString, Computed: true, Description: "The person who created the resource"},
+			"created_dt":             {Type: schema.TypeString, Computed: true, Description: "Creation Date"},
+			"modified_by":            {Type: schema.TypeString, Computed: true, Description: "The person who modified the resource"},
+			"modified_dt":            {Type: schema.TypeString, Computed: true, Description: "Modification Date"},
+			"region":                 {Type: schema.TypeString, Computed: true, Description: "Modification Date"},
+			"availability_zone_name": {Type: schema.TypeString, Computed: true, Description: "Availability_zone_name"},
 		},
 	}
 }
@@ -131,17 +133,17 @@ func DatasourceNodePool() *schema.Resource {
 			common.ToSnakeCase("DesiredNodeCount"): {Type: schema.TypeInt, Computed: true, Description: "DesiredNodeCount"},
 			common.ToSnakeCase("Labels"): {
 				Type:     schema.TypeList,
-				Optional: true,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"key": {
 							Type:        schema.TypeString,
-							Optional:    true,
+							Computed:    true,
 							Description: "Label Key",
 						},
 						"value": {
 							Type:        schema.TypeString,
-							Optional:    true,
+							Computed:    true,
 							Description: "Label Value",
 						},
 					},
@@ -150,27 +152,71 @@ func DatasourceNodePool() *schema.Resource {
 			},
 			common.ToSnakeCase("Taints"): {
 				Type:     schema.TypeList,
-				Optional: true,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"effect": {
 							Type:        schema.TypeString,
-							Optional:    true,
+							Computed:    true,
 							Description: "Taint Effect",
 						},
 						"key": {
 							Type:        schema.TypeString,
-							Optional:    true,
+							Computed:    true,
 							Description: "Taint Key",
 						},
 						"value": {
 							Type:        schema.TypeString,
-							Optional:    true,
+							Computed:    true,
 							Description: "Taint Value",
 						},
 					},
 				},
 				Description: "Taints",
+			},
+			common.ToSnakeCase("AdvancedSettings"): {
+				Type:        schema.TypeSet,
+				Computed:    true,
+				Description: "Performing subjects",
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"allowed_unsafe_sysctls": {
+							Type:        schema.TypeString,
+							Computed:    true,
+							Description: "Allowed Unsafe Sysctls",
+						},
+						"container_log_max_files": {
+							Type:        schema.TypeInt,
+							Computed:    true,
+							Description: "Container Log Max Files",
+						},
+						"container_log_max_size": {
+							Type:        schema.TypeInt,
+							Computed:    true,
+							Description: "Container Log Max Size",
+						},
+						"image_gc_high_threshold": {
+							Type:        schema.TypeInt,
+							Computed:    true,
+							Description: "ImageGc High Threshold",
+						},
+						"image_gc_low_threshold": {
+							Type:        schema.TypeInt,
+							Computed:    true,
+							Description: "Image Gc Low Threshold",
+						},
+						"max_pods": {
+							Type:        schema.TypeInt,
+							Computed:    true,
+							Description: "Max Pods",
+						},
+						"pod_max_pids": {
+							Type:        schema.TypeInt,
+							Computed:    true,
+							Description: "Pod Max Pids",
+						},
+					},
+				},
 			},
 			common.ToSnakeCase("CreatedBy"):  {Type: schema.TypeString, Computed: true, Description: "Created By"},
 			common.ToSnakeCase("CreatedDt"):  {Type: schema.TypeString, Computed: true, Description: "Created Dt"},
@@ -232,6 +278,19 @@ func nodePoolDetail(ctx context.Context, rd *schema.ResourceData, meta interface
 		taints = append(taints, kv)
 	}
 	rd.Set(common.ToSnakeCase("Taints"), taints)
+	var advancedSettings common.HclSetObject
+
+	kv := common.HclKeyValueObject{
+		"allowed_unsafe_sysctls":  response.AdvancedSettings.AllowedUnsafeSysctls,
+		"container_log_max_files": response.AdvancedSettings.ContainerLogMaxFiles,
+		"container_log_max_size":  response.AdvancedSettings.ContainerLogMaxSize,
+		"image_gc_high_threshold": response.AdvancedSettings.ImageGcHighThreshold,
+		"image_gc_low_threshold":  response.AdvancedSettings.ImageGcLowThreshold,
+		"max_pods":                response.AdvancedSettings.MaxPods,
+		"pod_max_pids":            response.AdvancedSettings.PodMaxPids,
+	}
+	advancedSettings = append(advancedSettings, kv)
+	rd.Set(common.ToSnakeCase("AdvancedSettings"), advancedSettings)
 	rd.Set(common.ToSnakeCase("CreatedBy"), response.CreatedBy)
 	rd.Set(common.ToSnakeCase("CreatedDt"), response.CreatedDt.String())
 	rd.Set(common.ToSnakeCase("ModifiedBy"), response.ModifiedBy)

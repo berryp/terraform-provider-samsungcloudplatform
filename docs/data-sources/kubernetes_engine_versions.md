@@ -29,12 +29,12 @@ output "result_scp_kubernetes_engine_versions" {
 
 - `page` (Number) Page start number from which to get the list
 - `size` (Number) Size to get list
-- `total_count` (Number) total count
 
 ### Read-Only
 
 - `contents` (Block List) K8s engine list (see [below for nested schema](#nestedblock--contents))
 - `id` (String) The ID of this resource.
+- `total_count` (Number) total count
 
 <a id="nestedblock--contents"></a>
 ### Nested Schema for `contents`

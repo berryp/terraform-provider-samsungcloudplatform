@@ -53,6 +53,7 @@ Read-Only:
 - `kubernetes_engine_id` (String) K8s engine id
 - `kubernetes_engine_name` (String) K8s engine name
 - `kubernetes_engine_status` (String) K8s engine status
+- `load_balancer_id` (String) Load Balancer Id
 - `modified_by` (String) The person who modified the resource
 - `modified_dt` (String) Modification time
 - `node_count` (Number) K8s node count

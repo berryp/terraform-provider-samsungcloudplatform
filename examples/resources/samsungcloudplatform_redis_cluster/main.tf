@@ -31,31 +31,37 @@ resource "samsungcloudplatform_redis_cluster" "demo_db" {
       redis_server_name = "terraabc-01"
       nat_public_ip_id = null
       server_role_type = "MASTER"
+      availability_zone_name = "AZ1"
     },
     {
       redis_server_name = "terraabc-02"
       nat_public_ip_id = null
       server_role_type = "MASTER"
+      availability_zone_name = "AZ1"
     },
     {
       redis_server_name = "terraabc-03"
       nat_public_ip_id = null
       server_role_type = "MASTER"
+      availability_zone_name = "AZ1"
     },
     {
       redis_server_name = "terraabc-04"
       nat_public_ip_id = null
       server_role_type = "REPLICA"
+      availability_zone_name = "AZ1"
     },
     {
       redis_server_name = "terraabc-05"
       nat_public_ip_id = null
       server_role_type = "REPLICA"
+      availability_zone_name = "AZ1"
     },
     {
       redis_server_name = "terraabc-06"
       nat_public_ip_id = null
       server_role_type = "REPLICA"
+      availability_zone_name = "AZ1"
     }
   ]
 

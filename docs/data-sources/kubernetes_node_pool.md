@@ -32,13 +32,9 @@ output "result_scp_kubernetes" {
 - `kubernetes_engine_id` (String) Kubernetes Engine Id
 - `node_pool_id` (String) Node Pool Id
 
-### Optional
-
-- `labels` (Block List) labels (see [below for nested schema](#nestedblock--labels))
-- `taints` (Block List) Taints (see [below for nested schema](#nestedblock--taints))
-
 ### Read-Only
 
+- `advanced_settings` (Block Set) Performing subjects (see [below for nested schema](#nestedblock--advanced_settings))
 - `auto_recovery` (Boolean) AutoRecovery
 - `auto_scale` (Boolean) AutoScale
 - `contract_id` (String) ContractId
@@ -50,6 +46,7 @@ output "result_scp_kubernetes" {
 - `id` (String) The ID of this resource.
 - `image_id` (String) ImageId
 - `k8s_version` (String) K8sVersion
+- `labels` (Block List) labels (see [below for nested schema](#nestedblock--labels))
 - `max_node_count` (Number) MaxNodeCount
 - `min_node_count` (Number) MinNodeCount
 - `modified_by` (String) Modified By
@@ -62,12 +59,27 @@ output "result_scp_kubernetes" {
 - `service_level_id` (String) ServiceLevelId
 - `storage_id` (String) StorageId
 - `storage_size` (String) StorageSize
+- `taints` (Block List) Taints (see [below for nested schema](#nestedblock--taints))
 - `upgradable` (Boolean) Upgradable
+
+<a id="nestedblock--advanced_settings"></a>
+### Nested Schema for `advanced_settings`
+
+Read-Only:
+
+- `allowed_unsafe_sysctls` (String) Allowed Unsafe Sysctls
+- `container_log_max_files` (Number) Container Log Max Files
+- `container_log_max_size` (Number) Container Log Max Size
+- `image_gc_high_threshold` (Number) ImageGc High Threshold
+- `image_gc_low_threshold` (Number) Image Gc Low Threshold
+- `max_pods` (Number) Max Pods
+- `pod_max_pids` (Number) Pod Max Pids
+
 
 <a id="nestedblock--labels"></a>
 ### Nested Schema for `labels`
 
-Optional:
+Read-Only:
 
 - `key` (String) Label Key
 - `value` (String) Label Value
@@ -76,7 +88,7 @@ Optional:
 <a id="nestedblock--taints"></a>
 ### Nested Schema for `taints`
 
-Optional:
+Read-Only:
 
 - `effect` (String) Taint Effect
 - `key` (String) Taint Key

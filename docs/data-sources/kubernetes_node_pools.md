@@ -50,6 +50,7 @@ Read-Only:
 
 - `auto_recovery` (Boolean) Enable auto recovery
 - `auto_scale` (Boolean) Enable auto scale
+- `availability_zone_name` (String) Availability_zone_name
 - `contract_id` (String) Contract id
 - `created_by` (String) The person who created the resource
 - `created_dt` (String) Creation Date

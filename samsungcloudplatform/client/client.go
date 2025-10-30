@@ -6,7 +6,10 @@ import (
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client/autoscaling"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client/baremetal"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client/baremetalvdc"
+	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client/certificate"
+	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client/configinspection"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client/database/epas"
+	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client/database/kafka"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client/database/mariadb"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client/database/mysql"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client/database/postgresql"
@@ -107,6 +110,11 @@ type SCPClient struct {
 	Mysql        *mysql.Client
 	Redis        *redis.Client
 	RedisCluster *rediscluster.Client
+	Kafka        *kafka.Client
+
+	// Security
+	Certificate      *certificate.Client
+	ConfigInspection *configinspection.Client
 
 	// Misc.
 	Project       *project.Client
@@ -235,6 +243,11 @@ func NewSCPClient(providerConfig *Config) (*SCPClient, error) {
 		Mysql:        mysql.NewClient(NewDefaultConfig(providerConfig, "oss2")),
 		Redis:        redis.NewClient(NewDefaultConfig(providerConfig, "oss2")),
 		RedisCluster: rediscluster.NewClient(NewDefaultConfig(providerConfig, "oss2")),
+		Kafka:        kafka.NewClient(NewDefaultConfig(providerConfig, "oss2")),
+
+		// Security
+		Certificate: certificate.NewClient(NewDefaultConfig(providerConfig, "certificate")),
+		ConfigInspection: configinspection.NewClient(NewDefaultConfig(providerConfig, "on-service")),
 
 		// Common.
 		Project:       project.NewClient(NewDefaultConfig(providerConfig, "project")),

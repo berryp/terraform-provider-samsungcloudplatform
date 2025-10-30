@@ -2,6 +2,7 @@ package kubernetes
 
 import (
 	"context"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/common"
@@ -26,7 +27,7 @@ func DatasourceEngineVersions() *schema.Resource {
 			"contents":    {Type: schema.TypeList, Optional: true, Description: "K8s engine list", Elem: datasourceVersionElem()},
 			"page":        {Type: schema.TypeInt, Optional: true, Default: 0, Description: "Page start number from which to get the list"},
 			"size":        {Type: schema.TypeInt, Optional: true, Default: 20, Description: "Size to get list"},
-			"total_count": {Type: schema.TypeInt, Optional: true, Default: 20, Description: "total count"},
+			"total_count": {Type: schema.TypeInt, Computed: true, Description: "total count"},
 		},
 		Description: "Provides list of K8s versions",
 	}

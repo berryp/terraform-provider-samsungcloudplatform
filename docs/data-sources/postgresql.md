@@ -108,7 +108,7 @@ Read-Only:
 
 Read-Only:
 
-- `maintenance_period` (Number) maintenance period
+- `maintenance_period` (String) maintenance period
 - `maintenance_start_day_of_week` (String) maintenance start day of week
 - `maintenance_start_time` (String) maintenance start time
 

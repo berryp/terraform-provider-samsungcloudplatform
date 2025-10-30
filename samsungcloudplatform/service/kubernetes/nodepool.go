@@ -205,6 +205,50 @@ func ResourceKubernetesNodePool() *schema.Resource {
 				},
 				Description: "Taints",
 			},
+			"advanced_settings": {
+				Type:        schema.TypeSet,
+				Optional:    true,
+				Description: "Performing subjects",
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"allowed_unsafe_sysctls": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							Description: "Allowed Unsafe Sysctls",
+						},
+						"container_log_max_files": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "Container Log Max Files",
+						},
+						"container_log_max_size": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "Container Log Max Size",
+						},
+						"image_gc_high_threshold": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "ImageGc High Threshold",
+						},
+						"image_gc_low_threshold": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "Image Gc Low Threshold",
+						},
+						"max_pods": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "Max Pods",
+						},
+						"pod_max_pids": {
+							Type:        schema.TypeInt,
+							Optional:    true,
+							Description: "Pod Max Pids",
+						},
+					},
+				},
+			},
 		},
 		Description: "Provides a K8s Node Pool resource.",
 	}
@@ -258,6 +302,7 @@ func createNodePool(ctx context.Context, data *schema.ResourceData, meta interfa
 			StorageSize:          data.Get("storage_size_gb").(string),
 			Labels:               toLabelRequestList(data.Get("labels").([]interface{})),
 			Taints:               toTaintRequestList(data.Get("taints").([]interface{})),
+			AdvancedSettings:     toAdvancedSettingsRequest(data.Get("advanced_settings").(interface{})),
 		})
 
 	if err != nil {
@@ -462,11 +507,11 @@ func updateNodePool(ctx context.Context, data *schema.ResourceData, meta interfa
 		beforeImageid := nodePool.ImageId
 		afterImageid := data.Get("image_id").(string)
 
-		beforeImageType, beforeOsType, beforeK8sVersion, beforeOsVersion, beforeProductId, err := getImageInfo(ctx, beforeImageid, meta)
+		beforeImageType, beforeOsType, beforeK8sVersion, _, beforeProductId, err := getImageInfo(ctx, beforeImageid, meta)
 		if err != nil {
 			return diag.FromErr(err)
 		}
-		afterImageType, afterOsType, afterK8sVersion, afterOsVersion, afterProductId, err := getImageInfo(ctx, afterImageid, meta)
+		afterImageType, afterOsType, afterK8sVersion, _, afterProductId, err := getImageInfo(ctx, afterImageid, meta)
 		if err != nil {
 			return diag.FromErr(err)
 		}
@@ -486,10 +531,6 @@ func updateNodePool(ctx context.Context, data *schema.ResourceData, meta interfa
 			return diag.Errorf("OS type not match (berfor : " + beforeOsType + " / after : " + afterOsType + ")")
 		}
 
-		if beforeOsVersion != afterOsVersion {
-			return diag.Errorf("OS version not match (berfor : " + beforeOsVersion + " / after : " + afterOsVersion + ")")
-		}
-
 		if beforeProductId != afterProductId {
 			return diag.Errorf("Product Id not match (berfor : " + beforeProductId + " / after : " + afterProductId + ")")
 		}
@@ -499,7 +540,9 @@ func updateNodePool(ctx context.Context, data *schema.ResourceData, meta interfa
 			return diag.Errorf("Cannot upgrade from " + beforeK8sVersion + " to " + afterK8sVersion)
 		}
 
-		_, _, err = inst.Client.KubernetesEngine.UpgradeNodePool(ctx, engineId, data.Id())
+		_, _, err = inst.Client.KubernetesEngine.UpgradeNodePool(ctx, engineId, data.Id(), kubernetesengine.NodePoolUgradeRequest{
+			UpgradeImageId: data.Get("image_id").(string),
+		})
 
 		if err != nil {
 			return diag.FromErr(err)
@@ -684,5 +727,22 @@ func toTaintRequestListToUpdate(list []interface{}) []kubernetesengine.TaintRequ
 			Value:  kv["value"].(string),
 		})
 	}
+	return result
+}
+
+func toAdvancedSettingsRequest(advancedSettings interface{}) kubernetesengine.AdvancedSettingsRequest {
+
+	inst := advancedSettings.(*schema.Set).List()
+
+	var result = kubernetesengine.AdvancedSettingsRequest{
+		AllowedUnsafeSysctls: inst[0].(map[string]interface{})["allowed_unsafe_sysctls"].(string),
+		ContainerLogMaxFiles: int32(inst[0].(map[string]interface{})["container_log_max_files"].(int)),
+		ContainerLogMaxSize:  int32(inst[0].(map[string]interface{})["container_log_max_size"].(int)),
+		ImageGcHighThreshold: int32(inst[0].(map[string]interface{})["image_gc_high_threshold"].(int)),
+		ImageGcLowThreshold:  int32(inst[0].(map[string]interface{})["image_gc_low_threshold"].(int)),
+		MaxPods:              int32(inst[0].(map[string]interface{})["max_pods"].(int)),
+		PodMaxPids:           int32(inst[0].(map[string]interface{})["pod_max_pids"].(int)),
+	}
+
 	return result
 }

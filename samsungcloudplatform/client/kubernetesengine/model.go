@@ -69,6 +69,7 @@ type CreateNodePoolRequest struct {
 	StorageSize          string
 	Labels               []LabelRequest
 	Taints               []TaintRequest
+	AdvancedSettings     AdvancedSettingsRequest
 }
 
 type NodePoolUpdateRequest struct {
@@ -85,6 +86,10 @@ type NodePoolUpdateRequest struct {
 	ServiceLevelId   string
 	StorageId        string
 	StorageSize      string
+}
+
+type NodePoolUgradeRequest struct {
+	UpgradeImageId string
 }
 
 type UpdateNodePoolLabelsRequest struct {
@@ -135,4 +140,14 @@ type TaintRequestToUpdate struct {
 	Effect string
 	Key    string
 	Value  string
+}
+
+type AdvancedSettingsRequest struct {
+	AllowedUnsafeSysctls string
+	ContainerLogMaxFiles int32
+	ContainerLogMaxSize  int32
+	ImageGcHighThreshold int32
+	ImageGcLowThreshold  int32
+	MaxPods              int32
+	PodMaxPids           int32
 }

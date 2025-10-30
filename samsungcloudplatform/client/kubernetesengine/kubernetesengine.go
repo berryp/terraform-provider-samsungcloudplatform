@@ -165,7 +165,16 @@ func (client *Client) GetEngineList(ctx context.Context, request *kubernetesengi
 }
 
 func (client *Client) GetKubeConfig(ctx context.Context, id string, kubeconfigType string) (string, int, error) {
-	result, _, err := client.sdk.K8sEngineV2Api.DownloadKubernetesEngineConfigV2(ctx, client.config.ProjectId, id, kubeconfigType)
+	result, _, err := client.sdk.K8sEngineV2Api.DownloadKubernetesEngineAdminKubeconfigV2(ctx, client.config.ProjectId, id, kubeconfigType)
+	if err != nil {
+		return "", -1, err
+	}
+	var statusCode int
+	return string(result), statusCode, err
+}
+
+func (client *Client) GetUserKubeConfig(ctx context.Context, id string, kubeconfigType string) (string, int, error) {
+	result, _, err := client.sdk.K8sEngineV2Api.DownloadKubernetesEngineUserKubeconfigV2(ctx, client.config.ProjectId, id, kubeconfigType)
 	if err != nil {
 		return "", -1, err
 	}
@@ -244,6 +253,15 @@ func (client *Client) CreateNodePool(ctx context.Context, engineId string, reque
 			StorageSize:          request.StorageSize,
 			Labels:               labels,
 			Taints:               taints,
+			AdvancedSettings: &kubernetesengine2.NodePoolAdvancedSettingsVo{
+				AllowedUnsafeSysctls: request.AdvancedSettings.AllowedUnsafeSysctls,
+				ContainerLogMaxFiles: request.AdvancedSettings.ContainerLogMaxFiles,
+				ContainerLogMaxSize:  request.AdvancedSettings.ContainerLogMaxSize,
+				ImageGcHighThreshold: request.AdvancedSettings.ImageGcHighThreshold,
+				ImageGcLowThreshold:  request.AdvancedSettings.ImageGcLowThreshold,
+				MaxPods:              request.AdvancedSettings.MaxPods,
+				PodMaxPids:           request.AdvancedSettings.PodMaxPids,
+			},
 		})
 
 	var statusCode int
@@ -279,8 +297,10 @@ func (client *Client) UpdateNodePool(ctx context.Context, engineId string, nodeP
 	return result, statusCode, err
 }
 
-func (client *Client) UpgradeNodePool(ctx context.Context, engineId string, nodePoolId string) (kubernetesengine2.AsyncResponse, int, error) {
-	result, response, err := client.sdk.NodePoolV2Api.UpgradeNodePoolV2(ctx, client.config.ProjectId, engineId, nodePoolId)
+func (client *Client) UpgradeNodePool(ctx context.Context, engineId string, nodePoolId string, request NodePoolUgradeRequest) (kubernetesengine2.AsyncResponse, int, error) {
+	result, response, err := client.sdk.NodePoolV3Api.UpgradeNodePoolV3(ctx, client.config.ProjectId, engineId, nodePoolId, kubernetesengine2.NodePoolUpgradeV3Request{
+		UpgradeImageId: request.UpgradeImageId,
+	})
 	var statusCode int
 	if response != nil {
 		statusCode = response.StatusCode

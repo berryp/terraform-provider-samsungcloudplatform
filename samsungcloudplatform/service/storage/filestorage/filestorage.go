@@ -237,18 +237,16 @@ func createFileStorage(ctx context.Context, rd *schema.ResourceData, meta interf
 
 	}
 	// TODO: if attach objects have
-	linkObjects, ok := rd.Get("link_objects").(map[string]interface{})
-	if ok {
-		if len(linkObjects) > 0 {
-			if _, err := inst.Client.FileStorage.UpdateFileStorageObjectsLink(ctx, rd.Id(), filestorage.LinkFileStorageObjectRequest{
-				LinkObjects: getLinkObjectsArray(rd),
-			}); err != nil {
-				return diag.FromErr(err)
-			}
-			errUpdateRecovery := waitForFileStorageStatus(ctx, inst.Client, rd.Id(), []string{}, []string{"ACTIVE"}, true)
-			if errUpdateRecovery != nil {
-				return diag.FromErr(errUpdateRecovery)
-			}
+	linkObjects := rd.Get("link_objects").([]interface{})
+	if len(linkObjects) > 0 {
+		if _, err := inst.Client.FileStorage.UpdateFileStorageObjectsLink(ctx, rd.Id(), filestorage.LinkFileStorageObjectRequest{
+			LinkObjects: getLinkObjectsArray(rd),
+		}); err != nil {
+			return diag.FromErr(err)
+		}
+		errUpdateRecovery := waitForFileStorageStatus(ctx, inst.Client, rd.Id(), []string{}, []string{"ACTIVE"}, true)
+		if errUpdateRecovery != nil {
+			return diag.FromErr(errUpdateRecovery)
 		}
 	}
 	return readFileStorage(ctx, rd, meta)

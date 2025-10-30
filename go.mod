@@ -1,8 +1,10 @@
 module github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3
 
-go 1.18
+go 1.24.0
 
-require github.com/SamsungSDSCloud/terraform-sdk-samsungcloudplatform/v3 v3.13.0
+toolchain go1.24.7
+
+require github.com/SamsungSDSCloud/terraform-sdk-samsungcloudplatform/v3 v3.15.0
 
 
 
@@ -13,16 +15,27 @@ require (
 	github.com/hashicorp/terraform-plugin-log v0.4.0
 	github.com/satori/go.uuid v1.2.0
 	github.com/spf13/cobra v1.7.0
-	github.com/stretchr/testify v1.7.0
-	golang.org/x/tools v0.6.0
+	github.com/stretchr/testify v1.10.0
+	golang.org/x/tools v0.36.0
 	gopkg.in/yaml.v3 v3.0.1
 )
 
+// For avoid blackduck vulnerability detection
+replace golang.org/x/crypto => golang.org/x/crypto v0.36.0
+
+replace github.com/containerd/containerd => github.com/containerd/containerd v1.7.28
+
+replace github.com/go-git/go-git/v5 => github.com/go-git/go-git/v5 v5.16.2
+
 require (
+	github.com/go-git/go-git/v5 v5.14.0 // indirect
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
-	golang.org/x/mod v0.8.0 // indirect
+	golang.org/x/crypto v0.42.0 // indirect
+	golang.org/x/mod v0.27.0 // indirect
+	golang.org/x/sync v0.17.0 // indirect
+	google.golang.org/genproto/googleapis/rpc v0.0.0-20250324211829-b45e905df463 // indirect
 )
 
 require (
@@ -35,7 +48,7 @@ require (
 	github.com/bgentry/speakeasy v0.1.0 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/fatih/color v1.13.0 // indirect
-	github.com/google/uuid v1.3.0 // indirect
+	github.com/google/uuid v1.6.0 // indirect
 	github.com/hashicorp/errwrap v1.1.0 // indirect
 	github.com/hashicorp/go-checkpoint v0.5.0 // indirect
 	github.com/hashicorp/go-cleanhttp v0.5.2 // indirect
@@ -72,19 +85,17 @@ require (
 	github.com/vmihailenco/msgpack/v4 v4.3.12 // indirect
 	github.com/vmihailenco/tagparser v0.1.1 // indirect
 	github.com/zclconf/go-cty v1.10.0 // indirect
-	golang.org/x/crypto v0.0.0-20220525230936-793ad666bf5e // indirect
-	golang.org/x/oauth2 v0.0.0-20220630143837-2104d58473e0 // indirect
-	golang.org/x/sys v0.6.0 // indirect
-	golang.org/x/text v0.8.0 // indirect
-	google.golang.org/genproto v0.0.0-20200825200019-8632dd797987 // indirect
-	google.golang.org/grpc v1.45.0 // indirect
+	golang.org/x/oauth2 v0.30.0 // indirect
+	golang.org/x/sys v0.36.0 // indirect
+	golang.org/x/text v0.29.0 // indirect
+	google.golang.org/grpc v1.74.0-dev // indirect
 )
 
 require (
-	github.com/golang/protobuf v1.5.2 // indirect
-	github.com/google/go-cmp v0.5.8 // indirect
+	github.com/golang/protobuf v1.5.4 // indirect
+	github.com/google/go-cmp v0.7.0 // indirect
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.16.0
-	golang.org/x/net v0.8.0
+	golang.org/x/net v0.44.0
 	google.golang.org/appengine v1.6.7 // indirect
-	google.golang.org/protobuf v1.28.0 // indirect
+	google.golang.org/protobuf v1.36.6 // indirect
 )

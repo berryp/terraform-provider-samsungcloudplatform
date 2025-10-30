@@ -129,16 +129,17 @@ func DatasourceRedis() *schema.Resource {
 						"redis_servers": {Type: schema.TypeList, Computed: true, Description: "redis servers",
 							Elem: &schema.Resource{
 								Schema: map[string]*schema.Schema{
-									"redis_server_id":       {Type: schema.TypeString, Computed: true, Description: "redis server id"},
-									"redis_server_name":     {Type: schema.TypeString, Computed: true, Description: "redis server name"},
-									"server_role_type":      {Type: schema.TypeString, Computed: true, Description: "server role type"},
-									"redis_server_state":    {Type: schema.TypeString, Computed: true, Description: "redis server state"},
-									"subnet_ip_address":     {Type: schema.TypeString, Computed: true, Description: "subnet ip address"},
-									"nat_public_ip_address": {Type: schema.TypeString, Computed: true, Description: "nat public ip address"},
-									"created_by":            {Type: schema.TypeString, Computed: true, Description: "created by"},
-									"created_dt":            {Type: schema.TypeString, Computed: true, Description: "created dt"},
-									"modified_by":           {Type: schema.TypeString, Computed: true, Description: "modified by"},
-									"modified_dt":           {Type: schema.TypeString, Computed: true, Description: "modified dt"},
+									"redis_server_id":        {Type: schema.TypeString, Computed: true, Description: "redis server id"},
+									"redis_server_name":      {Type: schema.TypeString, Computed: true, Description: "redis server name"},
+									"server_role_type":       {Type: schema.TypeString, Computed: true, Description: "server role type"},
+									"redis_server_state":     {Type: schema.TypeString, Computed: true, Description: "redis server state"},
+									"subnet_ip_address":      {Type: schema.TypeString, Computed: true, Description: "subnet ip address"},
+									"nat_public_ip_address":  {Type: schema.TypeString, Computed: true, Description: "nat public ip address"},
+									"availability_zone_name": {Type: schema.TypeString, Computed: true, Description: "availability zone name"},
+									"created_by":             {Type: schema.TypeString, Computed: true, Description: "created by"},
+									"created_dt":             {Type: schema.TypeString, Computed: true, Description: "created dt"},
+									"modified_by":            {Type: schema.TypeString, Computed: true, Description: "modified by"},
+									"modified_dt":            {Type: schema.TypeString, Computed: true, Description: "modified dt"},
 								},
 							},
 						},
@@ -160,13 +161,14 @@ func DatasourceRedis() *schema.Resource {
 			"sentinel_server": {Type: schema.TypeList, Computed: true, Description: "redis server group",
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
-						"server_type":           {Type: schema.TypeString, Computed: true, Description: "server type"},
-						"sentinel_server_id":    {Type: schema.TypeString, Computed: true, Description: "sentinel server id"},
-						"sentinel_server_name":  {Type: schema.TypeString, Computed: true, Description: "sentinel server name"},
-						"sentinel_server_state": {Type: schema.TypeString, Computed: true, Description: "sentinel server state"},
-						"subnet_ip_address":     {Type: schema.TypeString, Computed: true, Description: "subnet ip address"},
-						"nat_public_ip_address": {Type: schema.TypeString, Computed: true, Description: "nat public ip address"},
-						"encryption_enabled":    {Type: schema.TypeBool, Computed: true, Description: "encryption enabled"},
+						"server_type":            {Type: schema.TypeString, Computed: true, Description: "server type"},
+						"sentinel_server_id":     {Type: schema.TypeString, Computed: true, Description: "sentinel server id"},
+						"sentinel_server_name":   {Type: schema.TypeString, Computed: true, Description: "sentinel server name"},
+						"sentinel_server_state":  {Type: schema.TypeString, Computed: true, Description: "sentinel server state"},
+						"subnet_ip_address":      {Type: schema.TypeString, Computed: true, Description: "subnet ip address"},
+						"nat_public_ip_address":  {Type: schema.TypeString, Computed: true, Description: "nat public ip address"},
+						"encryption_enabled":     {Type: schema.TypeBool, Computed: true, Description: "encryption enabled"},
+						"availability_zone_name": {Type: schema.TypeString, Computed: true, Description: "availability zone name"},
 						"block_storages": {Type: schema.TypeList, Computed: true, Description: "block storages",
 							Elem: &schema.Resource{
 								Schema: map[string]*schema.Schema{
@@ -190,7 +192,7 @@ func DatasourceRedis() *schema.Resource {
 					Schema: map[string]*schema.Schema{
 						"maintenance_start_day_of_week": {Type: schema.TypeString, Computed: true, Description: "maintenance start day of week"},
 						"maintenance_start_time":        {Type: schema.TypeString, Computed: true, Description: "maintenance start time"},
-						"maintenance_period":            {Type: schema.TypeInt, Computed: true, Description: "maintenance period"},
+						"maintenance_period":            {Type: schema.TypeString, Computed: true, Description: "maintenance period"},
 					},
 				},
 			},
@@ -330,6 +332,7 @@ func dataSourceRedisSingle(ctx context.Context, rd *schema.ResourceData, meta in
 			redisServersInfo["redis_server_state"] = value.RedisServerState
 			redisServersInfo["subnet_ip_address"] = value.SubnetIpAddress
 			redisServersInfo["nat_public_ip_address"] = value.NatPublicIpAddress
+			redisServersInfo["availability_zone_name"] = value.AvailabilityZoneName
 			redisServersInfo["created_by"] = value.CreatedBy
 			redisServersInfo["created_dt"] = value.CreatedDt.String()
 			redisServersInfo["modified_by"] = value.ModifiedBy
@@ -371,6 +374,7 @@ func dataSourceRedisSingle(ctx context.Context, rd *schema.ResourceData, meta in
 		sentinelServerInfo["subnet_ip_address"] = dbInfo.SentinelServer.SubnetIpAddress
 		sentinelServerInfo["nat_public_ip_address"] = dbInfo.SentinelServer.NatPublicIpAddress
 		sentinelServerInfo["encryption_enabled"] = dbInfo.SentinelServer.EncryptionEnabled
+		sentinelServerInfo["availability_zone_name"] = dbInfo.SentinelServer.AvailabilityZoneName
 
 		blockStorages := database_common.HclListObject{}
 		for _, value := range dbInfo.SentinelServer.BlockStorages {

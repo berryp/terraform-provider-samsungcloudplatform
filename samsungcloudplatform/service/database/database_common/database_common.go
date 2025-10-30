@@ -27,6 +27,9 @@ type ConvertedStruct struct {
 	SqlserverServerName  string
 	MysqlServerName      string
 	RedisServerName      string
+	BrokerNodeName       string
+	ZookeeperNodeName    string
+	AkhqNodeName         string
 	NatPublicIpId        string
 	NatPublicIpAddress   string
 	RedisSentinelPort    int

@@ -126,16 +126,17 @@ func DatasourceRedisCluster() *schema.Resource {
 						"redis_servers": {Type: schema.TypeList, Computed: true, Description: "Redis Cluster servers",
 							Elem: &schema.Resource{
 								Schema: map[string]*schema.Schema{
-									"redis_server_id":       {Type: schema.TypeString, Computed: true, Description: "Redis Cluster server id"},
-									"redis_server_name":     {Type: schema.TypeString, Computed: true, Description: "Redis Cluster server name"},
-									"redis_server_state":    {Type: schema.TypeString, Computed: true, Description: "Redis Cluster server state"},
-									"server_role_type":      {Type: schema.TypeString, Computed: true, Description: "server role type"},
-									"subnet_ip_address":     {Type: schema.TypeString, Computed: true, Description: "subnet ip address"},
-									"nat_public_ip_address": {Type: schema.TypeString, Computed: true, Description: "nat ip address"},
-									"created_by":            {Type: schema.TypeString, Computed: true, Description: "created by"},
-									"created_dt":            {Type: schema.TypeString, Computed: true, Description: "created dt"},
-									"modified_by":           {Type: schema.TypeString, Computed: true, Description: "modified by"},
-									"modified_dt":           {Type: schema.TypeString, Computed: true, Description: "modified dt"},
+									"redis_server_id":        {Type: schema.TypeString, Computed: true, Description: "Redis Cluster server id"},
+									"redis_server_name":      {Type: schema.TypeString, Computed: true, Description: "Redis Cluster server name"},
+									"redis_server_state":     {Type: schema.TypeString, Computed: true, Description: "Redis Cluster server state"},
+									"server_role_type":       {Type: schema.TypeString, Computed: true, Description: "server role type"},
+									"subnet_ip_address":      {Type: schema.TypeString, Computed: true, Description: "subnet ip address"},
+									"nat_public_ip_address":  {Type: schema.TypeString, Computed: true, Description: "nat ip address"},
+									"availability_zone_name": {Type: schema.TypeString, Computed: true, Description: "availability zone name"},
+									"created_by":             {Type: schema.TypeString, Computed: true, Description: "created by"},
+									"created_dt":             {Type: schema.TypeString, Computed: true, Description: "created dt"},
+									"modified_by":            {Type: schema.TypeString, Computed: true, Description: "modified by"},
+									"modified_dt":            {Type: schema.TypeString, Computed: true, Description: "modified dt"},
 								},
 							},
 						},
@@ -158,7 +159,7 @@ func DatasourceRedisCluster() *schema.Resource {
 					Schema: map[string]*schema.Schema{
 						"maintenance_start_day_of_week": {Type: schema.TypeString, Computed: true, Description: "maintenance start day of week"},
 						"maintenance_start_time":        {Type: schema.TypeString, Computed: true, Description: "maintenance start time"},
-						"maintenance_period":            {Type: schema.TypeInt, Computed: true, Description: "maintenance period"},
+						"maintenance_period":            {Type: schema.TypeString, Computed: true, Description: "maintenance period"},
 					},
 				},
 			},
@@ -282,6 +283,7 @@ func dataSourceRedisClusterSingle(ctx context.Context, rd *schema.ResourceData, 
 			redisClusterServersInfo["server_role_type"] = value.ServerRoleType
 			redisClusterServersInfo["subnet_ip_address"] = value.SubnetIpAddress
 			redisClusterServersInfo["nat_public_ip_address"] = value.NatPublicIpAddress
+			redisClusterServersInfo["availability_zone_name"] = value.AvailabilityZoneName
 			redisClusterServersInfo["created_by"] = value.CreatedBy
 			redisClusterServersInfo["created_dt"] = value.CreatedDt.String()
 			redisClusterServersInfo["modified_by"] = value.ModifiedBy

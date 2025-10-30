@@ -151,6 +151,12 @@ func ResourceRedisCluster() *schema.Resource {
 							Computed:    true,
 							Description: "nat ip address",
 						},
+						"availability_zone_name": {
+							Type:             schema.TypeString,
+							Optional:         true,
+							Description:      "Availability zone name set in a Multi AZ environment. If it is null, it is automatically allocated as AZ1. (AZ1 | AZ2 | AZ3)",
+							ValidateDiagFunc: database_common.ValidateStringInOptions("AZ1", "AZ2", "AZ3"),
+						},
 					},
 				},
 			},
@@ -292,9 +298,10 @@ func resourceRedisClusterCreate(ctx context.Context, rd *schema.ResourceData, me
 	redisClusterServerList := database_common.ConvertObjectSliceToStructSlice(redisServers)
 	for _, redisServer := range redisClusterServerList {
 		RedisClusterServerCreateRequestList = append(RedisClusterServerCreateRequestList, redis.RedisServerCreateRequest{
-			NatPublicIpId:   redisServer.NatPublicIpId,
-			RedisServerName: redisServer.RedisServerName,
-			ServerRoleType:  redisServer.ServerRoleType,
+			NatPublicIpId:        redisServer.NatPublicIpId,
+			RedisServerName:      redisServer.RedisServerName,
+			ServerRoleType:       redisServer.ServerRoleType,
+			AvailabilityZoneName: redisServer.AvailabilityZoneName,
 		})
 	}
 
@@ -466,6 +473,7 @@ func resourceRedisClusterRead(ctx context.Context, rd *schema.ResourceData, meta
 		redisClusterServersInfo["server_role_type"] = server.ServerRoleType
 		redisClusterServersInfo["nat_ip_address"] = server.NatPublicIpAddress
 		redisClusterServersInfo["created_dt"] = server.CreatedDt
+		redisClusterServersInfo["availability_zone_name"] = server.AvailabilityZoneName
 
 		redisClusterServers = append(redisClusterServers, redisClusterServersInfo)
 	}
@@ -489,6 +497,7 @@ func resourceRedisClusterRead(ctx context.Context, rd *schema.ResourceData, meta
 		redisClusterServersInfo["nat_public_ip_id"] = server.NatPublicIpId
 		redisClusterServersInfo["server_role_type"] = server.ServerRoleType
 		redisClusterServersInfo["nat_ip_address"] = server.NatPublicIpAddress
+		redisClusterServersInfo["availability_zone_name"] = server.AvailabilityZoneName
 
 		redisClusterServersExcludeCreatedDt = append(redisClusterServersExcludeCreatedDt, redisClusterServersInfo)
 	}
@@ -685,6 +694,7 @@ func resourceRedisClusterDiff(ctx context.Context, rd *schema.ResourceDiff, meta
 		"next_contract_period",
 		"backup",
 		"tags",
+		"redis_servers",
 	}
 	resourceRedisCluster := ResourceRedisCluster().Schema
 

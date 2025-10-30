@@ -16,6 +16,7 @@ func init() {
 	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_kubernetes_engines", DatasourceEngines())
 	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_kubernetes_engine", DatasourceEngine())
 	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_kubernetes_kubeconfig", DatasourceKubeConfig())
+	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_kubernetes_user_kubeconfig", DatasourceUserKubeConfig())
 }
 
 func DatasourceEngines() *schema.Resource {
@@ -79,6 +80,7 @@ func datasourceElem() *schema.Resource {
 			"security_group_id":        {Type: schema.TypeString, Computed: true, Description: "Security group id"},
 			"subnet_id":                {Type: schema.TypeString, Computed: true, Description: "Subnet id"},
 			"volume_id":                {Type: schema.TypeString, Computed: true, Description: "File storage volume id"},
+			"load_balancer_id":         {Type: schema.TypeString, Computed: true, Description: "Load Balancer Id"},
 			"cifs_volume_id":           {Type: schema.TypeString, Computed: true, Description: "File storage cifs volume id"},
 			"vpc_id":                   {Type: schema.TypeString, Computed: true, Description: "Vpc id"},
 			"created_by":               {Type: schema.TypeString, Computed: true, Description: "The person who created the resource"},
@@ -206,6 +208,21 @@ func DatasourceKubeConfig() *schema.Resource {
 	}
 }
 
+func DatasourceUserKubeConfig() *schema.Resource {
+	return &schema.Resource{
+		ReadContext: engineUserKubeConfig, //데이터 조회 함수
+		Importer: &schema.ResourceImporter{
+			StateContext: schema.ImportStatePassthroughContext,
+		},
+		Schema: map[string]*schema.Schema{
+			common.ToSnakeCase("KubernetesEngineId"): {Type: schema.TypeString, Required: true, Description: "Engine Id"},
+			common.ToSnakeCase("kubeconfigType"):     {Type: schema.TypeString, Required: true, Description: "kubeconfig Type"},
+			common.ToSnakeCase("KubeConfig"):         {Type: schema.TypeString, Computed: true, Description: "KubeConfig"},
+		},
+		Description: "Provides Kubernetes Engine Detail",
+	}
+}
+
 func engineKubeConfig(ctx context.Context, rd *schema.ResourceData, meta interface{}) diag.Diagnostics {
 	inst := meta.(*client.Instance)
 
@@ -213,6 +230,24 @@ func engineKubeConfig(ctx context.Context, rd *schema.ResourceData, meta interfa
 	kubeconfigType := rd.Get("kubeconfig_type").(string)
 
 	response, _, err := inst.Client.KubernetesEngine.GetKubeConfig(ctx, engineId, kubeconfigType)
+	if err != nil {
+		return diag.FromErr(err)
+	}
+
+	rd.SetId(uuid.NewV4().String())
+
+	rd.Set(common.ToSnakeCase("KubeConfig"), response)
+
+	return nil
+}
+
+func engineUserKubeConfig(ctx context.Context, rd *schema.ResourceData, meta interface{}) diag.Diagnostics {
+	inst := meta.(*client.Instance)
+
+	engineId := rd.Get("kubernetes_engine_id").(string)
+	kubeconfigType := rd.Get("kubeconfig_type").(string)
+
+	response, _, err := inst.Client.KubernetesEngine.GetUserKubeConfig(ctx, engineId, kubeconfigType)
 	if err != nil {
 		return diag.FromErr(err)
 	}

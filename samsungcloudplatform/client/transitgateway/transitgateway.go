@@ -4,6 +4,7 @@ import (
 	"context"
 	sdk "github.com/SamsungSDSCloud/terraform-sdk-samsungcloudplatform/v3/client"
 	transitgateway2 "github.com/SamsungSDSCloud/terraform-sdk-samsungcloudplatform/v3/library/transit-gateway2"
+	"github.com/antihax/optional"
 )
 
 type Client struct {
@@ -156,3 +157,97 @@ func (client *Client) DeleteTransitGatewayConnection(ctx context.Context, transi
 }
 
 // <-------------------------------
+
+//  Transit Gateway Peering  -------------------------->
+
+func (client *Client) GetTransitGatewayPeeringList(ctx context.Context, request *transitgateway2.TransitGatewayPeeringOpenApiControllerApiListTransitGatewayPeeringOpts) (transitgateway2.ListResponseTransitGatewayPeeringListItemResponse, int, error) {
+	result, c, err := client.sdkClient.TransitGatewayPeeringOpenApiControllerApi.ListTransitGatewayPeering(ctx, client.config.ProjectId, request)
+	var statusCode int
+	if c != nil {
+		statusCode = c.StatusCode
+	}
+	return result, statusCode, err
+}
+
+func (client *Client) GetTransitGatewayPeeringListByTransitGateway(ctx context.Context, transitGatewayId string) (transitgateway2.ListResponseTransitGatewayPeeringListItemResponse, int, error) {
+	result, c, err := client.sdkClient.TransitGatewayPeeringOpenApiControllerApi.ListTransitGatewayPeeringByTransitGatewayId(ctx, client.config.ProjectId, transitGatewayId)
+	var statusCode int
+	if c != nil {
+		statusCode = c.StatusCode
+	}
+	return result, statusCode, err
+}
+
+func (client *Client) CreateTransitGatewayPeering(ctx context.Context, requesterTgwId string, approverTgwId string, requesterProjectId string, approverProjectId string, description string, tags map[string]interface{}) (transitgateway2.TransitGatewayPeeringResponse, int, error) {
+	result, c, err := client.sdkClient.TransitGatewayPeeringOpenApiControllerApi.CreateTransitGatewayPeering(ctx, client.config.ProjectId, transitgateway2.TransitGatewayPeeringCreateRequest{
+		RequesterProjectId:               requesterProjectId,
+		RequesterTransitGatewayId:        requesterTgwId,
+		ApproverProjectId:                approverProjectId,
+		ApproverTransitGatewayId:         approverTgwId,
+		TransitGatewayPeeringDescription: description,
+		Tags:                             client.sdkClient.ToTagRequestList(tags),
+	})
+
+	var statusCode int
+	if c != nil {
+		statusCode = c.StatusCode
+	}
+	return result, statusCode, err
+}
+
+func (client *Client) GetTransitGatewayPeeringInfo(ctx context.Context, transitGatewayPeeringId string) (transitgateway2.TransitGatewayPeeringDetailResponse, int, error) {
+	result, c, err := client.sdkClient.TransitGatewayPeeringOpenApiControllerApi.DetailTransitGatewayPeering(ctx, client.config.ProjectId, transitGatewayPeeringId)
+	var statusCode int
+	if c != nil {
+		statusCode = c.StatusCode
+	}
+	return result, statusCode, err
+}
+
+func (client *Client) UpdateTransitGatewayPeeringDescription(ctx context.Context, transitGatewayPeeringId string, description string) (transitgateway2.TransitGatewayPeeringDetailResponse, int, error) {
+	result, c, err := client.sdkClient.TransitGatewayPeeringOpenApiControllerApi.UpdateTransitGatewayPeeringDescription(ctx, client.config.ProjectId, transitGatewayPeeringId, transitgateway2.TransitGatewayPeeringDescriptionUpdateRequest{
+		TransitGatewayPeeringDescription: description,
+	})
+
+	var statusCode int
+	if c != nil {
+		statusCode = c.StatusCode
+	}
+	return result, statusCode, err
+}
+
+func (client *Client) DeleteTransitGatewayPeering(ctx context.Context, transitGatewayPeeringId string) error {
+	_, _, err := client.sdkClient.TransitGatewayPeeringOpenApiControllerApi.DeleteTransitGatewayPeering(ctx, client.config.ProjectId, transitGatewayPeeringId)
+	return err
+}
+
+func (client *Client) GetTransitGatewayPeeringForDelete(ctx context.Context, peeringId string) (transitgateway2.TransitGatewayPeeringListItemResponse, string, error) {
+	result, _, err := client.sdkClient.TransitGatewayPeeringOpenApiControllerApi.ListTransitGatewayPeering(ctx, client.config.ProjectId, &transitgateway2.TransitGatewayPeeringOpenApiControllerApiListTransitGatewayPeeringOpts{
+		Size: optional.NewInt32(1000),
+		Page: optional.NewInt32(0),
+	})
+	if err != nil {
+		return transitgateway2.TransitGatewayPeeringListItemResponse{}, "", err
+	}
+	for _, peeringInfo := range result.Contents {
+		if peeringInfo.TransitGatewayPeeringId == peeringId {
+			return peeringInfo, peeringInfo.TransitGatewayPeeringState, nil
+		}
+	}
+	return transitgateway2.TransitGatewayPeeringListItemResponse{}, "DELETED", nil
+}
+
+func (client *Client) CancelTransitGatewayPeering(ctx context.Context, transitGatewayPeeringId string) (transitgateway2.TransitGatewayPeeringResponse, error) {
+	result, _, err := client.sdkClient.TransitGatewayPeeringOpenApiControllerApi.CancelTransitGatewayPeering(ctx, client.config.ProjectId, transitGatewayPeeringId)
+	return result, err
+}
+
+func (client *Client) ApproveTransitGatewayPeering(ctx context.Context, transitGatewayPeeringId string) (transitgateway2.TransitGatewayPeeringResponse, error) {
+	result, _, err := client.sdkClient.TransitGatewayPeeringOpenApiControllerApi.ApproveTransitGatewayPeering(ctx, client.config.ProjectId, transitGatewayPeeringId)
+	return result, err
+}
+
+func (client *Client) RejectTransitGatewayPeering(ctx context.Context, transitGatewayPeeringId string) (transitgateway2.TransitGatewayPeeringResponse, error) {
+	result, _, err := client.sdkClient.TransitGatewayPeeringOpenApiControllerApi.RejectTransitGatewayPeering(ctx, client.config.ProjectId, transitGatewayPeeringId)
+	return result, err
+}

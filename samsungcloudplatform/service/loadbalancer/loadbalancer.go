@@ -114,14 +114,6 @@ func resourceLoadBalancerCreate(ctx context.Context, rd *schema.ResourceData, me
 		return diag.Errorf("Input load balancer name is invalid (maybe duplicated) : " + name)
 	}
 
-	isCidrInvalid, err := inst.Client.Subnet.CheckSubnetCidrIpv4(ctx, cidrIpv4, vpcId) // console : /27~/22, API : /24, need to fix backend
-	if err != nil {
-		return diag.FromErr(err)
-	}
-	if isCidrInvalid {
-		return diag.Errorf("Input cidr is invalid (maybe duplicated) : " + cidrIpv4)
-	}
-
 	// check limit value?
 	isSizeValid, err := inst.Client.LoadBalancer.CheckLoadBalancerLimitValue(ctx, size, vpcId)
 	if err != nil {

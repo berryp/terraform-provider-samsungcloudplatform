@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Terraform Guide</title>
+	<style>
+		body {
+			margin: 0;
+			display: flex;
+		}
+		#menu {
+			width: 20%;
+			border-right: 1px solid #ddd;
+			padding: 15px;
+			box-sizing: border-box;
+			height: 100vh;
+			overflow-y: auto;
+		}
+		#content {
+			width: 80%;
+			border: none;
+		}
+		.home {
+    		border-left: 2px solid #cbcfd5;
+		}
+		.home a {
+			color: #5c4ee5;
+			font-weight: 600;
+			font-size: 14px;
+			padding: 2px 0;
+			margin-left: 8px;
+		}
+		.category {
+			margin: 10px 0;
+			color: #1f2124;
+			font-size: 13px;
+			font-weight: 500;
+			cursor: pointer;
+		}
+		p {
+			margin: 0;
+			padding: 1px;
+			font-size: 13px;
+		}
+		ul {
+			list-style-type: none;
+			padding-left: 0;
+			margin: 0;
+		}
+		li {
+			margin: 10px 0;
+		}
+		a {
+			text-decoration: none;
+			color: #1f2124;
+			margin-left: 6px;
+			display: block;
+			font-size: 13px;
+		}
+		a:hover {
+			text-decoration: underline;
+		}
+		.collapsible {
+			margin-left: 10px;
+			padding-left: 10px;
+			border-left: 1px solid #dce0e6;
+			display: none;
+		}
+		.collapsible ul {
+			padding-left: 10px;
+		}
+		.collapsible a {
+			font-size: 13px;
+			margin-left: 2px;
+		}
+		.collapsible.active {
+			display: block;
+		}
+		.collapsible-header::before {
+			content: "";
+			font-weight: 800;
+			font-size: 12px;
+			margin-right: 5px;
+    		display: inline-block;
+		}
+		.collapsible-header.active::before {
+			transform: rotate(90deg);
+		}
+	</style>
+</head>
+<body>
+	<div id="menu">
+		<h3 class='home'><a href='index' target='contentFrame'>Home</a></h3>
+			<p class='category collapsible-header'>Data Sources</p>
+		<div class='collapsible'>
+			<ul>
+				<li><a href='data-sources/auto_scaling_group' target='contentFrame'>auto_scaling_group</a></li>
+				<li><a href='data-sources/auto_scaling_group_policies' target='contentFrame'>auto_scaling_group_policies</a></li>
+				<li><a href='data-sources/auto_scaling_group_policy' target='contentFrame'>auto_scaling_group_policy</a></li>
+				<li><a href='data-sources/auto_scaling_group_virtual_servers' target='contentFrame'>auto_scaling_group_virtual_servers</a></li>
+				<li><a href='data-sources/auto_scaling_groups' target='contentFrame'>auto_scaling_groups</a></li>
+				<li><a href='data-sources/backups' target='contentFrame'>backups</a></li>
+				<li><a href='data-sources/block_storages' target='contentFrame'>block_storages</a></li>
+				<li><a href='data-sources/bm_block_storage' target='contentFrame'>bm_block_storage</a></li>
+				<li><a href='data-sources/bm_block_storages' target='contentFrame'>bm_block_storages</a></li>
+				<li><a href='data-sources/bm_server' target='contentFrame'>bm_server</a></li>
+				<li><a href='data-sources/bm_servers' target='contentFrame'>bm_servers</a></li>
+				<li><a href='data-sources/bm_vdc_server' target='contentFrame'>bm_vdc_server</a></li>
+				<li><a href='data-sources/bm_vdc_servers' target='contentFrame'>bm_vdc_servers</a></li>
+				<li><a href='data-sources/certificate' target='contentFrame'>certificate</a></li>
+				<li><a href='data-sources/certificates' target='contentFrame'>certificates</a></li>
+				<li><a href='data-sources/config_inspection' target='contentFrame'>config_inspection</a></li>
+				<li><a href='data-sources/config_inspection_diagnoses' target='contentFrame'>config_inspection_diagnoses</a></li>
+				<li><a href='data-sources/config_inspection_diagnosis' target='contentFrame'>config_inspection_diagnosis</a></li>
+				<li><a href='data-sources/config_inspection_diagnosis_request' target='contentFrame'>config_inspection_diagnosis_request</a></li>
+				<li><a href='data-sources/config_inspections' target='contentFrame'>config_inspections</a></li>
+				<li><a href='data-sources/custom_image' target='contentFrame'>custom_image</a></li>
+				<li><a href='data-sources/custom_images' target='contentFrame'>custom_images</a></li>
+				<li><a href='data-sources/dcon_vpc_connections' target='contentFrame'>dcon_vpc_connections</a></li>
+				<li><a href='data-sources/direct_connect_routing_routes' target='contentFrame'>direct_connect_routing_routes</a></li>
+				<li><a href='data-sources/direct_connect_routing_rules' target='contentFrame'>direct_connect_routing_rules</a></li>
+				<li><a href='data-sources/direct_connect_routing_tables' target='contentFrame'>direct_connect_routing_tables</a></li>
+				<li><a href='data-sources/direct_connects' target='contentFrame'>direct_connects</a></li>
+				<li><a href='data-sources/dns_domains' target='contentFrame'>dns_domains</a></li>
+				<li><a href='data-sources/dns_records' target='contentFrame'>dns_records</a></li>
+				<li><a href='data-sources/endpoint' target='contentFrame'>endpoint</a></li>
+				<li><a href='data-sources/endpoints' target='contentFrame'>endpoints</a></li>
+				<li><a href='data-sources/epas' target='contentFrame'>epas</a></li>
+				<li><a href='data-sources/epass' target='contentFrame'>epass</a></li>
+				<li><a href='data-sources/file_storages' target='contentFrame'>file_storages</a></li>
+				<li><a href='data-sources/firewall' target='contentFrame'>firewall</a></li>
+				<li><a href='data-sources/firewalls' target='contentFrame'>firewalls</a></li>
+				<li><a href='data-sources/gslb_resources' target='contentFrame'>gslb_resources</a></li>
+				<li><a href='data-sources/gslbs' target='contentFrame'>gslbs</a></li>
+				<li><a href='data-sources/iam_access_keys' target='contentFrame'>iam_access_keys</a></li>
+				<li><a href='data-sources/iam_group' target='contentFrame'>iam_group</a></li>
+				<li><a href='data-sources/iam_group_members' target='contentFrame'>iam_group_members</a></li>
+				<li><a href='data-sources/iam_group_policies' target='contentFrame'>iam_group_policies</a></li>
+				<li><a href='data-sources/iam_groups' target='contentFrame'>iam_groups</a></li>
+				<li><a href='data-sources/iam_member' target='contentFrame'>iam_member</a></li>
+				<li><a href='data-sources/iam_member_groups' target='contentFrame'>iam_member_groups</a></li>
+				<li><a href='data-sources/iam_member_systemgroups' target='contentFrame'>iam_member_systemgroups</a></li>
+				<li><a href='data-sources/iam_members' target='contentFrame'>iam_members</a></li>
+				<li><a href='data-sources/iam_policies' target='contentFrame'>iam_policies</a></li>
+				<li><a href='data-sources/iam_policy' target='contentFrame'>iam_policy</a></li>
+				<li><a href='data-sources/iam_policy_groups' target='contentFrame'>iam_policy_groups</a></li>
+				<li><a href='data-sources/iam_policy_roles' target='contentFrame'>iam_policy_roles</a></li>
+				<li><a href='data-sources/iam_role' target='contentFrame'>iam_role</a></li>
+				<li><a href='data-sources/iam_role_policies' target='contentFrame'>iam_role_policies</a></li>
+				<li><a href='data-sources/iam_roles' target='contentFrame'>iam_roles</a></li>
+				<li><a href='data-sources/internet_gateways' target='contentFrame'>internet_gateways</a></li>
+				<li><a href='data-sources/kafka' target='contentFrame'>kafka</a></li>
+				<li><a href='data-sources/key_pairs' target='contentFrame'>key_pairs</a></li>
+				<li><a href='data-sources/kubernetes_apps_image' target='contentFrame'>kubernetes_apps_image</a></li>
+				<li><a href='data-sources/kubernetes_apps_images' target='contentFrame'>kubernetes_apps_images</a></li>
+				<li><a href='data-sources/kubernetes_engine' target='contentFrame'>kubernetes_engine</a></li>
+				<li><a href='data-sources/kubernetes_engine_versions' target='contentFrame'>kubernetes_engine_versions</a></li>
+				<li><a href='data-sources/kubernetes_engines' target='contentFrame'>kubernetes_engines</a></li>
+				<li><a href='data-sources/kubernetes_kubeconfig' target='contentFrame'>kubernetes_kubeconfig</a></li>
+				<li><a href='data-sources/kubernetes_node_pool' target='contentFrame'>kubernetes_node_pool</a></li>
+				<li><a href='data-sources/kubernetes_node_pools' target='contentFrame'>kubernetes_node_pools</a></li>
+				<li><a href='data-sources/kubernetes_subnet' target='contentFrame'>kubernetes_subnet</a></li>
+				<li><a href='data-sources/kubernetes_user_kubeconfig' target='contentFrame'>kubernetes_user_kubeconfig</a></li>
+				<li><a href='data-sources/launch_configuration' target='contentFrame'>launch_configuration</a></li>
+				<li><a href='data-sources/launch_configurations' target='contentFrame'>launch_configurations</a></li>
+				<li><a href='data-sources/lb_profiles' target='contentFrame'>lb_profiles</a></li>
+				<li><a href='data-sources/lb_server_groups' target='contentFrame'>lb_server_groups</a></li>
+				<li><a href='data-sources/lb_service_ips' target='contentFrame'>lb_service_ips</a></li>
+				<li><a href='data-sources/lb_services' target='contentFrame'>lb_services</a></li>
+				<li><a href='data-sources/lb_services_connectable_to_asg' target='contentFrame'>lb_services_connectable_to_asg</a></li>
+				<li><a href='data-sources/lb_services_connected_to_asg' target='contentFrame'>lb_services_connected_to_asg</a></li>
+				<li><a href='data-sources/load_balancers' target='contentFrame'>load_balancers</a></li>
+				<li><a href='data-sources/loggingaudit' target='contentFrame'>loggingaudit</a></li>
+				<li><a href='data-sources/loggingaudit_users' target='contentFrame'>loggingaudit_users</a></li>
+				<li><a href='data-sources/loggingaudits' target='contentFrame'>loggingaudits</a></li>
+				<li><a href='data-sources/mariadb' target='contentFrame'>mariadb</a></li>
+				<li><a href='data-sources/mariadbs' target='contentFrame'>mariadbs</a></li>
+				<li><a href='data-sources/migration_image' target='contentFrame'>migration_image</a></li>
+				<li><a href='data-sources/migration_images' target='contentFrame'>migration_images</a></li>
+				<li><a href='data-sources/mysql' target='contentFrame'>mysql</a></li>
+				<li><a href='data-sources/mysqls' target='contentFrame'>mysqls</a></li>
+				<li><a href='data-sources/nat_gateways' target='contentFrame'>nat_gateways</a></li>
+				<li><a href='data-sources/obs_bucket' target='contentFrame'>obs_bucket</a></li>
+				<li><a href='data-sources/obs_buckets' target='contentFrame'>obs_buckets</a></li>
+				<li><a href='data-sources/obs_storages' target='contentFrame'>obs_storages</a></li>
+				<li><a href='data-sources/placement_groups' target='contentFrame'>placement_groups</a></li>
+				<li><a href='data-sources/postgresql' target='contentFrame'>postgresql</a></li>
+				<li><a href='data-sources/postgresqls' target='contentFrame'>postgresqls</a></li>
+				<li><a href='data-sources/product' target='contentFrame'>product</a></li>
+				<li><a href='data-sources/product_categories' target='contentFrame'>product_categories</a></li>
+				<li><a href='data-sources/product_groups' target='contentFrame'>product_groups</a></li>
+				<li><a href='data-sources/products_by_group' target='contentFrame'>products_by_group</a></li>
+				<li><a href='data-sources/products_by_zone' target='contentFrame'>products_by_zone</a></li>
+				<li><a href='data-sources/project' target='contentFrame'>project</a></li>
+				<li><a href='data-sources/project_product_resources' target='contentFrame'>project_product_resources</a></li>
+				<li><a href='data-sources/project_products' target='contentFrame'>project_products</a></li>
+				<li><a href='data-sources/project_user_products_resources' target='contentFrame'>project_user_products_resources</a></li>
+				<li><a href='data-sources/project_zones' target='contentFrame'>project_zones</a></li>
+				<li><a href='data-sources/projects' target='contentFrame'>projects</a></li>
+				<li><a href='data-sources/public_ip' target='contentFrame'>public_ip</a></li>
+				<li><a href='data-sources/public_ips' target='contentFrame'>public_ips</a></li>
+				<li><a href='data-sources/redis' target='contentFrame'>redis</a></li>
+				<li><a href='data-sources/redis_cluster' target='contentFrame'>redis_cluster</a></li>
+				<li><a href='data-sources/redis_clusters' target='contentFrame'>redis_clusters</a></li>
+				<li><a href='data-sources/redis_list' target='contentFrame'>redis_list</a></li>
+				<li><a href='data-sources/region' target='contentFrame'>region</a></li>
+				<li><a href='data-sources/regions' target='contentFrame'>regions</a></li>
+				<li><a href='data-sources/resource' target='contentFrame'>resource</a></li>
+				<li><a href='data-sources/resource_group' target='contentFrame'>resource_group</a></li>
+				<li><a href='data-sources/resource_group_in_my_projects' target='contentFrame'>resource_group_in_my_projects</a></li>
+				<li><a href='data-sources/resource_group_resource_types' target='contentFrame'>resource_group_resource_types</a></li>
+				<li><a href='data-sources/resource_group_resources' target='contentFrame'>resource_group_resources</a></li>
+				<li><a href='data-sources/resource_group_resources_in_my_projects' target='contentFrame'>resource_group_resources_in_my_projects</a></li>
+				<li><a href='data-sources/resource_group_service_types' target='contentFrame'>resource_group_service_types</a></li>
+				<li><a href='data-sources/resource_groups' target='contentFrame'>resource_groups</a></li>
+				<li><a href='data-sources/resource_groups_in_my_projects' target='contentFrame'>resource_groups_in_my_projects</a></li>
+				<li><a href='data-sources/resource_in_my_project' target='contentFrame'>resource_in_my_project</a></li>
+				<li><a href='data-sources/resource_tags' target='contentFrame'>resource_tags</a></li>
+				<li><a href='data-sources/resources' target='contentFrame'>resources</a></li>
+				<li><a href='data-sources/resources_in_my_project' target='contentFrame'>resources_in_my_project</a></li>
+				<li><a href='data-sources/security_group' target='contentFrame'>security_group</a></li>
+				<li><a href='data-sources/security_group_log_storage' target='contentFrame'>security_group_log_storage</a></li>
+				<li><a href='data-sources/security_group_log_storages' target='contentFrame'>security_group_log_storages</a></li>
+				<li><a href='data-sources/security_group_rule' target='contentFrame'>security_group_rule</a></li>
+				<li><a href='data-sources/security_group_rules' target='contentFrame'>security_group_rules</a></li>
+				<li><a href='data-sources/security_group_user_ips' target='contentFrame'>security_group_user_ips</a></li>
+				<li><a href='data-sources/security_groups' target='contentFrame'>security_groups</a></li>
+				<li><a href='data-sources/sqlserver' target='contentFrame'>sqlserver</a></li>
+				<li><a href='data-sources/sqlservers' target='contentFrame'>sqlservers</a></li>
+				<li><a href='data-sources/standard_image' target='contentFrame'>standard_image</a></li>
+				<li><a href='data-sources/standard_images' target='contentFrame'>standard_images</a></li>
+				<li><a href='data-sources/subnet_available_ips' target='contentFrame'>subnet_available_ips</a></li>
+				<li><a href='data-sources/subnet_resources' target='contentFrame'>subnet_resources</a></li>
+				<li><a href='data-sources/subnet_vip_detail' target='contentFrame'>subnet_vip_detail</a></li>
+				<li><a href='data-sources/subnet_vips' target='contentFrame'>subnet_vips</a></li>
+				<li><a href='data-sources/subnets' target='contentFrame'>subnets</a></li>
+				<li><a href='data-sources/tgw_peerings_by_tgw' target='contentFrame'>tgw_peerings_by_tgw</a></li>
+				<li><a href='data-sources/trail' target='contentFrame'>trail</a></li>
+				<li><a href='data-sources/trails' target='contentFrame'>trails</a></li>
+				<li><a href='data-sources/transit_gateway_connections' target='contentFrame'>transit_gateway_connections</a></li>
+				<li><a href='data-sources/transit_gateway_peering_detail' target='contentFrame'>transit_gateway_peering_detail</a></li>
+				<li><a href='data-sources/transit_gateway_peerings' target='contentFrame'>transit_gateway_peerings</a></li>
+				<li><a href='data-sources/transit_gateway_routing_routes' target='contentFrame'>transit_gateway_routing_routes</a></li>
+				<li><a href='data-sources/transit_gateway_routing_rules' target='contentFrame'>transit_gateway_routing_rules</a></li>
+				<li><a href='data-sources/transit_gateway_routing_tables' target='contentFrame'>transit_gateway_routing_tables</a></li>
+				<li><a href='data-sources/transit_gateways' target='contentFrame'>transit_gateways</a></li>
+				<li><a href='data-sources/virtual_servers' target='contentFrame'>virtual_servers</a></li>
+				<li><a href='data-sources/vpc_dnss' target='contentFrame'>vpc_dnss</a></li>
+				<li><a href='data-sources/vpc_peering_detail' target='contentFrame'>vpc_peering_detail</a></li>
+				<li><a href='data-sources/vpc_peerings' target='contentFrame'>vpc_peerings</a></li>
+				<li><a href='data-sources/vpc_routing_routes' target='contentFrame'>vpc_routing_routes</a></li>
+				<li><a href='data-sources/vpc_routing_rules' target='contentFrame'>vpc_routing_rules</a></li>
+				<li><a href='data-sources/vpc_routing_tables' target='contentFrame'>vpc_routing_tables</a></li>
+				<li><a href='data-sources/vpcs' target='contentFrame'>vpcs</a></li>
+			</ul>
+		</div>
+			<p class='category collapsible-header'>Resources</p>
+			  <div class='collapsible'>
+			<ul>
+				<li><a href='resources/auto_scaling_group' target='contentFrame'>auto_scaling_group</a></li>
+				<li><a href='resources/auto_scaling_group_load_balancer' target='contentFrame'>auto_scaling_group_load_balancer</a></li>
+				<li><a href='resources/auto_scaling_group_policy' target='contentFrame'>auto_scaling_group_policy</a></li>
+				<li><a href='resources/backup' target='contentFrame'>backup</a></li>
+				<li><a href='resources/block_storage' target='contentFrame'>block_storage</a></li>
+				<li><a href='resources/bm_block_storage' target='contentFrame'>bm_block_storage</a></li>
+				<li><a href='resources/bm_server' target='contentFrame'>bm_server</a></li>
+				<li><a href='resources/bm_server_vdc' target='contentFrame'>bm_server_vdc</a></li>
+				<li><a href='resources/certificate' target='contentFrame'>certificate</a></li>
+				<li><a href='resources/certificate_self_sign' target='contentFrame'>certificate_self_sign</a></li>
+				<li><a href='resources/config_inspection' target='contentFrame'>config_inspection</a></li>
+				<li><a href='resources/custom_image' target='contentFrame'>custom_image</a></li>
+				<li><a href='resources/dcon_vpc_connection' target='contentFrame'>dcon_vpc_connection</a></li>
+				<li><a href='resources/direct_connect' target='contentFrame'>direct_connect</a></li>
+				<li><a href='resources/direct_connect_routing' target='contentFrame'>direct_connect_routing</a></li>
+				<li><a href='resources/dns_domain' target='contentFrame'>dns_domain</a></li>
+				<li><a href='resources/dns_record' target='contentFrame'>dns_record</a></li>
+				<li><a href='resources/endpoint' target='contentFrame'>endpoint</a></li>
+				<li><a href='resources/epas' target='contentFrame'>epas</a></li>
+				<li><a href='resources/file_storage' target='contentFrame'>file_storage</a></li>
+				<li><a href='resources/firewall' target='contentFrame'>firewall</a></li>
+				<li><a href='resources/firewall_bulk_rule' target='contentFrame'>firewall_bulk_rule</a></li>
+				<li><a href='resources/firewall_logstorage' target='contentFrame'>firewall_logstorage</a></li>
+				<li><a href='resources/firewall_rule' target='contentFrame'>firewall_rule</a></li>
+				<li><a href='resources/gslb' target='contentFrame'>gslb</a></li>
+				<li><a href='resources/hpc_lite_new' target='contentFrame'>hpc_lite_new</a></li>
+				<li><a href='resources/iam_access_key' target='contentFrame'>iam_access_key</a></li>
+				<li><a href='resources/iam_group' target='contentFrame'>iam_group</a></li>
+				<li><a href='resources/iam_member' target='contentFrame'>iam_member</a></li>
+				<li><a href='resources/iam_policy' target='contentFrame'>iam_policy</a></li>
+				<li><a href='resources/iam_role' target='contentFrame'>iam_role</a></li>
+				<li><a href='resources/internet_gateway' target='contentFrame'>internet_gateway</a></li>
+				<li><a href='resources/kafka' target='contentFrame'>kafka</a></li>
+				<li><a href='resources/key_pair' target='contentFrame'>key_pair</a></li>
+				<li><a href='resources/kubernetes_apps' target='contentFrame'>kubernetes_apps</a></li>
+				<li><a href='resources/kubernetes_engine' target='contentFrame'>kubernetes_engine</a></li>
+				<li><a href='resources/kubernetes_namespace' target='contentFrame'>kubernetes_namespace</a></li>
+				<li><a href='resources/kubernetes_node_pool' target='contentFrame'>kubernetes_node_pool</a></li>
+				<li><a href='resources/launch_configuration' target='contentFrame'>launch_configuration</a></li>
+				<li><a href='resources/lb_profile' target='contentFrame'>lb_profile</a></li>
+				<li><a href='resources/lb_server_group' target='contentFrame'>lb_server_group</a></li>
+				<li><a href='resources/lb_service' target='contentFrame'>lb_service</a></li>
+				<li><a href='resources/load_balancer' target='contentFrame'>load_balancer</a></li>
+				<li><a href='resources/mariadb' target='contentFrame'>mariadb</a></li>
+				<li><a href='resources/migration_image' target='contentFrame'>migration_image</a></li>
+				<li><a href='resources/mysql' target='contentFrame'>mysql</a></li>
+				<li><a href='resources/nat_gateway' target='contentFrame'>nat_gateway</a></li>
+				<li><a href='resources/obs_bucket' target='contentFrame'>obs_bucket</a></li>
+				<li><a href='resources/placement_group' target='contentFrame'>placement_group</a></li>
+				<li><a href='resources/postgresql' target='contentFrame'>postgresql</a></li>
+				<li><a href='resources/public_ip' target='contentFrame'>public_ip</a></li>
+				<li><a href='resources/redis' target='contentFrame'>redis</a></li>
+				<li><a href='resources/redis_cluster' target='contentFrame'>redis_cluster</a></li>
+				<li><a href='resources/resource_group' target='contentFrame'>resource_group</a></li>
+				<li><a href='resources/security_group' target='contentFrame'>security_group</a></li>
+				<li><a href='resources/security_group_bulk_rule' target='contentFrame'>security_group_bulk_rule</a></li>
+				<li><a href='resources/security_group_logstorage' target='contentFrame'>security_group_logstorage</a></li>
+				<li><a href='resources/security_group_rule' target='contentFrame'>security_group_rule</a></li>
+				<li><a href='resources/security_group_user_ip' target='contentFrame'>security_group_user_ip</a></li>
+				<li><a href='resources/sqlserver' target='contentFrame'>sqlserver</a></li>
+				<li><a href='resources/subnet' target='contentFrame'>subnet</a></li>
+				<li><a href='resources/subnet_public_ip' target='contentFrame'>subnet_public_ip</a></li>
+				<li><a href='resources/subnet_security_group' target='contentFrame'>subnet_security_group</a></li>
+				<li><a href='resources/subnet_vip' target='contentFrame'>subnet_vip</a></li>
+				<li><a href='resources/trail' target='contentFrame'>trail</a></li>
+				<li><a href='resources/transit_gateway' target='contentFrame'>transit_gateway</a></li>
+				<li><a href='resources/transit_gateway_connection' target='contentFrame'>transit_gateway_connection</a></li>
+				<li><a href='resources/transit_gateway_connection_approve' target='contentFrame'>transit_gateway_connection_approve</a></li>
+				<li><a href='resources/transit_gateway_peering' target='contentFrame'>transit_gateway_peering</a></li>
+				<li><a href='resources/transit_gateway_peering_approve' target='contentFrame'>transit_gateway_peering_approve</a></li>
+				<li><a href='resources/transit_gateway_peering_cancel' target='contentFrame'>transit_gateway_peering_cancel</a></li>
+				<li><a href='resources/transit_gateway_peering_reject' target='contentFrame'>transit_gateway_peering_reject</a></li>
+				<li><a href='resources/transit_gateway_routing' target='contentFrame'>transit_gateway_routing</a></li>
+				<li><a href='resources/virtual_server' target='contentFrame'>virtual_server</a></li>
+				<li><a href='resources/vpc' target='contentFrame'>vpc</a></li>
+				<li><a href='resources/vpc_dns' target='contentFrame'>vpc_dns</a></li>
+				<li><a href='resources/vpc_peering' target='contentFrame'>vpc_peering</a></li>
+				<li><a href='resources/vpc_peering_approve' target='contentFrame'>vpc_peering_approve</a></li>
+				<li><a href='resources/vpc_peering_cancel' target='contentFrame'>vpc_peering_cancel</a></li>
+				<li><a href='resources/vpc_peering_reject' target='contentFrame'>vpc_peering_reject</a></li>
+				<li><a href='resources/vpc_routing' target='contentFrame'>vpc_routing</a></li>
+			</ul>
+		</div>
+	</div>
+	<iframe id="content" name="contentFrame" src="index"></iframe>
+	<script>
+		document.querySelectorAll('.collapsible-header').forEach(header => {
+			header.addEventListener('click', () => {
+				const collapsible = header.nextElementSibling;
+				header.classList.toggle('active');
+				collapsible.classList.toggle('active');
+			});
+		});
+	</script>
+</body>
+</html>

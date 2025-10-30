@@ -16,7 +16,6 @@ import (
 func init() {
 	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_subnets", DatasourceSubnets())
 	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_subnet_resources", DatasourceSubnetResources())
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_subnet_ip_check", DatasourceSubnetCheckIp())
 }
 
 func DatasourceSubnets() *schema.Resource {
@@ -150,34 +149,4 @@ func datasourceSubnetResourceElem() *schema.Resource {
 			"modified_dt":        {Type: schema.TypeString, Computed: true, Description: "Modification date"},
 		},
 	}
-}
-
-func DatasourceSubnetCheckIp() *schema.Resource {
-	return &schema.Resource{
-		ReadContext: datasourceSubnetIpCheck,
-		Importer: &schema.ResourceImporter{
-			StateContext: schema.ImportStatePassthroughContext,
-		},
-		Schema: map[string]*schema.Schema{
-			"ip_address": {Type: schema.TypeString, Required: true, Description: "Subnet ip Address"},
-			"subnet_id":  {Type: schema.TypeString, Required: true, Description: "Subnet id"},
-			"result":     {Type: schema.TypeBool, Optional: true, Description: "Subnet ip Check Usable"},
-		},
-		Description: "Provides list of subnets.",
-	}
-}
-
-func datasourceSubnetIpCheck(ctx context.Context, rd *schema.ResourceData, meta interface{}) diag.Diagnostics {
-	inst := meta.(*client.Instance)
-
-	responses, err := inst.Client.Subnet.CheckAvailableSubnetIp(ctx, rd.Get("subnet_id").(string), rd.Get("ip_address").(string))
-
-	if err != nil {
-		return diag.FromErr(err)
-	}
-
-	rd.SetId(uuid.NewV4().String())
-	rd.Set("result", responses.Result)
-
-	return nil
 }

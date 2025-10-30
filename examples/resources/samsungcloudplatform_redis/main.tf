@@ -44,6 +44,7 @@ resource "samsungcloudplatform_redis" "demo_db" {
     redis_server_name = "demoredis-01"
     nat_public_ip_id = null
     server_role_type = "MASTER"
+    availability_zone_name = "AZ1"
   }
 
   block_storages {

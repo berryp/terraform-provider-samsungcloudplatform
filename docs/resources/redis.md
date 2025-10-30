@@ -59,6 +59,7 @@ resource "samsungcloudplatform_redis" "demo_db" {
     redis_server_name = "demoredis-01"
     nat_public_ip_id = null
     server_role_type = "MASTER"
+    availability_zone_name = "AZ1"
   }
 
   block_storages {
@@ -131,6 +132,7 @@ Required:
 
 Optional:
 
+- `availability_zone_name` (String) Availability zone name set in a Multi AZ environment. If it is null, it is automatically allocated as AZ1. (AZ1 | AZ2 | AZ3)
 - `nat_public_ip_id` (String) Public IP for NAT. If it is null, it is automatically allocated.
 
 Read-Only:
@@ -161,6 +163,7 @@ Required:
 
 Optional:
 
+- `availability_zone_name` (String) Availability zone name set in a Multi AZ environment. If it is null, it is automatically allocated as AZ1. (AZ1 | AZ2 | AZ3)
 - `sentinel_nat_public_ip_id` (String) ublic IP for NAT. If it is null, it is automatically allocated.
 
 Read-Only:

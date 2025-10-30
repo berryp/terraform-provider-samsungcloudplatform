@@ -55,6 +55,15 @@ resource "samsungcloudplatform_kubernetes_node_pool" "pool" {
     key = "test"
     value = "test"
   }
+  advanced_settings {
+    allowed_unsafe_sysctls = "kernel.msg*"
+    container_log_max_files = 5
+    container_log_max_size = 10
+    image_gc_high_threshold = 85
+    image_gc_low_threshold = 80
+    max_pods = 100
+    pod_max_pids = 4096
+  }
 }
 ```
 
@@ -69,6 +78,7 @@ resource "samsungcloudplatform_kubernetes_node_pool" "pool" {
 
 ### Optional
 
+- `advanced_settings` (Block Set) Performing subjects (see [below for nested schema](#nestedblock--advanced_settings))
 - `auto_recovery` (Boolean) Enable auto recovery
 - `auto_scale` (Boolean) Enable auto scale
 - `availability_zone_name` (String) Availability zone name.
@@ -86,6 +96,20 @@ resource "samsungcloudplatform_kubernetes_node_pool" "pool" {
 ### Read-Only
 
 - `id` (String) The ID of this resource.
+
+<a id="nestedblock--advanced_settings"></a>
+### Nested Schema for `advanced_settings`
+
+Optional:
+
+- `allowed_unsafe_sysctls` (String) Allowed Unsafe Sysctls
+- `container_log_max_files` (Number) Container Log Max Files
+- `container_log_max_size` (Number) Container Log Max Size
+- `image_gc_high_threshold` (Number) ImageGc High Threshold
+- `image_gc_low_threshold` (Number) Image Gc Low Threshold
+- `max_pods` (Number) Max Pods
+- `pod_max_pids` (Number) Pod Max Pids
+
 
 <a id="nestedblock--labels"></a>
 ### Nested Schema for `labels`

@@ -95,31 +95,6 @@ func (client *Client) DeleteSubnet(ctx context.Context, subnetId string) (subnet
 	return result, err
 }
 
-func (client *Client) CheckSubnetName(ctx context.Context, name string) (bool, error) {
-	result, _, err := client.sdkClient.SubnetOpenApiControllerApi.CheckSubnetNameDuplicationV2(ctx, client.config.ProjectId, name)
-	if result.Result == nil {
-		return false, err
-	}
-	return *result.Result, err
-}
-
-func (client *Client) CheckSubnetCidrIpv4(ctx context.Context, subnetCidrBlock string, vpcId string) (bool, error) {
-	result, _, err := client.sdkClient.SubnetOpenApiControllerApi.CheckSubnetCidrBlockDuplicationV2(ctx, client.config.ProjectId, subnetCidrBlock, vpcId)
-	if result.Result == nil {
-		return false, err
-	}
-	return *result.Result, err
-}
-func (client *Client) CheckAvailableSubnetIp(ctx context.Context, subnetId string, ipAddress string) (subnet2.CheckResponse, error) {
-	result, _, err := client.sdkClient.SubnetOpenApiControllerApi.CheckAvailableSubnetIpV2(ctx, client.config.ProjectId, subnetId, ipAddress)
-
-	if err != nil {
-		return subnet2.CheckResponse{}, err
-	}
-
-	return result, err
-}
-
 func (client *Client) GetSubnetAvailableVipV2List(ctx context.Context, subnetId string, request *subnet2.SubnetVipOpenApiControllerApiListAvailableVipsV2Opts) (subnet2.ListResponseSubnetVirtualIpAvailableListItemResVo, error) {
 	result, _, err := client.sdkClient.SubnetVipOpenApiControllerApi.ListAvailableVipsV2(ctx, client.config.ProjectId, subnetId, request)
 	return result, err

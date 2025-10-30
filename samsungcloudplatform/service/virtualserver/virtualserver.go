@@ -360,15 +360,6 @@ func resourceVirtualServerCreate(ctx context.Context, rd *schema.ResourceData, m
 	useDNS := rd.Get("use_dns").(bool)
 
 	internalIpAddress := rd.Get("internal_ip_address").(string)
-	if len(internalIpAddress) != 0 {
-		res, err := inst.Client.Subnet.CheckAvailableSubnetIp(ctx, subnetId, internalIpAddress)
-		if err != nil {
-			return diag.FromErr(err)
-		}
-		if *res.Result == false {
-			return diag.Errorf("Not Available Internal Ip Address")
-		}
-	}
 	// Get vpc info
 	vpcInfo, _, err := inst.Client.Vpc.GetVpcInfo(ctx, vpcId)
 	if err != nil {
@@ -508,18 +499,16 @@ func resourceVirtualServerCreate(ctx context.Context, rd *schema.ResourceData, m
 	var extStorages []virtualserver.BlockStorageInfo
 	externalStorageInfoList := common.ConvertExternalStorageList(externalStorageList)
 
-	// settings by types
-	imageType, err := inst.Client.Image.GetImageType(ctx, imageId)
-	if imageType != "CUSTOM" {
-		for _, extStorageInfo := range externalStorageInfoList {
-			extStorages = append(extStorages, virtualserver.BlockStorageInfo{
-				BlockStorageName: extStorageInfo.Name,
-				DiskSize:         int32(extStorageInfo.StorageSize),
-				EncryptEnabled:   extStorageInfo.Encrypted,
-				DiskType:         extStorageInfo.ProductName,
-			})
-		}
+	for _, extStorageInfo := range externalStorageInfoList {
+		extStorages = append(extStorages, virtualserver.BlockStorageInfo{
+			BlockStorageName: extStorageInfo.Name,
+			DiskSize:         int32(extStorageInfo.StorageSize),
+			EncryptEnabled:   extStorageInfo.Encrypted,
+			DiskType:         extStorageInfo.ProductName,
+		})
 	}
+
+	imageType, err := inst.Client.Image.GetImageType(ctx, imageId)
 
 	if imageType == "CUSTOM" {
 		info, _, err := inst.Client.CustomImage.GetCustomImage(ctx, imageId)
@@ -1375,15 +1364,6 @@ func resourceVirtualServerUpdate(ctx context.Context, rd *schema.ResourceData, m
 	if rd.HasChanges("internal_ip_address") || rd.HasChanges("subnet_id") {
 		newSubnetId := rd.Get("subnet_id").(string)
 		newInternalIpAddress := rd.Get("internal_ip_address").(string)
-		if len(newInternalIpAddress) != 0 {
-			res, err := inst.Client.Subnet.CheckAvailableSubnetIp(ctx, newSubnetId, newInternalIpAddress)
-			if err != nil {
-				return diag.FromErr(err)
-			}
-			if *res.Result == false {
-				return diag.Errorf("Not Available Internal Ip Address")
-			}
-		}
 		_, err := inst.Client.VirtualServer.UpdateVirtualServerSubnetIp(ctx, rd.Id(), virtualserver.VirtualServerSubnetIpUpdateRequest{
 			SubnetId:          newSubnetId,
 			InternalIpAddress: newInternalIpAddress,

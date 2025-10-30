@@ -165,6 +165,12 @@ func ResourceRedis() *schema.Resource {
 							Computed:    true,
 							Description: "nat ip address",
 						},
+						"availability_zone_name": {
+							Type:             schema.TypeString,
+							Optional:         true,
+							Description:      "Availability zone name set in a Multi AZ environment. If it is null, it is automatically allocated as AZ1. (AZ1 | AZ2 | AZ3)",
+							ValidateDiagFunc: database_common.ValidateStringInOptions("AZ1", "AZ2", "AZ3"),
+						},
 					},
 				},
 			},
@@ -195,6 +201,12 @@ func ResourceRedis() *schema.Resource {
 							Type:        schema.TypeString,
 							Computed:    true,
 							Description: "nat ip address",
+						},
+						"availability_zone_name": {
+							Type:             schema.TypeString,
+							Optional:         true,
+							Description:      "Availability zone name set in a Multi AZ environment. If it is null, it is automatically allocated as AZ1. (AZ1 | AZ2 | AZ3)",
+							ValidateDiagFunc: database_common.ValidateStringInOptions("AZ1", "AZ2", "AZ3"),
 						},
 					},
 				},
@@ -300,9 +312,10 @@ func resourceRedisCreate(ctx context.Context, rd *schema.ResourceData, meta inte
 	redisServerList := database_common.ConvertObjectSliceToStructSlice(redisServers)
 	for _, redisServer := range redisServerList {
 		RedisServerCreateRequestList = append(RedisServerCreateRequestList, redis.RedisServerCreateRequest{
-			NatPublicIpId:   redisServer.NatPublicIpId,
-			RedisServerName: redisServer.RedisServerName,
-			ServerRoleType:  redisServer.ServerRoleType,
+			NatPublicIpId:        redisServer.NatPublicIpId,
+			RedisServerName:      redisServer.RedisServerName,
+			ServerRoleType:       redisServer.ServerRoleType,
+			AvailabilityZoneName: redisServer.AvailabilityZoneName,
 		})
 	}
 
@@ -504,6 +517,7 @@ func resourceRedisRead(ctx context.Context, rd *schema.ResourceData, meta interf
 		redisServersInfo["redis_server_name"] = server.RedisServerName
 		redisServersInfo["server_role_type"] = server.ServerRoleType
 		redisServersInfo["nat_public_ip_address"] = server.NatPublicIpAddress
+		redisServersInfo["availability_zone_name"] = server.AvailabilityZoneName
 
 		redisServers = append(redisServers, redisServersInfo)
 	}
@@ -529,6 +543,7 @@ func resourceRedisRead(ctx context.Context, rd *schema.ResourceData, meta interf
 		redisSentinelServerInfo["sentinel_server_name"] = dbInfo.SentinelServer.SentinelServerName
 		redisSentinelServerInfo["nat_public_ip_address"] = dbInfo.SentinelServer.NatPublicIpAddress
 		redisSentinelServerInfo["sentinel_port"] = rd.Get("redis_sentinel_server").(*schema.Set).List()[0].(map[string]interface{})["sentinel_port"]
+		redisSentinelServerInfo["availability_zone_name"] = dbInfo.SentinelServer.AvailabilityZoneName
 
 		redisSentinelServer = append(redisSentinelServer, redisSentinelServerInfo)
 	}

@@ -168,7 +168,7 @@ func DatasourceMariadb() *schema.Resource {
 					Schema: map[string]*schema.Schema{
 						"maintenance_start_day_of_week": {Type: schema.TypeString, Computed: true, Description: "maintenance start day of week"},
 						"maintenance_start_time":        {Type: schema.TypeString, Computed: true, Description: "maintenance start time"},
-						"maintenance_period":            {Type: schema.TypeInt, Computed: true, Description: "maintenance period"},
+						"maintenance_period":            {Type: schema.TypeString, Computed: true, Description: "maintenance period"},
 					},
 				},
 			},

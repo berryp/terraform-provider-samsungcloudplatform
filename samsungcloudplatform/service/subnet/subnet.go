@@ -90,22 +90,6 @@ func resourceSubnetCreate(ctx context.Context, rd *schema.ResourceData, meta int
 		return diag.FromErr(err)
 	}
 
-	isNameInvalid, err := inst.Client.Subnet.CheckSubnetName(ctx, name)
-	if err != nil {
-		return diag.FromErr(err)
-	}
-	if isNameInvalid {
-		return diag.Errorf("Input subnet name is invalid (maybe duplicated) : " + name)
-	}
-
-	isCidrInvalid, err := inst.Client.Subnet.CheckSubnetCidrIpv4(ctx, cidrIpv4, vpcId)
-	if err != nil {
-		return diag.FromErr(err)
-	}
-	if isCidrInvalid {
-		return diag.Errorf("Input cidr is invalid (maybe duplicated) : " + cidrIpv4)
-	}
-
 	result, err := inst.Client.Subnet.CreateSubnet(ctx, vpcId, cidrIpv4, subnetType, name, description, tags)
 	if err != nil {
 		return diag.FromErr(err)
