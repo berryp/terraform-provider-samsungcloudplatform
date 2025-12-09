@@ -3,6 +3,10 @@ package objectstorage
 import (
 	"context"
 	"fmt"
+	"reflect"
+	"regexp"
+	"strings"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client/storage/objectstorage"
@@ -12,9 +16,6 @@ import (
 	"github.com/hashicorp/go-cty/cty"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
-	"reflect"
-	"regexp"
-	"strings"
 )
 
 var accessControlRuleTypes = []string{
@@ -46,7 +47,7 @@ var objectStorageProductNames = []string{
 }
 
 func init() {
-	samsungcloudplatform.RegisterResource("samsungcloudplatform_obs_bucket", ResourceObjectStorageBucket())
+	samsungcloudplatform.RegisterResource("Object Storage", "samsungcloudplatform_obs_bucket", ResourceObjectStorageBucket())
 }
 
 func ResourceObjectStorageBucket() *schema.Resource {

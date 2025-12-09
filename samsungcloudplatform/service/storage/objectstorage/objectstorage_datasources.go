@@ -2,6 +2,8 @@ package objectstorage
 
 import (
 	"context"
+	"time"
+
 	scp "github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client/storage/objectstorage"
@@ -10,13 +12,12 @@ import (
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	uuid "github.com/satori/go.uuid"
-	"time"
 )
 
 func init() {
-	scp.RegisterDataSource("samsungcloudplatform_obs_storages", DatasourceObjectStorages())
-	scp.RegisterDataSource("samsungcloudplatform_obs_buckets", DatasourceObjectStorageBuckets())
-	scp.RegisterDataSource("samsungcloudplatform_obs_bucket", DatasourceObjectStorageBucketInfo())
+	scp.RegisterDataSource("Object Storage", "samsungcloudplatform_obs_storages", DatasourceObjectStorages())
+	scp.RegisterDataSource("Object Storage", "samsungcloudplatform_obs_buckets", DatasourceObjectStorageBuckets())
+	scp.RegisterDataSource("Object Storage", "samsungcloudplatform_obs_bucket", DatasourceObjectStorageBucketInfo())
 }
 
 func DatasourceObjectStorages() *schema.Resource {

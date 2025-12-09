@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_iam_access_key Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "IAM"
 description: |-
   Provides IAM access key resource.
 ---
 
-# Resource: samsungcloudplatform_iam_access_key
+# samsungcloudplatform_iam_access_key (Resource)
 
 Provides IAM access key resource.
 

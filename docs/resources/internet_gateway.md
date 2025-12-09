@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_internet_gateway Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "Internet Gateway"
 description: |-
   Provides a Internet Gateway resource.
 ---
 
-# Resource: samsungcloudplatform_internet_gateway
+# samsungcloudplatform_internet_gateway (Resource)
 
 Provides a Internet Gateway resource.
 

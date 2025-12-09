@@ -2,6 +2,9 @@ package transitgateway
 
 import (
 	"context"
+	"regexp"
+	"time"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/common"
@@ -9,12 +12,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/validation"
-	"regexp"
-	"time"
 )
 
 func init() {
-	samsungcloudplatform.RegisterResource("samsungcloudplatform_transit_gateway", ResourceTransitGateway())
+	samsungcloudplatform.RegisterResource("Transit Gateway", "samsungcloudplatform_transit_gateway", ResourceTransitGateway())
 }
 
 func ResourceTransitGateway() *schema.Resource {

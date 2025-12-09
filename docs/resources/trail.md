@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_trail Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "Trail"
 description: |-
   
 ---
 
-# Resource: samsungcloudplatform_trail
+# samsungcloudplatform_trail (Resource)
 
 
 

@@ -2,6 +2,7 @@ package resourcegroup
 
 import (
 	"context"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client/resourcegroup"
@@ -12,9 +13,9 @@ import (
 )
 
 func init() {
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_resource_group_in_my_projects", DatasourceResourceGroupInMyProjects())
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_resource_group_resources_in_my_projects", DatasourceResourceGroupResourcesInMyProjects())
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_resource_groups_in_my_projects", DatasourceResourceGroupsInMyProjects())
+	samsungcloudplatform.RegisterDataSource("Resource Group", "samsungcloudplatform_resource_group_in_my_projects", DatasourceResourceGroupInMyProjects())
+	samsungcloudplatform.RegisterDataSource("Resource Group", "samsungcloudplatform_resource_group_resources_in_my_projects", DatasourceResourceGroupResourcesInMyProjects())
+	samsungcloudplatform.RegisterDataSource("Resource Group", "samsungcloudplatform_resource_groups_in_my_projects", DatasourceResourceGroupsInMyProjects())
 }
 
 func datasourceMyProjectsResourceGroupItemElem() *schema.Resource {

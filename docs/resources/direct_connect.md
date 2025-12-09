@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_direct_connect Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "Direct Connect"
 description: |-
   Provides a DirectConnect resource.
 ---
 
-# Resource: samsungcloudplatform_direct_connect
+# samsungcloudplatform_direct_connect (Resource)
 
 Provides a DirectConnect resource.
 

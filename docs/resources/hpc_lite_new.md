@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_hpc_lite_new Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "HPC Lite(NEW)"
 description: |-
   Provides a Hpc Lite(New) resource.
 ---
 
-# Resource: samsungcloudplatform_hpc_lite_new
+# samsungcloudplatform_hpc_lite_new (Resource)
 
 Provides a Hpc Lite(New) resource.
 

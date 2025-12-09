@@ -2,6 +2,7 @@ package natgateway
 
 import (
 	"context"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	natgateway2 "github.com/SamsungSDSCloud/terraform-sdk-samsungcloudplatform/v3/library/nat-gateway2"
 	"github.com/antihax/optional"
@@ -14,7 +15,7 @@ import (
 )
 
 func init() {
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_nat_gateways", DatasourceNatGateways())
+	samsungcloudplatform.RegisterDataSource("NAT Gateway", "samsungcloudplatform_nat_gateways", DatasourceNatGateways())
 }
 
 func DatasourceNatGateways() *schema.Resource {

@@ -2,6 +2,7 @@ package epas
 
 import (
 	"context"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/common"
@@ -14,8 +15,8 @@ import (
 )
 
 func init() {
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_epass", DatasourceEpasList())
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_epas", DatasourceEpas())
+	samsungcloudplatform.RegisterDataSource("Epas", "samsungcloudplatform_epass", DatasourceEpasList())
+	samsungcloudplatform.RegisterDataSource("Epas", "samsungcloudplatform_epas", DatasourceEpas())
 }
 
 func DatasourceEpasList() *schema.Resource {

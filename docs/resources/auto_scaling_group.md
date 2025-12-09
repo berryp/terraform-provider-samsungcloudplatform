@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_auto_scaling_group Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "Auto Scaling"
 description: |-
   Provides a Auto-Scaling Group resource.
 ---
 
-# Resource: samsungcloudplatform_auto_scaling_group
+# samsungcloudplatform_auto_scaling_group (Resource)
 
 Provides a Auto-Scaling Group resource.
 

@@ -32,8 +32,6 @@ resource "samsungcloudplatform_mysql" "demo_db" {
   }
 
   image_id = data.samsungcloudplatform_standard_image.mysql_image.id
-  contract_period = "1 Year"
-  next_contract_period = "None"
   nat_enabled = true
   nat_public_ip_id = null
   mysql_cluster_name = "demomysql"

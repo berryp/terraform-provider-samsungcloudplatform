@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_certificate Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "Certificate"
 description: |-
   Provides a Certificate resource.
 ---
 
-# Resource: samsungcloudplatform_certificate
+# samsungcloudplatform_certificate (Resource)
 
 Provides a Certificate resource.
 

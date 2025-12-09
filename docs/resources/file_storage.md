@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_file_storage Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "File Storage"
 description: |-
   Provides a File Storage resource.
 ---
 
-# Resource: samsungcloudplatform_file_storage
+# samsungcloudplatform_file_storage (Resource)
 
 Provides a File Storage resource.
 

@@ -3,6 +3,10 @@ package bmblockstorage
 import (
 	"context"
 	"fmt"
+	"regexp"
+	"strconv"
+	"strings"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client/storage/bmblockstorage"
@@ -12,13 +16,10 @@ import (
 	"github.com/hashicorp/go-cty/cty"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
-	"regexp"
-	"strconv"
-	"strings"
 )
 
 func init() {
-	samsungcloudplatform.RegisterResource("samsungcloudplatform_bm_block_storage", ResourceBmBlockStorage())
+	samsungcloudplatform.RegisterResource("Block Storage(BM)", "samsungcloudplatform_bm_block_storage", ResourceBmBlockStorage())
 }
 
 func ResourceBmBlockStorage() *schema.Resource {

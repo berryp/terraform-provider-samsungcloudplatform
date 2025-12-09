@@ -3,6 +3,9 @@ package placementgroup
 import (
 	"context"
 	"fmt"
+	"regexp"
+	"strings"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client/placementgroup"
@@ -12,12 +15,10 @@ import (
 	"github.com/hashicorp/go-cty/cty"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
-	"regexp"
-	"strings"
 )
 
 func init() {
-	samsungcloudplatform.RegisterResource("samsungcloudplatform_placement_group", ResourcePlacementGroup())
+	samsungcloudplatform.RegisterResource("Placement Group", "samsungcloudplatform_placement_group", ResourcePlacementGroup())
 }
 
 func ResourcePlacementGroup() *schema.Resource {

@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_migration_image Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "Image"
 description: |-
   Provides Migration Image resource.
 ---
 
-# Resource: samsungcloudplatform_migration_image
+# samsungcloudplatform_migration_image (Resource)
 
 Provides Migration Image resource.
 

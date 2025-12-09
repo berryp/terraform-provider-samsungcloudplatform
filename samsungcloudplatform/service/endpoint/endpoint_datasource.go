@@ -2,6 +2,7 @@ package endpoint
 
 import (
 	"context"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/common"
@@ -13,8 +14,8 @@ import (
 )
 
 func init() {
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_endpoint", DatasourceEndpoint())
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_endpoints", DatasourceEndpoints())
+	samsungcloudplatform.RegisterDataSource("Endpoint", "samsungcloudplatform_endpoint", DatasourceEndpoint())
+	samsungcloudplatform.RegisterDataSource("Endpoint", "samsungcloudplatform_endpoints", DatasourceEndpoints())
 }
 func DatasourceEndpoint() *schema.Resource {
 	return &schema.Resource{

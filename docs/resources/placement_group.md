@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_placement_group Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "Placement Group"
 description: |-
   
 ---
 
-# Resource: samsungcloudplatform_placement_group
+# samsungcloudplatform_placement_group (Resource)
 
 
 

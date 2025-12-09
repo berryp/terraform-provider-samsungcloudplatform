@@ -2,6 +2,7 @@ package kubernetes
 
 import (
 	"context"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
@@ -12,7 +13,7 @@ import (
 )
 
 func init() {
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_kubernetes_apps_image", DatasourceKubernetesAppsImage())
+	samsungcloudplatform.RegisterDataSource("Kubernetes", "samsungcloudplatform_kubernetes_apps_image", DatasourceKubernetesAppsImage())
 }
 
 func DatasourceKubernetesAppsImage() *schema.Resource {

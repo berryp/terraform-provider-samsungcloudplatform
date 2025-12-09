@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_transit_gateway_connection_approve Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "Transit Gateway"
 description: |-
   Approve TGW-VPC Connection
 ---
 
-# Resource: samsungcloudplatform_transit_gateway_connection_approve
+# samsungcloudplatform_transit_gateway_connection_approve (Resource)
 
 Approve TGW-VPC Connection
 

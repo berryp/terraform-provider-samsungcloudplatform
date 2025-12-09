@@ -15,9 +15,9 @@ import (
 )
 
 func init() {
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_config_inspection_diagnosis_request", DatasourceDianosisRequest())
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_config_inspection_diagnoses", DatasourceDianoses())
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_config_inspection_diagnosis", DatasourceDianosis())
+	samsungcloudplatform.RegisterDataSource("Config Inspection", "samsungcloudplatform_config_inspection_diagnosis_request", DatasourceDianosisRequest())
+	samsungcloudplatform.RegisterDataSource("Config Inspection", "samsungcloudplatform_config_inspection_diagnoses", DatasourceDianoses())
+	samsungcloudplatform.RegisterDataSource("Config Inspection", "samsungcloudplatform_config_inspection_diagnosis", DatasourceDianosis())
 }
 
 // List diagnosis

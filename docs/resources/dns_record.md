@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_dns_record Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "DNS"
 description: |-
   Provides a DnsDomain resource.
 ---
 
-# Resource: samsungcloudplatform_dns_record
+# samsungcloudplatform_dns_record (Resource)
 
 Provides a DnsDomain resource.
 

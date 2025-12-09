@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_vpc_peering_approve Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "VPC Peering"
 description: |-
   Approve Peering Request.
 ---
 
-# Resource: samsungcloudplatform_vpc_peering_approve
+# samsungcloudplatform_vpc_peering_approve (Resource)
 
 Approve Peering Request.
 

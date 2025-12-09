@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_load_balancer Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "Load Balancer"
 description: |-
   Provides a Load Balancer resource.
 ---
 
-# Resource: samsungcloudplatform_load_balancer
+# samsungcloudplatform_load_balancer (Resource)
 
 Provides a Load Balancer resource.
 

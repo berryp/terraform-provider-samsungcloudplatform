@@ -2,6 +2,7 @@ package image
 
 import (
 	"context"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/common"
@@ -13,8 +14,8 @@ import (
 )
 
 func init() {
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_custom_image", DatasourceCustomImage())
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_custom_images", DatasourceCustomImages())
+	samsungcloudplatform.RegisterDataSource("Image", "samsungcloudplatform_custom_image", DatasourceCustomImage())
+	samsungcloudplatform.RegisterDataSource("Image", "samsungcloudplatform_custom_images", DatasourceCustomImages())
 }
 func elemDisk() map[string]*schema.Schema {
 	return map[string]*schema.Schema{

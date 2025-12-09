@@ -14,8 +14,8 @@ import (
 )
 
 func init() {
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_kubernetes_node_pools", DatasourceNodePools())
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_kubernetes_node_pool", DatasourceNodePool())
+	samsungcloudplatform.RegisterDataSource("Kubernetes", "samsungcloudplatform_kubernetes_node_pools", DatasourceNodePools())
+	samsungcloudplatform.RegisterDataSource("Kubernetes", "samsungcloudplatform_kubernetes_node_pool", DatasourceNodePool())
 }
 
 func DatasourceNodePools() *schema.Resource {

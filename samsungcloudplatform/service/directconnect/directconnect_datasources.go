@@ -2,6 +2,7 @@ package directconnect
 
 import (
 	"context"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	directconnect2 "github.com/SamsungSDSCloud/terraform-sdk-samsungcloudplatform/v3/library/direct-connect2"
 	"github.com/antihax/optional"
@@ -14,7 +15,7 @@ import (
 )
 
 func init() {
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_direct_connects", DatasourceDirectConnects())
+	samsungcloudplatform.RegisterDataSource("Direct Connect", "samsungcloudplatform_direct_connects", DatasourceDirectConnects())
 }
 
 func DatasourceDirectConnects() *schema.Resource {

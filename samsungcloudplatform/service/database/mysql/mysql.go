@@ -3,6 +3,11 @@ package mysql
 import (
 	"context"
 	"fmt"
+	"log"
+	"sort"
+	"strings"
+	"time"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/common"
@@ -12,14 +17,10 @@ import (
 	"github.com/antihax/optional"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
-	"log"
-	"sort"
-	"strings"
-	"time"
 )
 
 func init() {
-	samsungcloudplatform.RegisterResource("samsungcloudplatform_mysql", ResourceMysql())
+	samsungcloudplatform.RegisterResource("MySQL", "samsungcloudplatform_mysql", ResourceMysql())
 }
 
 func ResourceMysql() *schema.Resource {
@@ -38,19 +39,6 @@ func ResourceMysql() *schema.Resource {
 			Delete: schema.DefaultTimeout(60 * time.Minute),
 		},
 		Schema: map[string]*schema.Schema{
-			"contract_period": {
-				Type:             schema.TypeString,
-				Required:         true,
-				Description:      "Contract (None|1 Year|3 Year)",
-				ValidateDiagFunc: database_common.ValidateStringInOptions("None", database_common.OneYear, database_common.ThreeYear),
-			},
-			"next_contract_period": {
-				Type:             schema.TypeString,
-				Optional:         true,
-				Default:          "None",
-				Description:      "Next contract (None|1 Year|3 Year)",
-				ValidateDiagFunc: database_common.ValidateStringInOptions("None", database_common.OneYear, database_common.ThreeYear),
-			},
 			"image_id": {
 				Type:        schema.TypeString,
 				Required:    true,
@@ -273,8 +261,6 @@ func resourceMysqlCreate(ctx context.Context, rd *schema.ResourceData, meta inte
 
 	inst := meta.(*client.Instance)
 
-	contractPeriod := rd.Get("contract_period").(string)
-	nextContractPeriod := rd.Get("next_contract_period").(string)
 	imageId := rd.Get("image_id").(string)
 	natEnabled := rd.Get("nat_enabled").(bool)
 	natPublicIpId := rd.Get("nat_public_ip_id").(string)
@@ -342,7 +328,6 @@ func resourceMysqlCreate(ctx context.Context, rd *schema.ResourceData, meta inte
 	}
 
 	_, _, err = inst.Client.Mysql.CreateMysqlCluster(ctx, mysql.MysqlClusterCreateRequest{
-		ContractPeriod:   contractPeriod,
 		ImageId:          imageId,
 		NatEnabled:       &natEnabled,
 		NatPublicIpId:    natPublicIpId,
@@ -400,17 +385,6 @@ func resourceMysqlCreate(ctx context.Context, rd *schema.ResourceData, meta inte
 	}
 
 	rd.SetId(MysqlClusterId)
-
-	if nextContractPeriod == database_common.OneYear || nextContractPeriod == database_common.ThreeYear {
-		err := modifyMysqlClusterNextContract(UpdateMysqlParam{
-			Ctx:  ctx,
-			Rd:   rd,
-			Inst: inst,
-		}, nextContractPeriod)
-		if err != nil {
-			return diag.FromErr(err)
-		}
-	}
 
 	if len(backup) != 0 {
 		backupObject := &mysql.DbClusterCreateFullBackupConfigRequest{}
@@ -515,10 +489,6 @@ func resourceMysqlRead(ctx context.Context, rd *schema.ResourceData, meta interf
 		return MysqlServers[i].(map[string]interface{})["server_role_type"].(string) < MysqlServers[j].(map[string]interface{})["server_role_type"].(string)
 	})
 
-	err = rd.Set("contract_period", dbInfo.Contract.ContractPeriod)
-	if err != nil {
-		return diag.FromErr(err)
-	}
 	err = rd.Set("image_id", dbInfo.ImageId)
 	if err != nil {
 		return diag.FromErr(err)
@@ -663,12 +633,6 @@ func resourceMysqlUpdate(ctx context.Context, rd *schema.ResourceData, meta inte
 	if rd.HasChanges("mysql_cluster_state") {
 		updateFuncs = append(updateFuncs, updateMysqlClusterServerState)
 	}
-	if rd.HasChanges("contract_period") {
-		updateFuncs = append(updateFuncs, updateContractPeriod)
-	}
-	if rd.HasChanges("next_contract_period") {
-		updateFuncs = append(updateFuncs, updateNextContractPeriod)
-	}
 	if rd.HasChanges("backup") {
 		updateFuncs = append(updateFuncs, updateBackup)
 	}
@@ -713,8 +677,6 @@ func resourceMysqlDiff(ctx context.Context, rd *schema.ResourceDiff, meta interf
 		"block_storages",
 		"security_group_ids",
 		"mysql_cluster_state",
-		"contract_period",
-		"next_contract_period",
 		"backup",
 		"tags",
 	}
@@ -938,68 +900,6 @@ func stopMysqlCluster(param UpdateMysqlParam) error {
 	}
 
 	err = waitForMysql(param.Ctx, param.Inst.Client, param.Rd.Id(), common.DatabaseProcessingStates(), []string{common.StoppedState}, true)
-	if err != nil {
-		return err
-	}
-	return nil
-}
-
-func updateContractPeriod(param UpdateMysqlParam) error {
-	o, n := param.Rd.GetChange("contract_period")
-
-	oldValue := o.(string)
-	newValue := n.(string)
-
-	if oldValue != database_common.None {
-		return fmt.Errorf("changing contract period is not allowed")
-	}
-
-	err := modifyMysqlClusterContract(param, newValue)
-	if err != nil {
-		return err
-	}
-
-	return nil
-
-}
-
-func modifyMysqlClusterContract(param UpdateMysqlParam, newValue string) error {
-	_, _, err := param.Inst.Client.Mysql.ModifyMysqlClusterContract(param.Ctx, param.Rd.Id(), mysql.DbClusterModifyContractRequest{
-		ContractPeriod: newValue,
-	})
-	if err != nil {
-		return err
-	}
-
-	err = waitForMysql(param.Ctx, param.Inst.Client, param.Rd.Id(), common.DatabaseProcessingStates(), []string{common.RunningState}, true)
-	if err != nil {
-		return err
-	}
-	return nil
-}
-
-func updateNextContractPeriod(param UpdateMysqlParam) error {
-	_, n := param.Rd.GetChange("next_contract_period")
-
-	newValue := n.(string)
-
-	err := modifyMysqlClusterNextContract(param, newValue)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func modifyMysqlClusterNextContract(param UpdateMysqlParam, newValue string) error {
-	_, _, err := param.Inst.Client.Mysql.ModifyMysqlClusterNextContract(param.Ctx, param.Rd.Id(), mysql.DbClusterModifyNextContractRequest{
-		NextContractPeriod: newValue,
-	})
-	if err != nil {
-		return err
-	}
-
-	err = waitForMysql(param.Ctx, param.Inst.Client, param.Rd.Id(), common.DatabaseProcessingStates(), []string{common.RunningState}, true)
 	if err != nil {
 		return err
 	}

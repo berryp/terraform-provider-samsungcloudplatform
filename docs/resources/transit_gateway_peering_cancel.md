@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_transit_gateway_peering_cancel Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "Transit Gateway"
 description: |-
   Cancel Peering Request.
 ---
 
-# Resource: samsungcloudplatform_transit_gateway_peering_cancel
+# samsungcloudplatform_transit_gateway_peering_cancel (Resource)
 
 Cancel Peering Request.
 

@@ -2,6 +2,7 @@ package sqlserver
 
 import (
 	"context"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/common"
@@ -14,8 +15,8 @@ import (
 )
 
 func init() {
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_sqlservers", DatasourceSqlServers())
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_sqlserver", DatasourceSqlserver())
+	samsungcloudplatform.RegisterDataSource("SQL Server", "samsungcloudplatform_sqlservers", DatasourceSqlServers())
+	samsungcloudplatform.RegisterDataSource("SQL Server", "samsungcloudplatform_sqlserver", DatasourceSqlserver())
 }
 
 func DatasourceSqlServers() *schema.Resource {

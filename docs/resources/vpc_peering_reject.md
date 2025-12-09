@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_vpc_peering_reject Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "VPC Peering"
 description: |-
   Reject Peering Request.
 ---
 
-# Resource: samsungcloudplatform_vpc_peering_reject
+# samsungcloudplatform_vpc_peering_reject (Resource)
 
 Reject Peering Request.
 

@@ -2,6 +2,8 @@ package securitygroup
 
 import (
 	"context"
+	"time"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/common"
@@ -10,17 +12,16 @@ import (
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	uuid "github.com/satori/go.uuid"
-	"time"
 )
 
 func init() {
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_security_group", DatasourceSecurityGroupInfo())
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_security_groups", DatasourceSecurityGroups())
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_security_group_user_ips", DatasourceSecurityGroupUserIps())
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_security_group_rule", DatasourceSecurityGroupRuleInfo())
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_security_group_rules", DatasourceSecurityGroupRules())
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_security_group_log_storage", DatasourceSecurityGroupLogStorageInfo())
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_security_group_log_storages", DatasourceSecurityGroupLogStorages())
+	samsungcloudplatform.RegisterDataSource("Security Group", "samsungcloudplatform_security_group", DatasourceSecurityGroupInfo())
+	samsungcloudplatform.RegisterDataSource("Security Group", "samsungcloudplatform_security_groups", DatasourceSecurityGroups())
+	samsungcloudplatform.RegisterDataSource("Security Group", "samsungcloudplatform_security_group_user_ips", DatasourceSecurityGroupUserIps())
+	samsungcloudplatform.RegisterDataSource("Security Group", "samsungcloudplatform_security_group_rule", DatasourceSecurityGroupRuleInfo())
+	samsungcloudplatform.RegisterDataSource("Security Group", "samsungcloudplatform_security_group_rules", DatasourceSecurityGroupRules())
+	samsungcloudplatform.RegisterDataSource("Security Group", "samsungcloudplatform_security_group_log_storage", DatasourceSecurityGroupLogStorageInfo())
+	samsungcloudplatform.RegisterDataSource("Security Group", "samsungcloudplatform_security_group_log_storages", DatasourceSecurityGroupLogStorages())
 }
 
 func DatasourceSecurityGroups() *schema.Resource {

@@ -2,6 +2,7 @@ package iam
 
 import (
 	"context"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/antihax/optional"
@@ -11,7 +12,7 @@ import (
 )
 
 func init() {
-	samsungcloudplatform.RegisterResource("samsungcloudplatform_iam_access_key", ResourceAssessKey())
+	samsungcloudplatform.RegisterResource("IAM", "samsungcloudplatform_iam_access_key", ResourceAssessKey())
 }
 func ResourceAssessKey() *schema.Resource {
 	return &schema.Resource{

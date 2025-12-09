@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_transit_gateway Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "Transit Gateway"
 description: |-
   Provides  a TransitGateway resource.
 ---
 
-# Resource: samsungcloudplatform_transit_gateway
+# samsungcloudplatform_transit_gateway (Resource)
 
 Provides  a TransitGateway resource.
 

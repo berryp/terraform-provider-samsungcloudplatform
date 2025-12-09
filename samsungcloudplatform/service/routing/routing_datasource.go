@@ -2,6 +2,7 @@ package routing
 
 import (
 	"context"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client/routing"
@@ -12,9 +13,9 @@ import (
 )
 
 func init() {
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_vpc_routing_rules", DataSourceVpcRoutingRule())
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_vpc_routing_routes", DataSourceVpcRoutingRoute())
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_vpc_routing_tables", DataSourceVpcRoutingTable())
+	samsungcloudplatform.RegisterDataSource("Routing", "samsungcloudplatform_vpc_routing_rules", DataSourceVpcRoutingRule())
+	samsungcloudplatform.RegisterDataSource("Routing", "samsungcloudplatform_vpc_routing_routes", DataSourceVpcRoutingRoute())
+	samsungcloudplatform.RegisterDataSource("Routing", "samsungcloudplatform_vpc_routing_tables", DataSourceVpcRoutingTable())
 }
 
 func DataSourceVpcRoutingTable() *schema.Resource {

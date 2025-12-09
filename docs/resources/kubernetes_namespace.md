@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_kubernetes_namespace Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "Kubernetes"
 description: |-
   Provides a K8s Namespace resource.
 ---
 
-# Resource: samsungcloudplatform_kubernetes_namespace
+# samsungcloudplatform_kubernetes_namespace (Resource)
 
 Provides a K8s Namespace resource.
 

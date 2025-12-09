@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_iam_policy Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "IAM"
 description: |-
   Provides IAM policy resource.
 ---
 
-# Resource: samsungcloudplatform_iam_policy
+# samsungcloudplatform_iam_policy (Resource)
 
 Provides IAM policy resource.
 

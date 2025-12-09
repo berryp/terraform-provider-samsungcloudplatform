@@ -3,6 +3,10 @@ package sqlserver
 import (
 	"context"
 	"fmt"
+	"log"
+	"sort"
+	"strings"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/common"
@@ -11,17 +15,15 @@ import (
 	"github.com/SamsungSDSCloud/terraform-sdk-samsungcloudplatform/v3/library/sqlserver"
 	"github.com/antihax/optional"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
-	"log"
-	"sort"
-	"strings"
 
 	//"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
-	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"time"
+
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func init() {
-	samsungcloudplatform.RegisterResource("samsungcloudplatform_sqlserver", ResourceSqlserver())
+	samsungcloudplatform.RegisterResource("SQL Server", "samsungcloudplatform_sqlserver", ResourceSqlserver())
 }
 
 func ResourceSqlserver() *schema.Resource {
@@ -44,19 +46,6 @@ func ResourceSqlserver() *schema.Resource {
 				Type:        schema.TypeBool,
 				Required:    true,
 				Description: "Whether to use database audit logging.",
-			},
-			"contract_period": {
-				Type:             schema.TypeString,
-				Required:         true,
-				Description:      "Contract : None, 1-year, 3-year",
-				ValidateDiagFunc: database_common.ValidateStringInOptions("None", database_common.OneYear, database_common.ThreeYear),
-			},
-			"next_contract_period": {
-				Type:             schema.TypeString,
-				Optional:         true,
-				Default:          "None",
-				Description:      "Next contract : None, 1-year, 3-year",
-				ValidateDiagFunc: database_common.ValidateStringInOptions("None", database_common.OneYear, database_common.ThreeYear),
 			},
 			"image_id": {
 				Type:        schema.TypeString,
@@ -332,8 +321,6 @@ func resourceSqlserverCreate(ctx context.Context, rd *schema.ResourceData, meta 
 	inst := meta.(*client.Instance)
 
 	auditEnabled := rd.Get("audit_enabled").(bool)
-	contractPeriod := rd.Get("contract_period").(string)
-	nextContractPeriod := rd.Get("next_contract_period").(string)
 	imageId := rd.Get("image_id").(string)
 	natEnabled := rd.Get("nat_enabled").(bool)
 	natPublicIpId := rd.Get("nat_public_ip_id").(string)
@@ -419,7 +406,6 @@ func resourceSqlserverCreate(ctx context.Context, rd *schema.ResourceData, meta 
 
 	_, _, err = inst.Client.Sqlserver.CreateSqlserverCluster(ctx, sqlserver.SqlserverClusterCreateRequest{
 		AuditEnabled:         &auditEnabled,
-		ContractPeriod:       contractPeriod,
 		ImageId:              imageId,
 		NatEnabled:           &natEnabled,
 		NatPublicIpId:        natPublicIpId,
@@ -479,17 +465,6 @@ func resourceSqlserverCreate(ctx context.Context, rd *schema.ResourceData, meta 
 	}
 
 	rd.SetId(sqlserverClusterId)
-
-	if nextContractPeriod == database_common.OneYear || nextContractPeriod == database_common.ThreeYear {
-		err := modifySqlserverClusterNextContract(UpdateSqlserverParam{
-			Ctx:  ctx,
-			Rd:   rd,
-			Inst: inst,
-		}, nextContractPeriod)
-		if err != nil {
-			return diag.FromErr(err)
-		}
-	}
 
 	if len(backup) != 0 {
 		backupObject := &sqlserver.SqlserverCreateFullBackupConfigRequest{}
@@ -590,10 +565,6 @@ func resourceSqlserverRead(ctx context.Context, rd *schema.ResourceData, meta in
 	})
 
 	err = rd.Set("audit_enabled", sqlserverClusterDetail.AuditEnabled)
-	if err != nil {
-		return diag.FromErr(err)
-	}
-	err = rd.Set("contract_period", sqlserverClusterDetail.Contract.ContractPeriod)
 	if err != nil {
 		return diag.FromErr(err)
 	}
@@ -737,12 +708,6 @@ func resourceSqlserverUpdate(ctx context.Context, rd *schema.ResourceData, meta 
 	}
 	if rd.HasChanges("security_group_ids") {
 		updateFuncs = append(updateFuncs, updateSqlserverClusterSecurityGroupIds)
-	}
-	if rd.HasChanges("contract_period") {
-		updateFuncs = append(updateFuncs, updateContractPeriod)
-	}
-	if rd.HasChanges("next_contract_period") {
-		updateFuncs = append(updateFuncs, updateNextContractPeriod)
 	}
 	if rd.HasChanges("backup") {
 		updateFuncs = append(updateFuncs, updateBackup)
@@ -949,67 +914,6 @@ func stopSqlserverCluster(param UpdateSqlserverParam) error {
 	return nil
 }
 
-func updateContractPeriod(param UpdateSqlserverParam) error {
-	o, n := param.Rd.GetChange("contract_period")
-
-	oldValue := o.(string)
-	newValue := n.(string)
-
-	if oldValue != database_common.None {
-		return fmt.Errorf("changing contract period is not allowed")
-	}
-
-	err := modifySqlserverClusterContract(param, newValue)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func modifySqlserverClusterContract(param UpdateSqlserverParam, newValue string) error {
-	_, _, err := param.Inst.Client.Sqlserver.ModifySqlserverClusterContract(param.Ctx, param.Rd.Id(), sqlserver.DbClusterModifyContractRequest{
-		ContractPeriod: newValue,
-	})
-	if err != nil {
-		return err
-	}
-
-	err = waitForSqlserver(param.Ctx, param.Inst.Client, param.Rd.Id(), common.DatabaseProcessingStates(), []string{common.RunningState}, true)
-	if err != nil {
-		return err
-	}
-	return nil
-}
-
-func updateNextContractPeriod(param UpdateSqlserverParam) error {
-	_, n := param.Rd.GetChange("next_contract_period")
-
-	newValue := n.(string)
-
-	err := modifySqlserverClusterNextContract(param, newValue)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func modifySqlserverClusterNextContract(param UpdateSqlserverParam, newValue string) error {
-	_, _, err := param.Inst.Client.Sqlserver.ModifySqlserverClusterNextContract(param.Ctx, param.Rd.Id(), sqlserver.DbClusterModifyNextContractRequest{
-		NextContractPeriod: newValue,
-	})
-	if err != nil {
-		return err
-	}
-
-	err = waitForSqlserver(param.Ctx, param.Inst.Client, param.Rd.Id(), common.DatabaseProcessingStates(), []string{common.RunningState}, true)
-	if err != nil {
-		return err
-	}
-	return nil
-}
-
 func updateBackup(param UpdateSqlserverParam) error {
 	o, n := param.Rd.GetChange("backup")
 
@@ -1174,8 +1078,6 @@ func resourceSqlserverDiff(ctx context.Context, rd *schema.ResourceDiff, meta in
 		"block_storages",
 		"security_group_ids",
 		"sqlserver_cluster_state",
-		"contract_period",
-		"next_contract_period",
 		"backup",
 		"tags",
 	}

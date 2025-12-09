@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_bm_server Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "Bare Metal Server"
 description: |-
   Provides a Bare-metal Server resource.
 ---
 
-# Resource: samsungcloudplatform_bm_server
+# samsungcloudplatform_bm_server (Resource)
 
 Provides a Bare-metal Server resource.
 

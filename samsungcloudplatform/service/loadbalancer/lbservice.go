@@ -3,6 +3,7 @@ package loadbalancer
 import (
 	"context"
 	"fmt"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client/loadbalancer"
@@ -15,7 +16,7 @@ import (
 )
 
 func init() {
-	samsungcloudplatform.RegisterResource("samsungcloudplatform_lb_service", ResourceLbService())
+	samsungcloudplatform.RegisterResource("Load Balancer", "samsungcloudplatform_lb_service", ResourceLbService())
 }
 
 func ResourceLbService() *schema.Resource {

@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_transit_gateway_peering_reject Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "Transit Gateway"
 description: |-
   Reject Peering Request.
 ---
 
-# Resource: samsungcloudplatform_transit_gateway_peering_reject
+# samsungcloudplatform_transit_gateway_peering_reject (Resource)
 
 Reject Peering Request.
 

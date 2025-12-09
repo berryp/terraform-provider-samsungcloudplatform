@@ -3,6 +3,9 @@ package kafka
 import (
 	"context"
 	"fmt"
+	"log"
+	"time"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/common"
@@ -12,12 +15,10 @@ import (
 	"github.com/antihax/optional"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
-	"log"
-	"time"
 )
 
 func init() {
-	samsungcloudplatform.RegisterResource("samsungcloudplatform_kafka", ResourceKafka())
+	samsungcloudplatform.RegisterResource("Kafka", "samsungcloudplatform_kafka", ResourceKafka())
 }
 
 func ResourceKafka() *schema.Resource {
@@ -56,12 +57,6 @@ func ResourceKafka() *schema.Resource {
 				Type:        schema.TypeString,
 				Required:    true,
 				Description: "Kafka virtual server image id.",
-			},
-			"contract_period": {
-				Type:             schema.TypeString,
-				Required:         true,
-				Description:      "Contract (None|1 Year|3 Year)",
-				ValidateDiagFunc: database_common.ValidateStringInOptions("None", database_common.OneYear, database_common.ThreeYear),
 			},
 			"vpc_id": {
 				Type:        schema.TypeString,
@@ -346,7 +341,6 @@ func resourceKafkaCreate(ctx context.Context, rd *schema.ResourceData, meta inte
 	serviceZoneId := rd.Get("service_zone_id").(string)
 	imageId := rd.Get("image_id").(string)
 	timezone := rd.Get("timezone").(string)
-	contractPeriod := rd.Get("contract_period").(string)
 	securityGroupIds := rd.Get("security_group_ids").([]interface{})
 	subnetId := rd.Get("subnet_id").(string)
 	natEnabled := rd.Get("nat_enabled").(bool)
@@ -483,7 +477,6 @@ func resourceKafkaCreate(ctx context.Context, rd *schema.ResourceData, meta inte
 		ServiceZoneId:    serviceZoneId,
 		ImageId:          imageId,
 		Timezone:         timezone,
-		ContractPeriod:   contractPeriod,
 		SecurityGroupIds: securityGroupIdList,
 		SubnetId:         subnetId,
 		NatEnabled:       &natEnabled,
@@ -589,10 +582,6 @@ func resourceKafkaRead(ctx context.Context, rd *schema.ResourceData, meta interf
 		return diag.FromErr(err)
 	}
 	err = rd.Set("image_id", dbInfo.ImageId)
-	if err != nil {
-		return diag.FromErr(err)
-	}
-	err = rd.Set("contract_period", dbInfo.Contract.ContractPeriod)
 	if err != nil {
 		return diag.FromErr(err)
 	}

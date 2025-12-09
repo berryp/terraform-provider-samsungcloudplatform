@@ -2,6 +2,7 @@ package iam
 
 import (
 	"context"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client/iam"
 
@@ -13,10 +14,10 @@ import (
 )
 
 func init() {
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_iam_policy", DatasourcePolicy())
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_iam_policies", DatasourcePolicies())
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_iam_policy_groups", DatasourcePolicyGroups())
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_iam_policy_roles", DatasourcePolicyRoles())
+	samsungcloudplatform.RegisterDataSource("IAM", "samsungcloudplatform_iam_policy", DatasourcePolicy())
+	samsungcloudplatform.RegisterDataSource("IAM", "samsungcloudplatform_iam_policies", DatasourcePolicies())
+	samsungcloudplatform.RegisterDataSource("IAM", "samsungcloudplatform_iam_policy_groups", DatasourcePolicyGroups())
+	samsungcloudplatform.RegisterDataSource("IAM", "samsungcloudplatform_iam_policy_roles", DatasourcePolicyRoles())
 }
 
 func DatasourcePolicy() *schema.Resource {

@@ -3,6 +3,9 @@ package hpclitenew
 import (
 	context2 "context"
 	"fmt"
+	"strings"
+	"time"
+
 	scp "github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client/hpclitenew"
@@ -12,12 +15,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"golang.org/x/net/context"
-	"strings"
-	"time"
 )
 
 func init() {
-	scp.RegisterResource("samsungcloudplatform_hpc_lite_new", ResourceHpcLiteNew())
+	scp.RegisterResource("HPC Lite(NEW)", "samsungcloudplatform_hpc_lite_new", ResourceHpcLiteNew())
 }
 
 func ResourceHpcLiteNew() *schema.Resource {

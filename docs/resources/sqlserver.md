@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_sqlserver Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "SQL Server"
 description: |-
   Provide Microsoft SQL Server resource.
 ---
 
-# Resource: samsungcloudplatform_sqlserver
+# samsungcloudplatform_sqlserver (Resource)
 
 Provide Microsoft SQL Server resource.
 
@@ -54,8 +54,6 @@ resource "samsungcloudplatform_sqlserver" "my_ms_sql" {
 
   image_id = data.samsungcloudplatform_standard_image.mssql_2019_enterprise_eng_image.id
   audit_enabled = true
-  contract_period = "1 Year"
-  next_contract_period = "None"
   nat_enabled = false
   nat_public_ip_id = null
   postgresql_cluster_name = "sqlservercluster"
@@ -99,7 +97,6 @@ resource "samsungcloudplatform_sqlserver" "my_ms_sql" {
 
 - `audit_enabled` (Boolean) Whether to use database audit logging.
 - `block_storages` (Block List, Min: 1, Max: 10) block storage. (see [below for nested schema](#nestedblock--block_storages))
-- `contract_period` (String) Contract : None, 1-year, 3-year
 - `database_collation` (String) Commands that specify how to sort and compare data
 - `database_names` (List of String) Database Name List
 - `database_port` (Number) Port number of this database. (1024 to 65535)
@@ -123,7 +120,6 @@ resource "samsungcloudplatform_sqlserver" "my_ms_sql" {
 - `backup` (Block Set, Max: 1) (see [below for nested schema](#nestedblock--backup))
 - `nat_enabled` (Boolean) Whether to use nat.
 - `nat_public_ip_id` (String) Public IP for NAT. If it is null, it is automatically allocated.
-- `next_contract_period` (String) Next contract : None, 1-year, 3-year
 - `sqlserver_active_directory` (Block Set) MS SQL Server Active directory (see [below for nested schema](#nestedblock--sqlserver_active_directory))
 - `tags` (Map of String)
 - `timeouts` (Block, Optional) (see [below for nested schema](#nestedblock--timeouts))

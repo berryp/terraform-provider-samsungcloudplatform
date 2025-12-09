@@ -3,6 +3,7 @@ package firewall
 import (
 	"context"
 	"fmt"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/common"
@@ -11,8 +12,8 @@ import (
 )
 
 func init() {
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_firewall", DatasourceFirewall())
-	samsungcloudplatform.RegisterResource("samsungcloudplatform_firewall", ResourceFirewall())
+	samsungcloudplatform.RegisterDataSource("Firewall", "samsungcloudplatform_firewall", DatasourceFirewall())
+	samsungcloudplatform.RegisterResource("Firewall", "samsungcloudplatform_firewall", ResourceFirewall())
 
 }
 

@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_nat_gateway Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "NAT Gateway"
 description: |-
   Provides a NAT Gateway resource.
 ---
 
-# Resource: samsungcloudplatform_nat_gateway
+# samsungcloudplatform_nat_gateway (Resource)
 
 Provides a NAT Gateway resource.
 

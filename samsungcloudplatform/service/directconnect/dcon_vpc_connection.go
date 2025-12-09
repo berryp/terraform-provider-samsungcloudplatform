@@ -2,6 +2,7 @@ package directconnect
 
 import (
 	"context"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/common"
@@ -12,7 +13,7 @@ import (
 )
 
 func init() {
-	samsungcloudplatform.RegisterResource("samsungcloudplatform_dcon_vpc_connection", ResourceDconVpcConnection())
+	samsungcloudplatform.RegisterResource("Direct Connect", "samsungcloudplatform_dcon_vpc_connection", ResourceDconVpcConnection())
 }
 
 func ResourceDconVpcConnection() *schema.Resource {

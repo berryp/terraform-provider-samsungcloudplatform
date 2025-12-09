@@ -22,7 +22,6 @@ resource "samsungcloudplatform_virtual_server" "server_001" {
   internal_ip_address = "192.169.4.17"
 
   delete_protection = false
-  contract_discount = "None"
 
   os_storage_name      = "hellodisk1"
   os_storage_size_gb   = 100

@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_launch_configuration Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "Auto Scaling"
 description: |-
   Provides a Launch Configuration resource.
 ---
 
-# Resource: samsungcloudplatform_launch_configuration
+# samsungcloudplatform_launch_configuration (Resource)
 
 Provides a Launch Configuration resource.
 

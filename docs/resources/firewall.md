@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_firewall Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "Firewall"
 description: |-
   Provides a Firewall resource.
 ---
 
-# Resource: samsungcloudplatform_firewall
+# samsungcloudplatform_firewall (Resource)
 
 Provides a Firewall resource.
 

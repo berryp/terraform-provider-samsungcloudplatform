@@ -2,6 +2,7 @@ package project
 
 import (
 	"context"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client/project"
@@ -12,12 +13,12 @@ import (
 )
 
 func init() {
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_projects", DatasourceProjects())
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_project", DatasourceProject())
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_project_zones", DatasourceProjectZones())
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_project_products", DatasourceProjectProducts())
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_project_product_resources", DatasourceProjectProductResources())
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_project_user_products_resources", DatasourceProjectUserProductsResources())
+	samsungcloudplatform.RegisterDataSource("Project", "samsungcloudplatform_projects", DatasourceProjects())
+	samsungcloudplatform.RegisterDataSource("Project", "samsungcloudplatform_project", DatasourceProject())
+	samsungcloudplatform.RegisterDataSource("Project", "samsungcloudplatform_project_zones", DatasourceProjectZones())
+	samsungcloudplatform.RegisterDataSource("Project", "samsungcloudplatform_project_products", DatasourceProjectProducts())
+	samsungcloudplatform.RegisterDataSource("Project", "samsungcloudplatform_project_product_resources", DatasourceProjectProductResources())
+	samsungcloudplatform.RegisterDataSource("Project", "samsungcloudplatform_project_user_products_resources", DatasourceProjectUserProductsResources())
 }
 
 func DatasourceProject() *schema.Resource {

@@ -2,6 +2,8 @@ package certificate
 
 import (
 	"context"
+	"time"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/common"
@@ -10,12 +12,11 @@ import (
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	uuid "github.com/satori/go.uuid"
-	"time"
 )
 
 func init() {
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_certificate", DatasourceCertificate())
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_certificates", DatasourceCertificates())
+	samsungcloudplatform.RegisterDataSource("Certificate", "samsungcloudplatform_certificate", DatasourceCertificate())
+	samsungcloudplatform.RegisterDataSource("Certificate", "samsungcloudplatform_certificates", DatasourceCertificates())
 }
 
 func DatasourceCertificate() *schema.Resource {

@@ -2,6 +2,7 @@ package image
 
 import (
 	"context"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/common"
@@ -15,7 +16,7 @@ const (
 )
 
 func init() {
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_standard_image", DatasourceStandardImage())
+	samsungcloudplatform.RegisterDataSource("Image", "samsungcloudplatform_standard_image", DatasourceStandardImage())
 }
 
 func DatasourceStandardImage() *schema.Resource {

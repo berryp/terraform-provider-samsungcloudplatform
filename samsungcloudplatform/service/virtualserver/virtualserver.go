@@ -3,6 +3,11 @@ package virtualserver
 import (
 	"context"
 	"fmt"
+	"log"
+	"strconv"
+	"strings"
+	"time"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client/storage/blockstorage"
@@ -18,14 +23,10 @@ import (
 	"github.com/antihax/optional"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
-	"log"
-	"strconv"
-	"strings"
-	"time"
 )
 
 func init() {
-	samsungcloudplatform.RegisterResource("samsungcloudplatform_virtual_server", ResourceVirtualServer())
+	samsungcloudplatform.RegisterResource("Virtual Server", "samsungcloudplatform_virtual_server", ResourceVirtualServer())
 }
 
 func ResourceVirtualServer() *schema.Resource {
@@ -113,19 +114,6 @@ func ResourceVirtualServer() *schema.Resource {
 				Default:     false,
 				ForceNew:    true,
 				Description: "Enable encryption feature in OS(Boot) storage. (WARNING) This option can not be changed after creation.",
-			},
-			"contract_discount": {
-				Type:             schema.TypeString,
-				Required:         true,
-				Description:      "Contract : None, 1 Year, 3 Year",
-				ValidateDiagFunc: common.ValidateContractDesc,
-			},
-			"next_contract_discount": {
-				Type:             schema.TypeString,
-				Optional:         true,
-				Default:          "None",
-				Description:      "Next Contract : None, 1 Year, 3 Year",
-				ValidateDiagFunc: common.ValidateContractDesc,
 			},
 			"external_storage": {
 				Type:        schema.TypeList,
@@ -328,7 +316,6 @@ func resourceVirtualServerCreate(ctx context.Context, rd *schema.ResourceData, m
 	osStorageEncrypted := rd.Get("os_storage_encrypted").(bool)
 
 	//serviceLevel := rd.Get("service_level").(string)
-	contractDiscount := rd.Get("contract_discount").(string)
 	externalStorageList := rd.Get("external_storage").(common.HclListObject)
 
 	subnetId := rd.Get("subnet_id").(string)
@@ -544,7 +531,6 @@ func resourceVirtualServerCreate(ctx context.Context, rd *schema.ResourceData, m
 			EncryptEnabled:   osStorageEncrypted,
 			DiskType:         osDiskProductName,
 		},
-		ContractDiscount:          contractDiscount,
 		DeletionProtectionEnabled: isDeleteProtected,
 		DnsEnabled:                useDNS,
 		ExtraBlockStorages:        extStorages,
@@ -1367,39 +1353,6 @@ func resourceVirtualServerUpdate(ctx context.Context, rd *schema.ResourceData, m
 		_, err := inst.Client.VirtualServer.UpdateVirtualServerSubnetIp(ctx, rd.Id(), virtualserver.VirtualServerSubnetIpUpdateRequest{
 			SubnetId:          newSubnetId,
 			InternalIpAddress: newInternalIpAddress,
-		})
-		if err != nil {
-			return diag.FromErr(err)
-		}
-		err = WaitForVirtualServerStatus(ctx, inst.Client, rd.Id(), common.VirtualServerProcessingStates(), []string{common.RunningState}, true)
-		if err != nil {
-			return
-		}
-	}
-
-	if rd.HasChanges("contract_discount") {
-		oldContractDiscount, newContractDiscount := rd.GetChange("contract_discount")
-		strOldContractDiscount := oldContractDiscount.(string)
-		strNewContractDiscount := newContractDiscount.(string)
-		if strings.Compare(strOldContractDiscount, "None") == 0 {
-			_, err := inst.Client.VirtualServer.UpdateVirtualServerContract(ctx, rd.Id(), virtualserver.VirtualServerContractUpdateRequest{
-				ContractDiscount: strNewContractDiscount,
-			})
-			if err != nil {
-				return diag.FromErr(err)
-			}
-		} else {
-			return diag.Errorf("Once the Contract Discount created, it can be changed after the contract discount period expires.")
-		}
-		err = WaitForVirtualServerStatus(ctx, inst.Client, rd.Id(), common.VirtualServerProcessingStates(), []string{common.RunningState}, true)
-		if err != nil {
-			return
-		}
-	}
-
-	if rd.HasChanges("next_contract_discount") && strings.Compare(rd.Get("contract_discount").(string), "None") != 0 {
-		_, err := inst.Client.VirtualServer.UpdateVirtualServerNextContract(ctx, rd.Id(), virtualserver.VirtualServerContractUpdateRequest{
-			ContractDiscount: rd.Get("next_contract_discount").(string),
 		})
 		if err != nil {
 			return diag.FromErr(err)

@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_epas Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "Epas"
 description: |-
   Provides a EPAS Database resource.
 ---
 
-# Resource: samsungcloudplatform_epas
+# samsungcloudplatform_epas (Resource)
 
 Provides a EPAS Database resource.
 
@@ -48,8 +48,6 @@ resource "samsungcloudplatform_epas" "demo_db" {
 
   image_id = data.samsungcloudplatform_standard_image.epas_15_6_image.id
   audit_enabled = true
-  contract_period = "1 Year"
-  next_contract_period = "None"
   nat_enabled = true
   nat_public_ip_id = null
   epas_cluster_name = "demoepascluster"
@@ -88,7 +86,6 @@ resource "samsungcloudplatform_epas" "demo_db" {
 
 - `audit_enabled` (Boolean) Whether to use database audit logging.
 - `block_storages` (Block List, Min: 1, Max: 10) block storage. (see [below for nested schema](#nestedblock--block_storages))
-- `contract_period` (String) Contract (None|1 Year|3 Year)
 - `database_encoding` (String) Epas encoding. (Only 'UTF8' for now)
 - `database_locale` (String) Epas locale. (Only 'C' for now)
 - `database_name` (String) Name of database. (only English alphabets or numbers between 3 and 20 characters)
@@ -111,7 +108,6 @@ resource "samsungcloudplatform_epas" "demo_db" {
 - `backup` (Block Set, Max: 1) (see [below for nested schema](#nestedblock--backup))
 - `nat_enabled` (Boolean) Whether to use nat.
 - `nat_public_ip_id` (String) Public IP for NAT. If it is null, it is automatically allocated.
-- `next_contract_period` (String) Next contract (None|1 Year|3 Year)
 - `tags` (Map of String)
 - `timeouts` (Block, Optional) (see [below for nested schema](#nestedblock--timeouts))
 

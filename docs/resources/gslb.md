@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_gslb Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "GSLB"
 description: |-
   Provides a Gslb resource.
 ---
 
-# Resource: samsungcloudplatform_gslb
+# samsungcloudplatform_gslb (Resource)
 
 Provides a Gslb resource.
 

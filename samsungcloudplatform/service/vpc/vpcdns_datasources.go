@@ -2,6 +2,7 @@ package vpc
 
 import (
 	"context"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
@@ -12,7 +13,7 @@ import (
 )
 
 func init() {
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_vpc_dnss", DatasourceVpcDns())
+	samsungcloudplatform.RegisterDataSource("VPC", "samsungcloudplatform_vpc_dnss", DatasourceVpcDns())
 }
 
 func DatasourceVpcDns() *schema.Resource {

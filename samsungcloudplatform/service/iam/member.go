@@ -2,6 +2,7 @@ package iam
 
 import (
 	"context"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/common"
@@ -11,7 +12,7 @@ import (
 )
 
 func init() {
-	samsungcloudplatform.RegisterResource("samsungcloudplatform_iam_member", ResourceMember())
+	samsungcloudplatform.RegisterResource("IAM", "samsungcloudplatform_iam_member", ResourceMember())
 }
 func ResourceMember() *schema.Resource {
 	return &schema.Resource{

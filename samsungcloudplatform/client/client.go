@@ -246,7 +246,7 @@ func NewSCPClient(providerConfig *Config) (*SCPClient, error) {
 		Kafka:        kafka.NewClient(NewDefaultConfig(providerConfig, "oss2")),
 
 		// Security
-		Certificate: certificate.NewClient(NewDefaultConfig(providerConfig, "certificate")),
+		Certificate:      certificate.NewClient(NewDefaultConfig(providerConfig, "certificate")),
 		ConfigInspection: configinspection.NewClient(NewDefaultConfig(providerConfig, "on-service")),
 
 		// Common.

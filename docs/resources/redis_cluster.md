@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_redis_cluster Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "Redis Cluster"
 description: |-
   
 ---
 
-# Resource: samsungcloudplatform_redis_cluster
+# samsungcloudplatform_redis_cluster (Resource)
 
 
 
@@ -82,8 +82,6 @@ resource "samsungcloudplatform_redis_cluster" "demo_db" {
 
 
   image_id = data.samsungcloudplatform_standard_image.redis_cluster_7_2_image.id
-  contract_period = "1 Year"
-  next_contract_period = "None"
   nat_enabled = false
   redis_cluster_name = "democluster"
   redis_cluster_state = "RUNNING"
@@ -122,7 +120,6 @@ resource "samsungcloudplatform_redis_cluster" "demo_db" {
 ### Required
 
 - `block_storages` (Block List, Min: 1, Max: 1) block storage. (It can't be deleted.) (see [below for nested schema](#nestedblock--block_storages))
-- `contract_period` (String) Contract (None|1 Year|3 Year)
 - `database_user_password` (String, Sensitive) User account password of database.
 - `encryption_enabled` (Boolean) Whether to use storage encryption.
 - `image_id` (String) Redis Cluster virtual server image id.
@@ -140,7 +137,6 @@ resource "samsungcloudplatform_redis_cluster" "demo_db" {
 - `backup` (Block Set, Max: 1) (see [below for nested schema](#nestedblock--backup))
 - `database_port` (Number) Port number of this database. (1024 to 65535)
 - `nat_enabled` (Boolean) Whether to use nat.
-- `next_contract_period` (String) Next contract (None|1 Year|3 Year)
 - `shards_count` (Number) Number of Masters.
 - `shards_replica_count` (Number) Number of Replicas created per Master.
 - `tags` (Map of String)

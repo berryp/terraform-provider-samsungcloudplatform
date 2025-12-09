@@ -4,6 +4,10 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"strconv"
+	"strings"
+	"time"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client/kubernetesengine"
@@ -14,13 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/customdiff"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/validation"
-	"strconv"
-	"strings"
-	"time"
 )
 
 func init() {
-	samsungcloudplatform.RegisterResource("samsungcloudplatform_kubernetes_node_pool", ResourceKubernetesNodePool())
+	samsungcloudplatform.RegisterResource("Kubernetes", "samsungcloudplatform_kubernetes_node_pool", ResourceKubernetesNodePool())
 }
 
 func ResourceKubernetesNodePool() *schema.Resource {
@@ -730,18 +731,36 @@ func toTaintRequestListToUpdate(list []interface{}) []kubernetesengine.TaintRequ
 	return result
 }
 
-func toAdvancedSettingsRequest(advancedSettings interface{}) kubernetesengine.AdvancedSettingsRequest {
+func toAdvancedSettingsRequest(advancedSettings interface{}) *kubernetesengine.AdvancedSettingsRequest {
 
-	inst := advancedSettings.(*schema.Set).List()
+	if advancedSettings == nil {
+		return nil
+	}
 
-	var result = kubernetesengine.AdvancedSettingsRequest{
-		AllowedUnsafeSysctls: inst[0].(map[string]interface{})["allowed_unsafe_sysctls"].(string),
-		ContainerLogMaxFiles: int32(inst[0].(map[string]interface{})["container_log_max_files"].(int)),
-		ContainerLogMaxSize:  int32(inst[0].(map[string]interface{})["container_log_max_size"].(int)),
-		ImageGcHighThreshold: int32(inst[0].(map[string]interface{})["image_gc_high_threshold"].(int)),
-		ImageGcLowThreshold:  int32(inst[0].(map[string]interface{})["image_gc_low_threshold"].(int)),
-		MaxPods:              int32(inst[0].(map[string]interface{})["max_pods"].(int)),
-		PodMaxPids:           int32(inst[0].(map[string]interface{})["pod_max_pids"].(int)),
+	// Terraform schema 에서는 보통 *schema.Set 로 전달됩니다.
+	set, ok := advancedSettings.(*schema.Set)
+	if !ok {
+		// 타입이 맞지 않을 경우 panic(또는 에러 반환) – 상황에 맞게 처리하세요.
+		panic("advanced_settings must be a *schema.Set")
+	}
+
+	// Set 안에 하나의 맵이 들어 있다고 가정합니다.
+	if set.Len() == 0 {
+		return nil
+	}
+
+	inst := set.List() // []interface{}
+	// 첫 번째(그리고 유일한) 요소를 map[string]interface{} 로 변환
+	m := inst[0].(map[string]interface{})
+
+	result := &kubernetesengine.AdvancedSettingsRequest{
+		AllowedUnsafeSysctls: m["allowed_unsafe_sysctls"].(string),
+		ContainerLogMaxFiles: int32(m["container_log_max_files"].(int)),
+		ContainerLogMaxSize:  int32(m["container_log_max_size"].(int)),
+		ImageGcHighThreshold: int32(m["image_gc_high_threshold"].(int)),
+		ImageGcLowThreshold:  int32(m["image_gc_low_threshold"].(int)),
+		MaxPods:              int32(m["max_pods"].(int)),
+		PodMaxPids:           int32(m["pod_max_pids"].(int)),
 	}
 
 	return result

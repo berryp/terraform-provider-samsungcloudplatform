@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_auto_scaling_group_policy Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "Auto Scaling"
 description: |-
   Provides a Auto-Scaling Group policy resource.
 ---
 
-# Resource: samsungcloudplatform_auto_scaling_group_policy
+# samsungcloudplatform_auto_scaling_group_policy (Resource)
 
 Provides a Auto-Scaling Group policy resource.
 

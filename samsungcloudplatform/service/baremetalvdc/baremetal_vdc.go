@@ -3,6 +3,11 @@ package baremetalvdc
 import (
 	"context"
 	"errors"
+	"log"
+	"strconv"
+	"strings"
+	"time"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client/baremetalvdc"
@@ -13,14 +18,10 @@ import (
 	"github.com/SamsungSDSCloud/terraform-sdk-samsungcloudplatform/v3/library/product"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
-	"log"
-	"strconv"
-	"strings"
-	"time"
 )
 
 func init() {
-	samsungcloudplatform.RegisterResource("samsungcloudplatform_bm_server_vdc", ResourceBareMetalServerVDC())
+	samsungcloudplatform.RegisterResource("Bare Metal Server(VDC)", "samsungcloudplatform_bm_server_vdc", ResourceBareMetalServerVDC())
 }
 
 func ResourceBareMetalServerVDC() *schema.Resource {

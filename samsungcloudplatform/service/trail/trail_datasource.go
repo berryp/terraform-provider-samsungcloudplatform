@@ -2,6 +2,7 @@ package trail
 
 import (
 	"context"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/common"
@@ -12,8 +13,8 @@ import (
 )
 
 func init() {
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_trails", DatasourceTrails())
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_trail", DatasourceTrail())
+	samsungcloudplatform.RegisterDataSource("Trail", "samsungcloudplatform_trails", DatasourceTrails())
+	samsungcloudplatform.RegisterDataSource("Trail", "samsungcloudplatform_trail", DatasourceTrail())
 }
 
 func DatasourceTrails() *schema.Resource {

@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_security_group_bulk_rule Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "Security Group"
 description: |-
   Provides a Security Group Bulk Rule resource.
 ---
 
-# Resource: samsungcloudplatform_security_group_bulk_rule
+# samsungcloudplatform_security_group_bulk_rule (Resource)
 
 Provides a Security Group Bulk Rule resource.
 

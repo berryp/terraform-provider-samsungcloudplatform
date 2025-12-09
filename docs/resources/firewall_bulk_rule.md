@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_firewall_bulk_rule Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "Firewall"
 description: |-
   Provides a Firewall Rule resource.
 ---
 
-# Resource: samsungcloudplatform_firewall_bulk_rule
+# samsungcloudplatform_firewall_bulk_rule (Resource)
 
 Provides a Firewall Rule resource.
 

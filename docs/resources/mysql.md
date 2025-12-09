@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_mysql Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "MySQL"
 description: |-
   Provides a Mysql Database resource.
 ---
 
-# Resource: samsungcloudplatform_mysql
+# samsungcloudplatform_mysql (Resource)
 
 Provides a Mysql Database resource.
 
@@ -47,8 +47,6 @@ resource "samsungcloudplatform_mysql" "demo_db" {
   }
 
   image_id = data.samsungcloudplatform_standard_image.mysql_image.id
-  contract_period = "1 Year"
-  next_contract_period = "None"
   nat_enabled = true
   nat_public_ip_id = null
   mysql_cluster_name = "demomysql"
@@ -86,7 +84,6 @@ resource "samsungcloudplatform_mysql" "demo_db" {
 ### Required
 
 - `block_storages` (Block List, Min: 1, Max: 10) block storage. (see [below for nested schema](#nestedblock--block_storages))
-- `contract_period` (String) Contract (None|1 Year|3 Year)
 - `database_case_sensitivity` (Boolean) Mysql database case sensitivity.
 - `database_character_set` (String) Mysql encoding. (utf8mb3|utf8mb4)
 - `database_name` (String) Name of database. (only English alphabets or numbers between 3 and 20 characters)
@@ -109,7 +106,6 @@ resource "samsungcloudplatform_mysql" "demo_db" {
 - `backup` (Block Set, Max: 1) (see [below for nested schema](#nestedblock--backup))
 - `nat_enabled` (Boolean) Whether to use nat.
 - `nat_public_ip_id` (String) Public IP for NAT. If it is null, it is automatically allocated.
-- `next_contract_period` (String) Next contract (None|1 Year|3 Year)
 - `tags` (Map of String)
 - `timeouts` (Block, Optional) (see [below for nested schema](#nestedblock--timeouts))
 

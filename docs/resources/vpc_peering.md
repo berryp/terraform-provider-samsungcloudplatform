@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_vpc_peering Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "VPC Peering"
 description: |-
   Provides a VPC Peering Rule.
 ---
 
-# Resource: samsungcloudplatform_vpc_peering
+# samsungcloudplatform_vpc_peering (Resource)
 
 Provides a VPC Peering Rule.
 

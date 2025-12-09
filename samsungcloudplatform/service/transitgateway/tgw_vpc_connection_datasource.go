@@ -2,6 +2,7 @@ package transitgateway
 
 import (
 	"context"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/common"
@@ -13,7 +14,7 @@ import (
 )
 
 func init() {
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_transit_gateway_connections", DataSourceTransitGatewayConnections())
+	samsungcloudplatform.RegisterDataSource("Transit Gateway", "samsungcloudplatform_transit_gateway_connections", DataSourceTransitGatewayConnections())
 }
 
 func DataSourceTransitGatewayConnections() *schema.Resource {

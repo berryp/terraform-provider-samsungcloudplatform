@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_dcon_vpc_connection Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "Direct Connect"
 description: |-
   Provides a Dcon-Vpc connection resource.
 ---
 
-# Resource: samsungcloudplatform_dcon_vpc_connection
+# samsungcloudplatform_dcon_vpc_connection (Resource)
 
 Provides a Dcon-Vpc connection resource.
 

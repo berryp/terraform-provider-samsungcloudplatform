@@ -2,6 +2,7 @@ package product
 
 import (
 	"context"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/validation"
 
@@ -14,11 +15,11 @@ import (
 )
 
 func init() {
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_product", DatasourceProduct())
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_products_by_zone", DatasourceProductsByZoneId())
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_products_by_group", DatasourceProductsByGroup())
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_product_categories", DatasourceProductCategories())
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_product_groups", DatasourceProductGroups())
+	samsungcloudplatform.RegisterDataSource("Product", "samsungcloudplatform_product", DatasourceProduct())
+	samsungcloudplatform.RegisterDataSource("Product", "samsungcloudplatform_products_by_zone", DatasourceProductsByZoneId())
+	samsungcloudplatform.RegisterDataSource("Product", "samsungcloudplatform_products_by_group", DatasourceProductsByGroup())
+	samsungcloudplatform.RegisterDataSource("Product", "samsungcloudplatform_product_categories", DatasourceProductCategories())
+	samsungcloudplatform.RegisterDataSource("Product", "samsungcloudplatform_product_groups", DatasourceProductGroups())
 }
 
 func datasourceProductItemElem() *schema.Resource {

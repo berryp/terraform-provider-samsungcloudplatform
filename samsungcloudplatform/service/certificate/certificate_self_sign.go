@@ -2,6 +2,7 @@ package certificate
 
 import (
 	"context"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client/certificate"
@@ -12,7 +13,7 @@ import (
 )
 
 func init() {
-	samsungcloudplatform.RegisterResource("samsungcloudplatform_certificate_self_sign", CertificateSelfSign())
+	samsungcloudplatform.RegisterResource("Certificate", "samsungcloudplatform_certificate_self_sign", CertificateSelfSign())
 }
 
 func CertificateSelfSign() *schema.Resource {

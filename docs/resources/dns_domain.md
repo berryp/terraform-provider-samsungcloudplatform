@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_dns_domain Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "DNS"
 description: |-
   Provides a Dns Domain resource. (Only available for PRIVATE environment usage type)
 ---
 
-# Resource: samsungcloudplatform_dns_domain
+# samsungcloudplatform_dns_domain (Resource)
 
 Provides a Dns Domain resource. (Only available for PRIVATE environment usage type)
 

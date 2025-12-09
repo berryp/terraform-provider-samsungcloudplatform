@@ -32,7 +32,7 @@ func Provider() *schema.Provider {
 }
 
 // RegisterResource Register resources terraform for Samsungcloudplatform
-func RegisterResource(name string, resourceSchema *schema.Resource) {
+func RegisterResource(category string, name string, resourceSchema *schema.Resource) {
 	if scpResources == nil {
 		scpResources = make(map[string]*schema.Resource)
 	}
@@ -40,17 +40,20 @@ func RegisterResource(name string, resourceSchema *schema.Resource) {
 	if os.Getenv("SCP_DOCGEN") == "true" {
 		setSchemaForDocument(resourceSchema.Schema)
 	}
+
+	resourceSchema.Description = "[" + category + "]" + resourceSchema.Description
 	scpResources[name] = resourceSchema
 }
 
 // RegisterDatasource Register datasource terraform for Samsungcloudplatform
-func RegisterDataSource(name string, dataSourceSchema *schema.Resource) {
+func RegisterDataSource(category string, name string, dataSourceSchema *schema.Resource) {
 	if scpDataSources == nil {
 		scpDataSources = make(map[string]*schema.Resource)
 	}
 	if os.Getenv("SCP_DOCGEN") == "true" {
 		setSchemaForDocument(dataSourceSchema.Schema)
 	}
+	dataSourceSchema.Description = "[" + category + "]" + dataSourceSchema.Description
 	scpDataSources[name] = dataSourceSchema
 }
 

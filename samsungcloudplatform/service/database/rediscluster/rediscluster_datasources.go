@@ -2,6 +2,7 @@ package rediscluster
 
 import (
 	"context"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/common"
@@ -14,8 +15,8 @@ import (
 )
 
 func init() {
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_redis_clusters", DatasourceRedisClusters())
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_redis_cluster", DatasourceRedisCluster())
+	samsungcloudplatform.RegisterDataSource("Redis Cluster", "samsungcloudplatform_redis_clusters", DatasourceRedisClusters())
+	samsungcloudplatform.RegisterDataSource("Redis Cluster", "samsungcloudplatform_redis_cluster", DatasourceRedisCluster())
 }
 
 func DatasourceRedisClusters() *schema.Resource {

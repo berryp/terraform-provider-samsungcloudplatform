@@ -2,6 +2,7 @@ package image
 
 import (
 	"context"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/common"
@@ -12,7 +13,7 @@ import (
 )
 
 func init() {
-	samsungcloudplatform.RegisterResource("samsungcloudplatform_custom_image", ResourceCustomImage())
+	samsungcloudplatform.RegisterResource("Image", "samsungcloudplatform_custom_image", ResourceCustomImage())
 }
 
 func ResourceCustomImage() *schema.Resource {

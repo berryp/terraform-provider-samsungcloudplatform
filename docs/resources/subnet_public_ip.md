@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_subnet_public_ip Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "Subnet"
 description: |-
   Provides a Subnet Vip reserve resource.
 ---
 
-# Resource: samsungcloudplatform_subnet_public_ip
+# samsungcloudplatform_subnet_public_ip (Resource)
 
 Provides a Subnet Vip reserve resource.
 

@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_auto_scaling_group_load_balancer Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "Auto Scaling"
 description: |-
   Provides LB Service resource connected to Auto-Scaling Group.
 ---
 
-# Resource: samsungcloudplatform_auto_scaling_group_load_balancer
+# samsungcloudplatform_auto_scaling_group_load_balancer (Resource)
 
 Provides LB Service resource connected to Auto-Scaling Group.
 

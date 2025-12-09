@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_lb_profile Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "Load Balancer"
 description: |-
   Provides a Load Balancer Profile resource.
 ---
 
-# Resource: samsungcloudplatform_lb_profile
+# samsungcloudplatform_lb_profile (Resource)
 
 Provides a Load Balancer Profile resource.
 

@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_security_group Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "Security Group"
 description: |-
   Provides a Security Group resource.
 ---
 
-# Resource: samsungcloudplatform_security_group
+# samsungcloudplatform_security_group (Resource)
 
 Provides a Security Group resource.
 

@@ -3,6 +3,8 @@ package autoscaling
 import (
 	"context"
 	"errors"
+	"regexp"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/common"
@@ -12,11 +14,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/validation"
-	"regexp"
 )
 
 func init() {
-	samsungcloudplatform.RegisterResource("samsungcloudplatform_auto_scaling_group", ResourceAutoScalingGroup())
+	samsungcloudplatform.RegisterResource("Auto Scaling", "samsungcloudplatform_auto_scaling_group", ResourceAutoScalingGroup())
 }
 
 func ResourceAutoScalingGroup() *schema.Resource {

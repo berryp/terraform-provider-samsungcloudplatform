@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_backup Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "Backup"
 description: |-
   Provides a Backup resource.
 ---
 
-# Resource: samsungcloudplatform_backup
+# samsungcloudplatform_backup (Resource)
 
 Provides a Backup resource.
 

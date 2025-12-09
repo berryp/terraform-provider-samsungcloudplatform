@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_kubernetes_engine Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "Kubernetes"
 description: |-
   Provides a K8s Engine resource.
 ---
 
-# Resource: samsungcloudplatform_kubernetes_engine
+# samsungcloudplatform_kubernetes_engine (Resource)
 
 Provides a K8s Engine resource.
 
@@ -69,7 +69,6 @@ resource "samsungcloudplatform_kubernetes_engine" "engine" {
 ### Read-Only
 
 - `id` (String) The ID of this resource.
-- `kube_config` (String) Kube config of the kubernetes cluster
 - `public_endpoint` (String) Public endpoint URL for the kubernetes cluster
 
 <a id="nestedblock--private_acl_resources"></a>

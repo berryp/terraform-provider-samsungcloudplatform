@@ -3,6 +3,9 @@ package firewall
 import (
 	"context"
 	"fmt"
+	"strings"
+	"sync"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/common"
@@ -10,13 +13,11 @@ import (
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/validation"
-	"strings"
-	"sync"
 )
 
 func init() {
-	samsungcloudplatform.RegisterResource("samsungcloudplatform_firewall_rule", ResourceFirewallRule())
-	samsungcloudplatform.RegisterResource("samsungcloudplatform_firewall_bulk_rule", ResourceFirewallBulkRule())
+	samsungcloudplatform.RegisterResource("Firewall", "samsungcloudplatform_firewall_rule", ResourceFirewallRule())
+	samsungcloudplatform.RegisterResource("Firewall", "samsungcloudplatform_firewall_bulk_rule", ResourceFirewallBulkRule())
 }
 
 func ResourceFirewallRule() *schema.Resource {

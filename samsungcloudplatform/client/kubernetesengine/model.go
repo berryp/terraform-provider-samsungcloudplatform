@@ -69,7 +69,7 @@ type CreateNodePoolRequest struct {
 	StorageSize          string
 	Labels               []LabelRequest
 	Taints               []TaintRequest
-	AdvancedSettings     AdvancedSettingsRequest
+	AdvancedSettings     *AdvancedSettingsRequest //omitempty
 }
 
 type NodePoolUpdateRequest struct {

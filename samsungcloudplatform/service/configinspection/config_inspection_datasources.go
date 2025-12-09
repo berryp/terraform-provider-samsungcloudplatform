@@ -16,8 +16,8 @@ import (
 )
 
 func init() {
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_config_inspections", DatasourceConfigInspections())
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_config_inspection", DatasourceConfigInspection())
+	samsungcloudplatform.RegisterDataSource("Config Inspection", "samsungcloudplatform_config_inspections", DatasourceConfigInspections())
+	samsungcloudplatform.RegisterDataSource("Config Inspection", "samsungcloudplatform_config_inspection", DatasourceConfigInspection())
 }
 
 func DatasourceConfigInspection() *schema.Resource {

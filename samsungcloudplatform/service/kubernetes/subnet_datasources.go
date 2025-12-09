@@ -2,6 +2,7 @@ package kubernetes
 
 import (
 	"context"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
@@ -10,7 +11,7 @@ import (
 )
 
 func init() {
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_kubernetes_subnet", DatasourceSubnet())
+	samsungcloudplatform.RegisterDataSource("Kubernetes", "samsungcloudplatform_kubernetes_subnet", DatasourceSubnet())
 }
 
 func DatasourceSubnet() *schema.Resource {

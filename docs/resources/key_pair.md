@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_key_pair Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "Key Pair"
 description: |-
   
 ---
 
-# Resource: samsungcloudplatform_key_pair
+# samsungcloudplatform_key_pair (Resource)
 
 
 

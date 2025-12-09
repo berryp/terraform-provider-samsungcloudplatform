@@ -2,6 +2,7 @@ package internetgateway
 
 import (
 	"context"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/common"
@@ -13,7 +14,7 @@ import (
 )
 
 func init() {
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_internet_gateways", DatasourceInternetGateways())
+	samsungcloudplatform.RegisterDataSource("Internet Gateway", "samsungcloudplatform_internet_gateways", DatasourceInternetGateways())
 }
 
 func DatasourceInternetGateways() *schema.Resource {

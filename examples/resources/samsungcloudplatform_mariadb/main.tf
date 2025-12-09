@@ -33,8 +33,6 @@ resource "samsungcloudplatform_mariadb" "demo_db" {
 
   image_id = data.samsungcloudplatform_standard_image.maria_10_6_14_image.id
   audit_enabled = true
-  contract_period = "1 Year"
-  next_contract_period = "None"
   nat_enabled = true
   nat_public_ip_id = null
   mariadb_cluster_name = "mariacluster"

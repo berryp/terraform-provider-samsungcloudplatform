@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_transit_gateway_connection Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "Transit Gateway"
 description: |-
   Provides a TGW- VPC connection resource.
 ---
 
-# Resource: samsungcloudplatform_transit_gateway_connection
+# samsungcloudplatform_transit_gateway_connection (Resource)
 
 Provides a TGW- VPC connection resource.
 

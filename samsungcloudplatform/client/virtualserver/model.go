@@ -50,8 +50,6 @@ type OsAdminInfo struct {
 type CreateRequest struct {
 	// Information of Block Storage for default Volume(OS)
 	BlockStorage BlockStorageInfo
-	// Contract Prduct ID productId is obtained through @[Get Product List By Zone ID]
-	ContractDiscount string
 	// is Delete Protection enabled
 	DeletionProtectionEnabled bool
 	// Is DNS used
@@ -103,10 +101,6 @@ type ListVirtualServersRequestParam struct {
 type VirtualServerSubnetIpUpdateRequest struct {
 	InternalIpAddress string
 	SubnetId          string
-}
-
-type VirtualServerContractUpdateRequest struct {
-	ContractDiscount string
 }
 
 type ExternalStorage struct {

@@ -2,6 +2,9 @@ package subnet
 
 import (
 	"context"
+	"regexp"
+	"strings"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/common"
@@ -9,12 +12,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/validation"
-	"regexp"
-	"strings"
 )
 
 func init() {
-	samsungcloudplatform.RegisterResource("samsungcloudplatform_subnet", ResourceSubnet())
+	samsungcloudplatform.RegisterResource("Subnet", "samsungcloudplatform_subnet", ResourceSubnet())
 }
 
 func ResourceSubnet() *schema.Resource {

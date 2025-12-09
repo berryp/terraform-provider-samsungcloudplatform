@@ -2,6 +2,7 @@ package redis
 
 import (
 	"context"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/common"
@@ -14,8 +15,8 @@ import (
 )
 
 func init() {
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_redis_list", DatasourceRedisList())
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_redis", DatasourceRedis())
+	samsungcloudplatform.RegisterDataSource("Redis", "samsungcloudplatform_redis_list", DatasourceRedisList())
+	samsungcloudplatform.RegisterDataSource("Redis", "samsungcloudplatform_redis", DatasourceRedis())
 }
 
 func DatasourceRedisList() *schema.Resource {

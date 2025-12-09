@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_direct_connect_routing Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "Routing"
 description: |-
   Provides a DirectConnect Routing Rule resource.
 ---
 
-# Resource: samsungcloudplatform_direct_connect_routing
+# samsungcloudplatform_direct_connect_routing (Resource)
 
 Provides a DirectConnect Routing Rule resource.
 

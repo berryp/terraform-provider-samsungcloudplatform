@@ -2,6 +2,7 @@ package iam
 
 import (
 	"context"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/common"
@@ -13,7 +14,7 @@ import (
 )
 
 func init() {
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_iam_access_keys", DatasourceAccessKeys())
+	samsungcloudplatform.RegisterDataSource("IAM", "samsungcloudplatform_iam_access_keys", DatasourceAccessKeys())
 }
 
 func DatasourceAccessKeys() *schema.Resource {

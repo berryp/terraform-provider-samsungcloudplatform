@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_lb_server_group Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "Load Balancer"
 description: |-
   Provides a Load Balancer Server Group resource.
 ---
 
-# Resource: samsungcloudplatform_lb_server_group
+# samsungcloudplatform_lb_server_group (Resource)
 
 Provides a Load Balancer Server Group resource.
 

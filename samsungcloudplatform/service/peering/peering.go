@@ -2,6 +2,7 @@ package peering
 
 import (
 	"context"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client/peering"
@@ -14,7 +15,7 @@ import (
 )
 
 func init() {
-	samsungcloudplatform.RegisterResource("samsungcloudplatform_vpc_peering", ResourceVpcPeering())
+	samsungcloudplatform.RegisterResource("VPC Peering", "samsungcloudplatform_vpc_peering", ResourceVpcPeering())
 }
 
 func ResourceVpcPeering() *schema.Resource {

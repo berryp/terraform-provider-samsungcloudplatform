@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_vpc_routing Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "Routing"
 description: |-
   Provides a VPC Routing Rule resource.
 ---
 
-# Resource: samsungcloudplatform_vpc_routing
+# samsungcloudplatform_vpc_routing (Resource)
 
 Provides a VPC Routing Rule resource.
 

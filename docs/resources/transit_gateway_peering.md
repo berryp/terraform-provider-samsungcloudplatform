@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_transit_gateway_peering Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "Transit Gateway"
 description: |-
   Provides a Transit Gateway Peering resource.
 ---
 
-# Resource: samsungcloudplatform_transit_gateway_peering
+# samsungcloudplatform_transit_gateway_peering (Resource)
 
 Provides a Transit Gateway Peering resource.
 

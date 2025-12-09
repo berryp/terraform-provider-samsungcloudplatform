@@ -25,6 +25,15 @@ resource "samsungcloudplatform_kubernetes_node_pool" "pool" {
 
   // optional field
   availability_zone_name = null
+  advanced_settings {
+    allowed_unsafe_sysctls = "kernel.msg*"
+    container_log_max_files = 5
+    container_log_max_size = 10
+    image_gc_high_threshold = 85
+    image_gc_low_threshold = 80
+    max_pods = 110
+    pod_max_pids = 4096
+  }
 
   // update optional field
   auto_scale         = false
@@ -39,14 +48,5 @@ resource "samsungcloudplatform_kubernetes_node_pool" "pool" {
     effect = "NoSchedule"
     key = "test"
     value = "test"
-  }
-  advanced_settings {
-    allowed_unsafe_sysctls = "kernel.msg*"
-    container_log_max_files = 5
-    container_log_max_size = 10
-    image_gc_high_threshold = 85
-    image_gc_low_threshold = 80
-    max_pods = 100
-    pod_max_pids = 4096
   }
 }

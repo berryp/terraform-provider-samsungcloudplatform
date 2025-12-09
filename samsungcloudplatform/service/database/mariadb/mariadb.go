@@ -3,6 +3,11 @@ package mariadb
 import (
 	"context"
 	"fmt"
+	"log"
+	"sort"
+	"strings"
+	"time"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/common"
@@ -12,14 +17,10 @@ import (
 	"github.com/antihax/optional"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
-	"log"
-	"sort"
-	"strings"
-	"time"
 )
 
 func init() {
-	samsungcloudplatform.RegisterResource("samsungcloudplatform_mariadb", ResourceMariadb())
+	samsungcloudplatform.RegisterResource("MariaDB", "samsungcloudplatform_mariadb", ResourceMariadb())
 }
 
 func ResourceMariadb() *schema.Resource {
@@ -42,19 +43,6 @@ func ResourceMariadb() *schema.Resource {
 				Type:        schema.TypeBool,
 				Required:    true,
 				Description: "Whether to use database audit logging.",
-			},
-			"contract_period": {
-				Type:             schema.TypeString,
-				Required:         true,
-				Description:      "Contract (None|1 Year|3 Year)",
-				ValidateDiagFunc: database_common.ValidateStringInOptions("None", database_common.OneYear, database_common.ThreeYear),
-			},
-			"next_contract_period": {
-				Type:             schema.TypeString,
-				Optional:         true,
-				Default:          "None",
-				Description:      "Next contract (None|1 Year|3 Year)",
-				ValidateDiagFunc: database_common.ValidateStringInOptions("None", database_common.OneYear, database_common.ThreeYear),
 			},
 			"image_id": {
 				Type:        schema.TypeString,
@@ -274,8 +262,6 @@ func resourceMariadbCreate(ctx context.Context, rd *schema.ResourceData, meta in
 	inst := meta.(*client.Instance)
 
 	auditEnabled := rd.Get("audit_enabled").(bool)
-	contractPeriod := rd.Get("contract_period").(string)
-	nextContractPeriod := rd.Get("next_contract_period").(string)
 	imageId := rd.Get("image_id").(string)
 	natEnabled := rd.Get("nat_enabled").(bool)
 	natPublicIpId := rd.Get("nat_public_ip_id").(string)
@@ -343,7 +329,6 @@ func resourceMariadbCreate(ctx context.Context, rd *schema.ResourceData, meta in
 
 	_, _, err = inst.Client.Mariadb.CreateMariadbCluster(ctx, mariadb.MariadbClusterCreateRequest{
 		AuditEnabled:       &auditEnabled,
-		ContractPeriod:     contractPeriod,
 		ImageId:            imageId,
 		NatEnabled:         &natEnabled,
 		NatPublicIpId:      natPublicIpId,
@@ -400,17 +385,6 @@ func resourceMariadbCreate(ctx context.Context, rd *schema.ResourceData, meta in
 	}
 
 	rd.SetId(MariadbClusterId)
-
-	if nextContractPeriod == database_common.OneYear || nextContractPeriod == database_common.ThreeYear {
-		err := modifyMariadbClusterNextContract(UpdateMariadbParam{
-			Ctx:  ctx,
-			Rd:   rd,
-			Inst: inst,
-		}, nextContractPeriod)
-		if err != nil {
-			return diag.FromErr(err)
-		}
-	}
 
 	if len(backup) != 0 {
 		backupObject := &mariadb.DbClusterCreateFullBackupConfigRequest{}
@@ -517,10 +491,6 @@ func resourceMariadbRead(ctx context.Context, rd *schema.ResourceData, meta inte
 	})
 
 	err = rd.Set("audit_enabled", dbInfo.AuditEnabled)
-	if err != nil {
-		return diag.FromErr(err)
-	}
-	err = rd.Set("contract_period", dbInfo.Contract.ContractPeriod)
 	if err != nil {
 		return diag.FromErr(err)
 	}
@@ -664,12 +634,6 @@ func resourceMariadbUpdate(ctx context.Context, rd *schema.ResourceData, meta in
 	if rd.HasChanges("mariadb_cluster_state") {
 		updateFuncs = append(updateFuncs, updateMariadbClusterServerState)
 	}
-	if rd.HasChanges("contract_period") {
-		updateFuncs = append(updateFuncs, updateContractPeriod)
-	}
-	if rd.HasChanges("next_contract_period") {
-		updateFuncs = append(updateFuncs, updateNextContractPeriod)
-	}
 	if rd.HasChanges("backup") {
 		updateFuncs = append(updateFuncs, updateBackup)
 	}
@@ -714,8 +678,6 @@ func resourceMariadbDiff(ctx context.Context, rd *schema.ResourceDiff, meta inte
 		"block_storages",
 		"security_group_ids",
 		"mariadb_cluster_state",
-		"contract_period",
-		"next_contract_period",
 		"backup",
 		"tags",
 	}
@@ -939,68 +901,6 @@ func stopMariadbCluster(param UpdateMariadbParam) error {
 	}
 
 	err = waitForMariadb(param.Ctx, param.Inst.Client, param.Rd.Id(), common.DatabaseProcessingStates(), []string{common.StoppedState}, true)
-	if err != nil {
-		return err
-	}
-	return nil
-}
-
-func updateContractPeriod(param UpdateMariadbParam) error {
-	o, n := param.Rd.GetChange("contract_period")
-
-	oldValue := o.(string)
-	newValue := n.(string)
-
-	if oldValue != database_common.None {
-		return fmt.Errorf("changing contract period is not allowed")
-	}
-
-	err := modifyMariadbClusterContract(param, newValue)
-	if err != nil {
-		return err
-	}
-
-	return nil
-
-}
-
-func modifyMariadbClusterContract(param UpdateMariadbParam, newValue string) error {
-	_, _, err := param.Inst.Client.Mariadb.ModifyMariadbClusterContract(param.Ctx, param.Rd.Id(), mariadb.DbClusterModifyContractRequest{
-		ContractPeriod: newValue,
-	})
-	if err != nil {
-		return err
-	}
-
-	err = waitForMariadb(param.Ctx, param.Inst.Client, param.Rd.Id(), common.DatabaseProcessingStates(), []string{common.RunningState}, true)
-	if err != nil {
-		return err
-	}
-	return nil
-}
-
-func updateNextContractPeriod(param UpdateMariadbParam) error {
-	_, n := param.Rd.GetChange("next_contract_period")
-
-	newValue := n.(string)
-
-	err := modifyMariadbClusterNextContract(param, newValue)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func modifyMariadbClusterNextContract(param UpdateMariadbParam, newValue string) error {
-	_, _, err := param.Inst.Client.Mariadb.ModifyMariadbClusterNextContract(param.Ctx, param.Rd.Id(), mariadb.DbClusterModifyNextContractRequest{
-		NextContractPeriod: newValue,
-	})
-	if err != nil {
-		return err
-	}
-
-	err = waitForMariadb(param.Ctx, param.Inst.Client, param.Rd.Id(), common.DatabaseProcessingStates(), []string{common.RunningState}, true)
 	if err != nil {
 		return err
 	}

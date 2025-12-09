@@ -12,7 +12,7 @@ import (
 )
 
 func init() {
-	samsungcloudplatform.RegisterResource("samsungcloudplatform_security_group_logstorage", resourceSecurityGroupLogStorage())
+	samsungcloudplatform.RegisterResource("Security Group", "samsungcloudplatform_security_group_logstorage", resourceSecurityGroupLogStorage())
 }
 
 func resourceSecurityGroupLogStorage() *schema.Resource {

@@ -2,6 +2,7 @@ package blockstorage
 
 import (
 	"context"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
@@ -13,7 +14,7 @@ import (
 )
 
 func init() {
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_block_storages", DatasourceBlockStorages())
+	samsungcloudplatform.RegisterDataSource("Block Storage(VM)", "samsungcloudplatform_block_storages", DatasourceBlockStorages())
 }
 
 func DatasourceBlockStorages() *schema.Resource {

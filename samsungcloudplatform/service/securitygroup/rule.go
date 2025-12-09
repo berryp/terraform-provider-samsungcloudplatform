@@ -3,6 +3,8 @@ package securitygroup
 import (
 	"context"
 	"fmt"
+	"strings"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client/securitygroup"
@@ -10,12 +12,11 @@ import (
 	"github.com/hashicorp/go-cty/cty"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
-	"strings"
 )
 
 func init() {
-	samsungcloudplatform.RegisterResource("samsungcloudplatform_security_group_rule", ResourceSecurityGroupRule())
-	samsungcloudplatform.RegisterResource("samsungcloudplatform_security_group_bulk_rule", ResourceSecurityGroupBulkRule())
+	samsungcloudplatform.RegisterResource("Security Group", "samsungcloudplatform_security_group_rule", ResourceSecurityGroupRule())
+	samsungcloudplatform.RegisterResource("Security Group", "samsungcloudplatform_security_group_bulk_rule", ResourceSecurityGroupBulkRule())
 }
 
 func ResourceSecurityGroupRule() *schema.Resource {

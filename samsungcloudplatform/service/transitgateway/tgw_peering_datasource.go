@@ -2,6 +2,8 @@ package transitgateway
 
 import (
 	"context"
+	"time"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/common"
@@ -10,13 +12,12 @@ import (
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	uuid "github.com/satori/go.uuid"
-	"time"
 )
 
 func init() {
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_transit_gateway_peerings", DataSourceTransitGatewayPeerings())
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_tgw_peerings_by_tgw", DataSourceTgwPeeringsByTgw())
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_transit_gateway_peering_detail", DataSourceTransitGatewayPeeringDetail())
+	samsungcloudplatform.RegisterDataSource("Transit Gateway", "samsungcloudplatform_transit_gateway_peerings", DataSourceTransitGatewayPeerings())
+	samsungcloudplatform.RegisterDataSource("Transit Gateway", "samsungcloudplatform_tgw_peerings_by_tgw", DataSourceTgwPeeringsByTgw())
+	samsungcloudplatform.RegisterDataSource("Transit Gateway", "samsungcloudplatform_transit_gateway_peering_detail", DataSourceTransitGatewayPeeringDetail())
 }
 
 func DataSourceTransitGatewayPeerings() *schema.Resource {

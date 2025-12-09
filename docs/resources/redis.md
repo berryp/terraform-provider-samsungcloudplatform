@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_redis Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "Redis"
 description: |-
   Provides a Redis Database resource.
 ---
 
-# Resource: samsungcloudplatform_redis
+# samsungcloudplatform_redis (Resource)
 
 Provides a Redis Database resource.
 
@@ -42,8 +42,6 @@ resource "samsungcloudplatform_redis" "demo_db" {
   service_zone_id = data.samsungcloudplatform_region.region.id
 
   image_id = data.samsungcloudplatform_standard_image.redis_7_2_0_image.id
-  contract_period = "1 Year"
-  next_contract_period = "None"
   nat_enabled = true
   redis_name = "rediscluster"
   redis_state = "RUNNING"
@@ -81,7 +79,6 @@ resource "samsungcloudplatform_redis" "demo_db" {
 ### Required
 
 - `block_storages` (Block List, Min: 1, Max: 1) block storage. (see [below for nested schema](#nestedblock--block_storages))
-- `contract_period` (String) Contract (None|1 Year|3 Year)
 - `database_port` (Number) Port number of database. (1024 to 65535)
 - `database_user_password` (String, Sensitive) User account password of database.
 - `encryption_enabled` (Boolean) Whether to use storage encryption.
@@ -99,7 +96,6 @@ resource "samsungcloudplatform_redis" "demo_db" {
 
 - `backup` (Block Set, Max: 1) (see [below for nested schema](#nestedblock--backup))
 - `nat_enabled` (Boolean) Whether to use nat.
-- `next_contract_period` (String) Next contract (None|1 Year|3 Year)
 - `redis_sentinel_server` (Block Set) redis sentinel servers (see [below for nested schema](#nestedblock--redis_sentinel_server))
 - `tags` (Map of String)
 - `timeouts` (Block, Optional) (see [below for nested schema](#nestedblock--timeouts))

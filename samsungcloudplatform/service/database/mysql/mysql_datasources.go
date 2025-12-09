@@ -2,6 +2,7 @@ package mysql
 
 import (
 	"context"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/common"
@@ -14,8 +15,8 @@ import (
 )
 
 func init() {
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_mysqls", DatasourceMysqlList())
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_mysql", DatasourceMysql())
+	samsungcloudplatform.RegisterDataSource("MySQL", "samsungcloudplatform_mysqls", DatasourceMysqlList())
+	samsungcloudplatform.RegisterDataSource("MySQL", "samsungcloudplatform_mysql", DatasourceMysql())
 }
 
 func DatasourceMysqlList() *schema.Resource {

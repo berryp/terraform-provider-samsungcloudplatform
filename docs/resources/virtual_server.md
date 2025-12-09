@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_virtual_server Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "Virtual Server"
 description: |-
   Provides a Virtual Server resource.
 ---
 
-# Resource: samsungcloudplatform_virtual_server
+# samsungcloudplatform_virtual_server (Resource)
 
 Provides a Virtual Server resource.
 
@@ -37,7 +37,6 @@ resource "samsungcloudplatform_virtual_server" "server_001" {
   internal_ip_address = "192.169.4.17"
 
   delete_protection = false
-  contract_discount = "None"
 
   os_storage_name      = "hellodisk1"
   os_storage_size_gb   = 100
@@ -66,7 +65,6 @@ resource "samsungcloudplatform_virtual_server" "server_001" {
 
 ### Required
 
-- `contract_discount` (String) Contract : None, 1 Year, 3 Year
 - `image_id` (String) Image id of this virtual server
 - `os_storage_name` (String) OS(Boot) storage name. 3 to 28 alpha-numeric characters with space and dash starting with alphabet
 - `os_storage_size_gb` (Number) OS(Boot) storage size in gigabytes. (At least 100 GB required and size must be multiple of 10)
@@ -91,7 +89,6 @@ resource "samsungcloudplatform_virtual_server" "server_001" {
 - `local_subnet` (Block List) Local subnet id of this virtual server. Local subnet must be a valid local subnet resource which is attached to the Subnet. (see [below for nested schema](#nestedblock--local_subnet))
 - `memory_size_gb` (Number) Memory size in gigabytes(4, 8, 16,..)
 - `nat_enabled` (Boolean) Enable NAT IP feature.
-- `next_contract_discount` (String) Next Contract : None, 1 Year, 3 Year
 - `os_storage_encrypted` (Boolean) Enable encryption feature in OS(Boot) storage. (WARNING) This option can not be changed after creation.
 - `placement_group_id` (String) Placement Group Id
 - `public_ip_id` (String) Public IP id of this virtual server. Public-IP must be a valid public-ip resource which is attached to the VPC.

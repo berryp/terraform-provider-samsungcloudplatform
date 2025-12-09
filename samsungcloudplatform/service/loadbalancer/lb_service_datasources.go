@@ -2,6 +2,7 @@ package loadbalancer
 
 import (
 	"context"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/common"
@@ -13,9 +14,9 @@ import (
 )
 
 func init() {
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_lb_services", DatasourceLBServices())
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_lb_services_connectable_to_asg", DatasourceLBServicesConnectableToAsg())
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_lb_services_connected_to_asg", DatasourceLBServicesConnectedToAsg())
+	samsungcloudplatform.RegisterDataSource("Load Balancer", "samsungcloudplatform_lb_services", DatasourceLBServices())
+	samsungcloudplatform.RegisterDataSource("Load Balancer", "samsungcloudplatform_lb_services_connectable_to_asg", DatasourceLBServicesConnectableToAsg())
+	samsungcloudplatform.RegisterDataSource("Load Balancer", "samsungcloudplatform_lb_services_connected_to_asg", DatasourceLBServicesConnectedToAsg())
 }
 
 func DatasourceLBServices() *schema.Resource {

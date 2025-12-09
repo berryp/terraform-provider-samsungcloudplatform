@@ -3,6 +3,8 @@ package trail
 import (
 	"context"
 	"fmt"
+	"regexp"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client/loggingaudit"
@@ -11,11 +13,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/validation"
-	"regexp"
 )
 
 func init() {
-	samsungcloudplatform.RegisterResource("samsungcloudplatform_trail", ResourceTrail())
+	samsungcloudplatform.RegisterResource("Trail", "samsungcloudplatform_trail", ResourceTrail())
 }
 
 func ResourceTrail() *schema.Resource {

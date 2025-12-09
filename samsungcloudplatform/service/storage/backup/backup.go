@@ -3,6 +3,8 @@ package backup
 import (
 	"context"
 	"fmt"
+	"strings"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client/storage/backup"
@@ -12,11 +14,10 @@ import (
 	"github.com/antihax/optional"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
-	"strings"
 )
 
 func init() {
-	samsungcloudplatform.RegisterResource("samsungcloudplatform_backup", ResourceBackup())
+	samsungcloudplatform.RegisterResource("Backup", "samsungcloudplatform_backup", ResourceBackup())
 }
 
 func ResourceBackup() *schema.Resource {

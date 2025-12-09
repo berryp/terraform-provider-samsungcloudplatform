@@ -2,6 +2,7 @@ package image
 
 import (
 	"context"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/common"
@@ -13,8 +14,8 @@ import (
 )
 
 func init() {
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_migration_image", DatasourceMigrationImage())
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_migration_images", DatasourceMigrationImages())
+	samsungcloudplatform.RegisterDataSource("Image", "samsungcloudplatform_migration_image", DatasourceMigrationImage())
+	samsungcloudplatform.RegisterDataSource("Image", "samsungcloudplatform_migration_images", DatasourceMigrationImages())
 }
 
 func DatasourceMigrationImage() *schema.Resource {

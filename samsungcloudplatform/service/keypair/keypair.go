@@ -2,6 +2,7 @@ package keypair
 
 import (
 	"context"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client/keypair"
@@ -12,7 +13,7 @@ import (
 )
 
 func init() {
-	samsungcloudplatform.RegisterResource("samsungcloudplatform_key_pair", ResourceKeyPair())
+	samsungcloudplatform.RegisterResource("Key Pair", "samsungcloudplatform_key_pair", ResourceKeyPair())
 }
 
 func ResourceKeyPair() *schema.Resource {

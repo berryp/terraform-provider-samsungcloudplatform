@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_kafka Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "Kafka"
 description: |-
   Provides a Kafka Database resource.
 ---
 
-# Resource: samsungcloudplatform_kafka
+# samsungcloudplatform_kafka (Resource)
 
 Provides a Kafka Database resource.
 
@@ -36,7 +36,6 @@ resource "samsungcloudplatform_kafka" "demo_db" {
 
   image_id = data.samsungcloudplatform_standard_image.kafka_3_8_0_image.id
   service_zone_id = data.samsungcloudplatform_region.region.id
-  contract_period = "1 Year"
 
   subnet_id = "SUBNET-XXXXX"
   security_group_ids = ["FIREWALL_SECURITY_GROUP-XXXXX"]
@@ -107,7 +106,6 @@ resource "samsungcloudplatform_kafka" "demo_db" {
 - `broker_sasl_account` (String) SASL account of broker. (2 to 20 lowercase alphabets)
 - `broker_sasl_password` (String, Sensitive) SASL account password of broker.
 - `broker_server_type` (String) Broker Server type
-- `contract_period` (String) Contract (None|1 Year|3 Year)
 - `image_id` (String) Kafka virtual server image id.
 - `kafka_cluster_name` (String) Name of database cluster. (3 to 20 characters only)
 - `security_group_ids` (List of String) Security-Group ids of this Kafka. Each security-group must be a valid security-group resource which is attached to the VPC.

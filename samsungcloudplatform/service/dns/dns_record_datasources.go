@@ -2,6 +2,7 @@ package dns
 
 import (
 	"context"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/common"
@@ -13,7 +14,7 @@ import (
 )
 
 func init() {
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_dns_records", DatasourceDnsRecords())
+	samsungcloudplatform.RegisterDataSource("DNS", "samsungcloudplatform_dns_records", DatasourceDnsRecords())
 }
 
 func DatasourceDnsRecords() *schema.Resource {

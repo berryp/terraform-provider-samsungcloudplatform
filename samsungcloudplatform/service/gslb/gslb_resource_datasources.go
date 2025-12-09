@@ -2,6 +2,7 @@ package gslb
 
 import (
 	"context"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/common"
@@ -11,7 +12,7 @@ import (
 )
 
 func init() {
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_gslb_resources", DatasourceGslbResources())
+	samsungcloudplatform.RegisterDataSource("GSLB", "samsungcloudplatform_gslb_resources", DatasourceGslbResources())
 }
 
 func DatasourceGslbResources() *schema.Resource {

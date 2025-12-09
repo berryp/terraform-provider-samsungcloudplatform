@@ -2,6 +2,7 @@ package firewall
 
 import (
 	"context"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-sdk-samsungcloudplatform/v3/library/firewall2"
@@ -10,7 +11,7 @@ import (
 )
 
 func init() {
-	samsungcloudplatform.RegisterResource("samsungcloudplatform_firewall_logstorage", resourceFirewallLogStorage())
+	samsungcloudplatform.RegisterResource("Firewall", "samsungcloudplatform_firewall_logstorage", resourceFirewallLogStorage())
 }
 
 func resourceFirewallLogStorage() *schema.Resource {

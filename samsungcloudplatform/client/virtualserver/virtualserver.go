@@ -70,7 +70,6 @@ func (client *Client) CreateVirtualServer(ctx context.Context, request CreateReq
 			EncryptEnabled:   &request.BlockStorage.EncryptEnabled,
 			DiskType:         request.BlockStorage.DiskType,
 		},
-		ContractDiscount:          request.ContractDiscount,
 		DeletionProtectionEnabled: &request.DeletionProtectionEnabled,
 		DnsEnabled:                &request.DnsEnabled,
 		ExtraBlockStorages:        extraBlockStorages,
@@ -128,7 +127,6 @@ func (client *Client) CreateVirtualServerV4(ctx context.Context, request CreateR
 			EncryptEnabled:   &request.BlockStorage.EncryptEnabled,
 			DiskType:         request.BlockStorage.DiskType,
 		},
-		ContractDiscount:          request.ContractDiscount,
 		DeletionProtectionEnabled: &request.DeletionProtectionEnabled,
 		ExtraBlockStorages:        extraBlockStorages,
 		ImageId:                   request.ImageId,
@@ -279,22 +277,6 @@ func (client *Client) UpdateVirtualServerSubnetIp(ctx context.Context, virtualSe
 	result, _, err := client.sdkClient.VirtualServerNicV2Api.UpdateVirtualServerSubnetIp(ctx, client.config.ProjectId, virtualServerId, virtualserver2.VirtualServerSubnetIpUpdateRequest{
 		InternalIpAddress: request.InternalIpAddress,
 		SubnetId:          request.SubnetId,
-	})
-	return result, err
-}
-
-func (client *Client) UpdateVirtualServerContract(ctx context.Context, virtualServerId string, request VirtualServerContractUpdateRequest) (virtualserver2.DetailVirtualServerV3Response, error) {
-
-	result, _, err := client.sdkClient.VirtualServerV4Api.UpdateVirtualServerContract2(ctx, client.config.ProjectId, virtualServerId, virtualserver2.VirtualServerContractUpdateV4Request{
-		ContractDiscount: request.ContractDiscount,
-	})
-
-	return result, err
-}
-
-func (client *Client) UpdateVirtualServerNextContract(ctx context.Context, virtualServerId string, request VirtualServerContractUpdateRequest) (virtualserver2.DetailVirtualServerV3Response, error) {
-	result, _, err := client.sdkClient.VirtualServerV4Api.UpdateVirtualServerNextContract1(ctx, client.config.ProjectId, virtualServerId, virtualserver2.VirtualServerContractUpdateV4Request{
-		ContractDiscount: request.ContractDiscount,
 	})
 	return result, err
 }

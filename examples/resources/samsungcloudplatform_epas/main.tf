@@ -33,8 +33,6 @@ resource "samsungcloudplatform_epas" "demo_db" {
 
   image_id = data.samsungcloudplatform_standard_image.epas_15_6_image.id
   audit_enabled = true
-  contract_period = "1 Year"
-  next_contract_period = "None"
   nat_enabled = true
   nat_public_ip_id = null
   epas_cluster_name = "demoepascluster"

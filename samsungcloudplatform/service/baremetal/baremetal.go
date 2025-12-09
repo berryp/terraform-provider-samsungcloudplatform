@@ -4,6 +4,12 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"log"
+	"regexp"
+	"strconv"
+	"strings"
+	"time"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client/baremetal"
@@ -15,15 +21,10 @@ import (
 	"github.com/hashicorp/go-cty/cty"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
-	"log"
-	"regexp"
-	"strconv"
-	"strings"
-	"time"
 )
 
 func init() {
-	samsungcloudplatform.RegisterResource("samsungcloudplatform_bm_server", ResourceBareMetalServer())
+	samsungcloudplatform.RegisterResource("Bare Metal Server", "samsungcloudplatform_bm_server", ResourceBareMetalServer())
 }
 
 func ResourceBareMetalServer() *schema.Resource {

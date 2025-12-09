@@ -2,6 +2,7 @@ package kubernetesengine
 
 import (
 	"context"
+
 	sdk "github.com/SamsungSDSCloud/terraform-sdk-samsungcloudplatform/v3/client"
 	kubernetesengine2 "github.com/SamsungSDSCloud/terraform-sdk-samsungcloudplatform/v3/library/kubernetes-engine2"
 )
@@ -231,6 +232,19 @@ func (client *Client) CreateNodePool(ctx context.Context, engineId string, reque
 		})
 	}
 
+	var advSettings *kubernetesengine2.NodePoolAdvancedSettingsVo
+	if request.AdvancedSettings != nil {
+		advSettings = &kubernetesengine2.NodePoolAdvancedSettingsVo{
+			AllowedUnsafeSysctls: request.AdvancedSettings.AllowedUnsafeSysctls,
+			ContainerLogMaxFiles: request.AdvancedSettings.ContainerLogMaxFiles,
+			ContainerLogMaxSize:  request.AdvancedSettings.ContainerLogMaxSize,
+			ImageGcHighThreshold: request.AdvancedSettings.ImageGcHighThreshold,
+			ImageGcLowThreshold:  request.AdvancedSettings.ImageGcLowThreshold,
+			MaxPods:              request.AdvancedSettings.MaxPods,
+			PodMaxPids:           request.AdvancedSettings.PodMaxPids,
+		}
+	} // else advSettings stays nil → SDK에 전달되지 않음
+
 	result, response, err := client.sdk.NodePoolV4Api.CreateNodePoolV4(
 		ctx,
 		client.config.ProjectId,
@@ -253,15 +267,7 @@ func (client *Client) CreateNodePool(ctx context.Context, engineId string, reque
 			StorageSize:          request.StorageSize,
 			Labels:               labels,
 			Taints:               taints,
-			AdvancedSettings: &kubernetesengine2.NodePoolAdvancedSettingsVo{
-				AllowedUnsafeSysctls: request.AdvancedSettings.AllowedUnsafeSysctls,
-				ContainerLogMaxFiles: request.AdvancedSettings.ContainerLogMaxFiles,
-				ContainerLogMaxSize:  request.AdvancedSettings.ContainerLogMaxSize,
-				ImageGcHighThreshold: request.AdvancedSettings.ImageGcHighThreshold,
-				ImageGcLowThreshold:  request.AdvancedSettings.ImageGcLowThreshold,
-				MaxPods:              request.AdvancedSettings.MaxPods,
-				PodMaxPids:           request.AdvancedSettings.PodMaxPids,
-			},
+			AdvancedSettings:     advSettings,
 		})
 
 	var statusCode int

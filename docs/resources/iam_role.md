@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_iam_role Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "IAM"
 description: |-
   
 ---
 
-# Resource: samsungcloudplatform_iam_role
+# samsungcloudplatform_iam_role (Resource)
 
 
 

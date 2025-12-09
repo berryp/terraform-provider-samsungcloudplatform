@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_security_group_user_ip Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "Security Group"
 description: |-
   Provides a Security Group User IP Attachment resource.
 ---
 
-# Resource: samsungcloudplatform_security_group_user_ip
+# samsungcloudplatform_security_group_user_ip (Resource)
 
 Provides a Security Group User IP Attachment resource.
 

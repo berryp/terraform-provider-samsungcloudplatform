@@ -27,8 +27,6 @@ resource "samsungcloudplatform_redis" "demo_db" {
   service_zone_id = data.samsungcloudplatform_region.region.id
 
   image_id = data.samsungcloudplatform_standard_image.redis_7_2_0_image.id
-  contract_period = "1 Year"
-  next_contract_period = "None"
   nat_enabled = true
   redis_name = "rediscluster"
   redis_state = "RUNNING"

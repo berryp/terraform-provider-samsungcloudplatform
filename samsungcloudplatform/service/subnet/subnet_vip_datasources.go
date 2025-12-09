@@ -2,6 +2,8 @@ package subnet
 
 import (
 	"context"
+	"log"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/common"
@@ -10,13 +12,12 @@ import (
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	uuid "github.com/satori/go.uuid"
-	"log"
 )
 
 func init() {
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_subnet_vip_detail", DatasourceSubnetVip())
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_subnet_vips", DatasourceSubnetVips())
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_subnet_available_ips", DatasourceSubnetAvailableIps())
+	samsungcloudplatform.RegisterDataSource("Subnet", "samsungcloudplatform_subnet_vip_detail", DatasourceSubnetVip())
+	samsungcloudplatform.RegisterDataSource("Subnet", "samsungcloudplatform_subnet_vips", DatasourceSubnetVips())
+	samsungcloudplatform.RegisterDataSource("Subnet", "samsungcloudplatform_subnet_available_ips", DatasourceSubnetAvailableIps())
 }
 
 func DatasourceSubnetVip() *schema.Resource {

@@ -14,7 +14,7 @@ import (
 )
 
 func init() {
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_kubernetes_engine_versions", DatasourceEngineVersions())
+	samsungcloudplatform.RegisterDataSource("Kubernetes", "samsungcloudplatform_kubernetes_engine_versions", DatasourceEngineVersions())
 }
 
 func DatasourceEngineVersions() *schema.Resource {

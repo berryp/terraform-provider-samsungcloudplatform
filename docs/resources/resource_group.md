@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_resource_group Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "Resource Group"
 description: |-
   
 ---
 
-# Resource: samsungcloudplatform_resource_group
+# samsungcloudplatform_resource_group (Resource)
 
 
 

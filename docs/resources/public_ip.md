@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_public_ip Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "Public IP"
 description: |-
   Provides a Public IP resource.
 ---
 
-# Resource: samsungcloudplatform_public_ip
+# samsungcloudplatform_public_ip (Resource)
 
 Provides a Public IP resource.
 

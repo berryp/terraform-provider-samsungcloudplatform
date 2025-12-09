@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_firewall_logstorage Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "Firewall"
 description: |-
   Set up firewall log storage.
 ---
 
-# Resource: samsungcloudplatform_firewall_logstorage
+# samsungcloudplatform_firewall_logstorage (Resource)
 
 Set up firewall log storage.
 

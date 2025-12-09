@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_kubernetes_apps Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "Kubernetes"
 description: |-
   Provides a K8s Apps resource.
 ---
 
-# Resource: samsungcloudplatform_kubernetes_apps
+# samsungcloudplatform_kubernetes_apps (Resource)
 
 Provides a K8s Apps resource.
 

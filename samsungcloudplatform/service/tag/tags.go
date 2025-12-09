@@ -3,6 +3,7 @@ package tag
 import (
 	"context"
 	"encoding/json"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client/tag"
@@ -13,8 +14,8 @@ import (
 )
 
 func init() {
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_resource_tags", DatasourceResourceTags())
-	//samsungcloudplatform.RegisterDataSource("samsungcloudplatform_tag_resources", DatasourceTagResources())
+	samsungcloudplatform.RegisterDataSource("Tag", "samsungcloudplatform_resource_tags", DatasourceResourceTags())
+	//samsungcloudplatform.RegisterDataSource("Tag", "samsungcloudplatform_tag_resources", DatasourceTagResources())
 }
 
 func DatasourceResourceTags() *schema.Resource {

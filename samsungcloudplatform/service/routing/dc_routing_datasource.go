@@ -2,6 +2,7 @@ package routing
 
 import (
 	"context"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
@@ -13,9 +14,9 @@ import (
 )
 
 func init() {
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_direct_connect_routing_tables", DataSourceDCRoutingTable())
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_direct_connect_routing_routes", DataSourceDCRoutingRoute())
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_direct_connect_routing_rules", DataSourceDCRoutingRule())
+	samsungcloudplatform.RegisterDataSource("Routing", "samsungcloudplatform_direct_connect_routing_tables", DataSourceDCRoutingTable())
+	samsungcloudplatform.RegisterDataSource("Routing", "samsungcloudplatform_direct_connect_routing_routes", DataSourceDCRoutingRoute())
+	samsungcloudplatform.RegisterDataSource("Routing", "samsungcloudplatform_direct_connect_routing_rules", DataSourceDCRoutingRule())
 }
 
 func DataSourceDCRoutingTable() *schema.Resource {

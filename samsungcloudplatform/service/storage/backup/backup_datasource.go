@@ -2,6 +2,7 @@ package backup
 
 import (
 	"context"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/common"
@@ -13,7 +14,7 @@ import (
 )
 
 func init() {
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_backups", DatasourceBackups())
+	samsungcloudplatform.RegisterDataSource("Backup", "samsungcloudplatform_backups", DatasourceBackups())
 }
 
 func DatasourceBackups() *schema.Resource {

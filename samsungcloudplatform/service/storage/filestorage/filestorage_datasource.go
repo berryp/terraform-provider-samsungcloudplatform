@@ -2,6 +2,7 @@ package filestorage
 
 import (
 	"context"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	filestorage2 "github.com/SamsungSDSCloud/terraform-sdk-samsungcloudplatform/v3/library/file-storage2"
 	"github.com/antihax/optional"
@@ -14,7 +15,7 @@ import (
 )
 
 func init() {
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_file_storages", DatasourceFileStorages())
+	samsungcloudplatform.RegisterDataSource("File Storage", "samsungcloudplatform_file_storages", DatasourceFileStorages())
 }
 
 func DatasourceFileStorages() *schema.Resource {
@@ -138,6 +139,7 @@ func datasourceElem() *schema.Resource {
 			"created_dt":            {Type: schema.TypeString, Computed: true, Description: "Created Date"},
 			"modified_by":           {Type: schema.TypeString, Computed: true, Description: "Modified By"},
 			"modified_dt":           {Type: schema.TypeString, Computed: true, Description: "Modified Date"},
+			"file_storage_category": {Type: schema.TypeString, Computed: true, Description: "File Storage Category"},
 		},
 	}
 }

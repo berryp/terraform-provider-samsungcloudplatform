@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_subnet Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "Subnet"
 description: |-
   Provides a Subnet resource.
 ---
 
-# Resource: samsungcloudplatform_subnet
+# samsungcloudplatform_subnet (Resource)
 
 Provides a Subnet resource.
 

@@ -2,6 +2,7 @@ package postgresql
 
 import (
 	"context"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/common"
@@ -14,8 +15,8 @@ import (
 )
 
 func init() {
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_postgresqls", DatasourcePostgresqlList())
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_postgresql", DatasourcePostgresql())
+	samsungcloudplatform.RegisterDataSource("PostgreSQL", "samsungcloudplatform_postgresqls", DatasourcePostgresqlList())
+	samsungcloudplatform.RegisterDataSource("PostgreSQL", "samsungcloudplatform_postgresql", DatasourcePostgresql())
 }
 
 func DatasourcePostgresqlList() *schema.Resource {

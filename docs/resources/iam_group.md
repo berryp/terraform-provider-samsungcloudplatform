@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_iam_group Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "IAM"
 description: |-
   Provides IAM group resource.
 ---
 
-# Resource: samsungcloudplatform_iam_group
+# samsungcloudplatform_iam_group (Resource)
 
 Provides IAM group resource.
 

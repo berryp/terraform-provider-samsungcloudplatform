@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_lb_service Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "Load Balancer"
 description: |-
   Provides a Load Balancer Service resource.
 ---
 
-# Resource: samsungcloudplatform_lb_service
+# samsungcloudplatform_lb_service (Resource)
 
 Provides a Load Balancer Service resource.
 

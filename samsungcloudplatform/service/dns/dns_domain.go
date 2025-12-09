@@ -2,6 +2,10 @@ package dns
 
 import (
 	"context"
+	"regexp"
+	"strings"
+	"time"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client/dns"
@@ -10,13 +14,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/validation"
-	"regexp"
-	"strings"
-	"time"
 )
 
 func init() {
-	samsungcloudplatform.RegisterResource("samsungcloudplatform_dns_domain", ResourceDnsDomain())
+	samsungcloudplatform.RegisterResource("DNS", "samsungcloudplatform_dns_domain", ResourceDnsDomain())
 }
 
 func ResourceDnsDomain() *schema.Resource {

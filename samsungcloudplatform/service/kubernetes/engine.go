@@ -4,6 +4,8 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"time"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client/kubernetesengine"
@@ -12,11 +14,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/validation"
-	"time"
 )
 
 func init() {
-	samsungcloudplatform.RegisterResource("samsungcloudplatform_kubernetes_engine", ResourceKubernetesEngine())
+	samsungcloudplatform.RegisterResource("Kubernetes", "samsungcloudplatform_kubernetes_engine", ResourceKubernetesEngine())
 }
 
 func ResourceKubernetesEngine() *schema.Resource {
@@ -115,13 +116,6 @@ func ResourceKubernetesEngine() *schema.Resource {
 				Computed:    true,
 				Description: "Public endpoint URL for the kubernetes cluster",
 			},
-			"kube_config": {
-				Type:        schema.TypeString,
-				Required:    false,
-				Optional:    false,
-				Computed:    true,
-				Description: "Kube config of the kubernetes cluster",
-			},
 			"cifs_volume_id": {
 				Type:        schema.TypeString,
 				Optional:    true,
@@ -187,8 +181,6 @@ func readEngine(ctx context.Context, data *schema.ResourceData, meta interface{}
 		return diag.FromErr(err)
 	}
 
-	kubeConfig, _, err := inst.Client.KubernetesEngine.GetKubeConfig(ctx, data.Id(), "private")
-
 	data.Set("name", engine.KubernetesEngineName)
 	data.Set("cloud_logging_enabled", engine.CloudLoggingEnabled)
 	data.Set("kubernetes_version", engine.K8sVersion)
@@ -201,7 +193,6 @@ func readEngine(ctx context.Context, data *schema.ResourceData, meta interface{}
 	data.Set("vpc_id", engine.VpcId)
 	data.Set("zone_id", engine.ZoneId)
 	data.Set("public_endpoint", engine.PublicEndpointUrl)
-	data.Set("kube_config", kubeConfig)
 	tfTags.SetTags(ctx, data, meta, data.Id())
 
 	return nil

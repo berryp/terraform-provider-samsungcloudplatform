@@ -3,6 +3,9 @@ package filestorage
 import (
 	"context"
 	"fmt"
+	"log"
+	"strconv"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client/storage/filestorage"
@@ -10,12 +13,10 @@ import (
 	tfTags "github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/service/tag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
-	"log"
-	"strconv"
 )
 
 func init() {
-	samsungcloudplatform.RegisterResource("samsungcloudplatform_file_storage", ResourceFileStorage())
+	samsungcloudplatform.RegisterResource("File Storage", "samsungcloudplatform_file_storage", ResourceFileStorage())
 }
 
 func ResourceFileStorage() *schema.Resource {

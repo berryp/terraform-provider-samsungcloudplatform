@@ -3,6 +3,11 @@ package redis
 import (
 	"context"
 	"fmt"
+	"log"
+	"sort"
+	"strings"
+	"time"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/common"
@@ -12,14 +17,10 @@ import (
 	"github.com/antihax/optional"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
-	"log"
-	"sort"
-	"strings"
-	"time"
 )
 
 func init() {
-	samsungcloudplatform.RegisterResource("samsungcloudplatform_redis", ResourceRedis())
+	samsungcloudplatform.RegisterResource("Redis", "samsungcloudplatform_redis", ResourceRedis())
 }
 
 func ResourceRedis() *schema.Resource {
@@ -59,12 +60,6 @@ func ResourceRedis() *schema.Resource {
 				Type:        schema.TypeString,
 				Required:    true,
 				Description: "Timezone setting of this database.",
-			},
-			"contract_period": {
-				Type:             schema.TypeString,
-				Required:         true,
-				Description:      "Contract (None|1 Year|3 Year)",
-				ValidateDiagFunc: database_common.ValidateStringInOptions("None", database_common.OneYear, database_common.ThreeYear),
 			},
 			"subnet_id": {
 				Type:        schema.TypeString,
@@ -217,13 +212,6 @@ func ResourceRedis() *schema.Resource {
 				Description:      "redis state (RUNNING|STOPPED)",
 				ValidateDiagFunc: database_common.ValidateStringInOptions("RUNNING", "STOPPED"),
 			},
-			"next_contract_period": {
-				Type:             schema.TypeString,
-				Optional:         true,
-				Default:          "None",
-				Description:      "Next contract (None|1 Year|3 Year)",
-				ValidateDiagFunc: database_common.ValidateStringInOptions("None", database_common.OneYear, database_common.ThreeYear),
-			},
 			"backup": {
 				Type:     schema.TypeSet,
 				Optional: true,
@@ -274,7 +262,6 @@ func resourceRedisCreate(ctx context.Context, rd *schema.ResourceData, meta inte
 	serviceZoneId := rd.Get("service_zone_id").(string)
 	imageId := rd.Get("image_id").(string)
 	timezone := rd.Get("timezone").(string)
-	contractPeriod := rd.Get("contract_period").(string)
 	securityGroupIds := rd.Get("security_group_ids").([]interface{})
 	subnetId := rd.Get("subnet_id").(string)
 	natEnabled := rd.Get("nat_enabled").(bool)
@@ -288,7 +275,6 @@ func resourceRedisCreate(ctx context.Context, rd *schema.ResourceData, meta inte
 	encryptionEnabled := rd.Get("encryption_enabled").(bool)
 
 	//update value
-	nextContractPeriod := rd.Get("next_contract_period").(string)
 	redisState := rd.Get("redis_state").(string)
 
 	//redisServerGroup
@@ -352,7 +338,6 @@ func resourceRedisCreate(ctx context.Context, rd *schema.ResourceData, meta inte
 			ServiceZoneId:    serviceZoneId,
 			ImageId:          imageId,
 			Timezone:         timezone,
-			ContractPeriod:   contractPeriod,
 			SecurityGroupIds: securityGroupIdList,
 			SubnetId:         subnetId,
 			NatEnabled:       &natEnabled,
@@ -377,7 +362,6 @@ func resourceRedisCreate(ctx context.Context, rd *schema.ResourceData, meta inte
 			ServiceZoneId:    serviceZoneId,
 			ImageId:          imageId,
 			Timezone:         timezone,
-			ContractPeriod:   contractPeriod,
 			SecurityGroupIds: securityGroupIdList,
 			SubnetId:         subnetId,
 			NatEnabled:       &natEnabled,
@@ -427,17 +411,6 @@ func resourceRedisCreate(ctx context.Context, rd *schema.ResourceData, meta inte
 	}
 
 	rd.SetId(redisId)
-
-	if nextContractPeriod == database_common.OneYear || nextContractPeriod == database_common.ThreeYear {
-		err := modifyRedisNextContract(UpdateRedisParam{
-			Ctx:  ctx,
-			Rd:   rd,
-			Inst: inst,
-		}, nextContractPeriod)
-		if err != nil {
-			return diag.FromErr(err)
-		}
-	}
 
 	if len(backup) != 0 {
 		backupObject := &redis.RedisCreateFullBackupConfigRequest{}
@@ -568,10 +541,6 @@ func resourceRedisRead(ctx context.Context, rd *schema.ResourceData, meta interf
 	if err != nil {
 		return diag.FromErr(err)
 	}
-	err = rd.Set("contract_period", dbInfo.Contract.ContractPeriod)
-	if err != nil {
-		return diag.FromErr(err)
-	}
 	err = rd.Set("subnet_id", dbInfo.SubnetId)
 	if err != nil {
 		return diag.FromErr(err)
@@ -674,12 +643,6 @@ func resourceRedisUpdate(ctx context.Context, rd *schema.ResourceData, meta inte
 	if rd.HasChanges("security_group_ids") {
 		updateFuncs = append(updateFuncs, updateRedisSecurityGroupIds)
 	}
-	if rd.HasChanges("contract_period") {
-		updateFuncs = append(updateFuncs, updateContractPeriod)
-	}
-	if rd.HasChanges("next_contract_period") {
-		updateFuncs = append(updateFuncs, updateNextContractPeriod)
-	}
 	if rd.HasChanges("backup") {
 		updateFuncs = append(updateFuncs, updateBackup)
 	}
@@ -731,9 +694,8 @@ func resourceRedisDiff(ctx context.Context, rd *schema.ResourceDiff, meta interf
 		"block_storages",
 		"security_group_ids",
 		"redis_state",
-		"contract_period",
-		"next_contract_period",
 		"backup",
+		"redis_servers",
 		"redis_sentinel_server",
 		"tags",
 	}
@@ -932,68 +894,6 @@ func stopRedis(param UpdateRedisParam) error {
 	}
 
 	err = waitForRedis(param.Ctx, param.Inst.Client, param.Rd.Id(), common.DatabaseProcessingStates(), []string{common.StoppedState}, true)
-	if err != nil {
-		return err
-	}
-	return nil
-}
-
-func updateContractPeriod(param UpdateRedisParam) error {
-	o, n := param.Rd.GetChange("contract_period")
-
-	oldValue := o.(string)
-	newValue := n.(string)
-
-	if oldValue != database_common.None {
-		return fmt.Errorf("changing contract period is not allowed")
-	}
-
-	err := modifyRedisContract(param, newValue)
-	if err != nil {
-		return err
-	}
-
-	return nil
-
-}
-
-func modifyRedisContract(param UpdateRedisParam, newValue string) error {
-	_, _, err := param.Inst.Client.Redis.ModifyRedisContract(param.Ctx, param.Rd.Id(), redis.DbClusterModifyContractRequest{
-		ContractPeriod: newValue,
-	})
-	if err != nil {
-		return err
-	}
-
-	err = waitForRedis(param.Ctx, param.Inst.Client, param.Rd.Id(), common.DatabaseProcessingStates(), []string{common.RunningState}, true)
-	if err != nil {
-		return err
-	}
-	return nil
-}
-
-func updateNextContractPeriod(param UpdateRedisParam) error {
-	_, n := param.Rd.GetChange("next_contract_period")
-
-	newValue := n.(string)
-
-	err := modifyRedisNextContract(param, newValue)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func modifyRedisNextContract(param UpdateRedisParam, newValue string) error {
-	_, _, err := param.Inst.Client.Redis.ModifyRedisNextContract(param.Ctx, param.Rd.Id(), redis.DbClusterModifyNextContractRequest{
-		NextContractPeriod: newValue,
-	})
-	if err != nil {
-		return err
-	}
-
-	err = waitForRedis(param.Ctx, param.Inst.Client, param.Rd.Id(), common.DatabaseProcessingStates(), []string{common.RunningState}, true)
 	if err != nil {
 		return err
 	}

@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_transit_gateway_routing Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "Routing"
 description: |-
   Provides a Transit Gateway Connection Routing Rule Resources
 ---
 
-# Resource: samsungcloudplatform_transit_gateway_routing
+# samsungcloudplatform_transit_gateway_routing (Resource)
 
 Provides a Transit Gateway Connection Routing Rule Resources
 

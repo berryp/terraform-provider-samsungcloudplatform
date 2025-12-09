@@ -2,6 +2,7 @@ package subnet
 
 import (
 	"context"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/common"
@@ -12,7 +13,7 @@ import (
 )
 
 func init() {
-	samsungcloudplatform.RegisterResource("samsungcloudplatform_subnet_vip", ResourceSubnetVip())
+	samsungcloudplatform.RegisterResource("Subnet", "samsungcloudplatform_subnet_vip", ResourceSubnetVip())
 }
 
 func ResourceSubnetVip() *schema.Resource {

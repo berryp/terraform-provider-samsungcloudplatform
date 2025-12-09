@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_security_group_logstorage Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "Security Group"
 description: |-
   Set up Security Group log storage.
 ---
 
-# Resource: samsungcloudplatform_security_group_logstorage
+# samsungcloudplatform_security_group_logstorage (Resource)
 
 Set up Security Group log storage.
 

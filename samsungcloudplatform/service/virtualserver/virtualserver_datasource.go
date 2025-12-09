@@ -2,6 +2,8 @@ package virtualserver
 
 import (
 	"context"
+	"strings"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client/virtualserver"
@@ -10,11 +12,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	uuid "github.com/satori/go.uuid"
-	"strings"
 )
 
 func init() {
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_virtual_servers", DatasourceVirtualServer())
+	samsungcloudplatform.RegisterDataSource("Virtual Server", "samsungcloudplatform_virtual_servers", DatasourceVirtualServer())
 }
 
 func DatasourceVirtualServer() *schema.Resource {

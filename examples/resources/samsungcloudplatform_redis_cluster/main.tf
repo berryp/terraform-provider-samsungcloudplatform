@@ -67,8 +67,6 @@ resource "samsungcloudplatform_redis_cluster" "demo_db" {
 
 
   image_id = data.samsungcloudplatform_standard_image.redis_cluster_7_2_image.id
-  contract_period = "1 Year"
-  next_contract_period = "None"
   nat_enabled = false
   redis_cluster_name = "democluster"
   redis_cluster_state = "RUNNING"

@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_custom_image Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "Image"
 description: |-
   Provides a Custom Image resource.
 ---
 
-# Resource: samsungcloudplatform_custom_image
+# samsungcloudplatform_custom_image (Resource)
 
 Provides a Custom Image resource.
 

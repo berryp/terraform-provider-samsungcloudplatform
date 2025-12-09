@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_bm_server_vdc Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "Bare Metal Server(VDC)"
 description: |-
   Provides a Bare-metal Server(VDC) resource.
 ---
 
-# Resource: samsungcloudplatform_bm_server_vdc
+# samsungcloudplatform_bm_server_vdc (Resource)
 
 Provides a Bare-metal Server(VDC) resource.
 

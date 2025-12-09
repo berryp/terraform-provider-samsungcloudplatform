@@ -39,8 +39,6 @@ resource "samsungcloudplatform_sqlserver" "my_ms_sql" {
 
   image_id = data.samsungcloudplatform_standard_image.mssql_2019_enterprise_eng_image.id
   audit_enabled = true
-  contract_period = "1 Year"
-  next_contract_period = "None"
   nat_enabled = false
   nat_public_ip_id = null
   postgresql_cluster_name = "sqlservercluster"

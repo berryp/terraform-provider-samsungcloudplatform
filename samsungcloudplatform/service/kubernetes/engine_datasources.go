@@ -2,6 +2,7 @@ package kubernetes
 
 import (
 	"context"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/common"
@@ -13,10 +14,8 @@ import (
 )
 
 func init() {
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_kubernetes_engines", DatasourceEngines())
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_kubernetes_engine", DatasourceEngine())
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_kubernetes_kubeconfig", DatasourceKubeConfig())
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_kubernetes_user_kubeconfig", DatasourceUserKubeConfig())
+	samsungcloudplatform.RegisterDataSource("Kubernetes", "samsungcloudplatform_kubernetes_engines", DatasourceEngines())
+	samsungcloudplatform.RegisterDataSource("Kubernetes", "samsungcloudplatform_kubernetes_engine", DatasourceEngine())
 }
 
 func DatasourceEngines() *schema.Resource {
@@ -189,72 +188,6 @@ func engineDetail(ctx context.Context, rd *schema.ResourceData, meta interface{}
 	rd.Set(common.ToSnakeCase("CreatedDt"), response.CreatedDt.String())
 	rd.Set(common.ToSnakeCase("ModifiedBy"), response.ModifiedBy)
 	rd.Set(common.ToSnakeCase("ModifiedDt"), response.ModifiedDt.String())
-
-	return nil
-}
-
-func DatasourceKubeConfig() *schema.Resource {
-	return &schema.Resource{
-		ReadContext: engineKubeConfig, //데이터 조회 함수
-		Importer: &schema.ResourceImporter{
-			StateContext: schema.ImportStatePassthroughContext,
-		},
-		Schema: map[string]*schema.Schema{
-			common.ToSnakeCase("KubernetesEngineId"): {Type: schema.TypeString, Required: true, Description: "Engine Id"},
-			common.ToSnakeCase("kubeconfigType"):     {Type: schema.TypeString, Required: true, Description: "kubeconfig Type"},
-			common.ToSnakeCase("KubeConfig"):         {Type: schema.TypeString, Computed: true, Description: "KubeConfig"},
-		},
-		Description: "Provides Kubernetes Engine Detail",
-	}
-}
-
-func DatasourceUserKubeConfig() *schema.Resource {
-	return &schema.Resource{
-		ReadContext: engineUserKubeConfig, //데이터 조회 함수
-		Importer: &schema.ResourceImporter{
-			StateContext: schema.ImportStatePassthroughContext,
-		},
-		Schema: map[string]*schema.Schema{
-			common.ToSnakeCase("KubernetesEngineId"): {Type: schema.TypeString, Required: true, Description: "Engine Id"},
-			common.ToSnakeCase("kubeconfigType"):     {Type: schema.TypeString, Required: true, Description: "kubeconfig Type"},
-			common.ToSnakeCase("KubeConfig"):         {Type: schema.TypeString, Computed: true, Description: "KubeConfig"},
-		},
-		Description: "Provides Kubernetes Engine Detail",
-	}
-}
-
-func engineKubeConfig(ctx context.Context, rd *schema.ResourceData, meta interface{}) diag.Diagnostics {
-	inst := meta.(*client.Instance)
-
-	engineId := rd.Get("kubernetes_engine_id").(string)
-	kubeconfigType := rd.Get("kubeconfig_type").(string)
-
-	response, _, err := inst.Client.KubernetesEngine.GetKubeConfig(ctx, engineId, kubeconfigType)
-	if err != nil {
-		return diag.FromErr(err)
-	}
-
-	rd.SetId(uuid.NewV4().String())
-
-	rd.Set(common.ToSnakeCase("KubeConfig"), response)
-
-	return nil
-}
-
-func engineUserKubeConfig(ctx context.Context, rd *schema.ResourceData, meta interface{}) diag.Diagnostics {
-	inst := meta.(*client.Instance)
-
-	engineId := rd.Get("kubernetes_engine_id").(string)
-	kubeconfigType := rd.Get("kubeconfig_type").(string)
-
-	response, _, err := inst.Client.KubernetesEngine.GetUserKubeConfig(ctx, engineId, kubeconfigType)
-	if err != nil {
-		return diag.FromErr(err)
-	}
-
-	rd.SetId(uuid.NewV4().String())
-
-	rd.Set(common.ToSnakeCase("KubeConfig"), response)
 
 	return nil
 }

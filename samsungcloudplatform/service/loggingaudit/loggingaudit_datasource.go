@@ -2,6 +2,8 @@ package loggingaudit
 
 import (
 	"context"
+	"time"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/common"
@@ -10,13 +12,12 @@ import (
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/validation"
 	uuid "github.com/satori/go.uuid"
-	"time"
 )
 
 func init() {
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_loggingaudits", DatasourceLoggingAudits())
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_loggingaudit", DatasourceLoggingAudit())
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_loggingaudit_users", DatasourceLoggingAuditUsers())
+	samsungcloudplatform.RegisterDataSource("Logging&Audit", "samsungcloudplatform_loggingaudits", DatasourceLoggingAudits())
+	samsungcloudplatform.RegisterDataSource("Logging&Audit", "samsungcloudplatform_loggingaudit", DatasourceLoggingAudit())
+	samsungcloudplatform.RegisterDataSource("Logging&Audit", "samsungcloudplatform_loggingaudit_users", DatasourceLoggingAuditUsers())
 }
 
 func DatasourceLoggingAudits() *schema.Resource {

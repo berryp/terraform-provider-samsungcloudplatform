@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_block_storage Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "Block Storage(VM)"
 description: |-
   Provides a Block Storage resource.
 ---
 
-# Resource: samsungcloudplatform_block_storage
+# samsungcloudplatform_block_storage (Resource)
 
 Provides a Block Storage resource.
 

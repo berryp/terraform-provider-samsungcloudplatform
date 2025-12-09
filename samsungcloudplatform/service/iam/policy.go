@@ -3,6 +3,9 @@ package iam
 import (
 	"context"
 	"fmt"
+	"regexp"
+	"unicode/utf8"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/common"
@@ -12,12 +15,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/validation"
-	"regexp"
-	"unicode/utf8"
 )
 
 func init() {
-	samsungcloudplatform.RegisterResource("samsungcloudplatform_iam_policy", ResourcePolicy())
+	samsungcloudplatform.RegisterResource("IAM", "samsungcloudplatform_iam_policy", ResourcePolicy())
 }
 func ResourcePolicy() *schema.Resource {
 	return &schema.Resource{

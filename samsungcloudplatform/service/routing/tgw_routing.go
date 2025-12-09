@@ -2,6 +2,7 @@ package routing
 
 import (
 	"context"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client/routing"
@@ -11,7 +12,7 @@ import (
 )
 
 func init() {
-	samsungcloudplatform.RegisterResource("samsungcloudplatform_transit_gateway_routing", ResourceTGWRouting())
+	samsungcloudplatform.RegisterResource("Routing", "samsungcloudplatform_transit_gateway_routing", ResourceTGWRouting())
 }
 
 func ResourceTGWRouting() *schema.Resource {

@@ -21,7 +21,6 @@ resource "samsungcloudplatform_kafka" "demo_db" {
 
   image_id = data.samsungcloudplatform_standard_image.kafka_3_8_0_image.id
   service_zone_id = data.samsungcloudplatform_region.region.id
-  contract_period = "1 Year"
 
   subnet_id = "SUBNET-XXXXX"
   security_group_ids = ["FIREWALL_SECURITY_GROUP-XXXXX"]

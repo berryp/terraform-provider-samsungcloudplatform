@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_obs_bucket Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "Object Storage"
 description: |-
   Provides an Object Storage Bucket Resource.
 ---
 
-# Resource: samsungcloudplatform_obs_bucket
+# samsungcloudplatform_obs_bucket (Resource)
 
 Provides an Object Storage Bucket Resource.
 

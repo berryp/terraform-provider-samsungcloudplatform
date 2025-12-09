@@ -2,6 +2,7 @@ package autoscaling
 
 import (
 	"context"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/common"
@@ -13,7 +14,7 @@ import (
 )
 
 func init() {
-	samsungcloudplatform.RegisterResource("samsungcloudplatform_auto_scaling_group_load_balancer", ResourceAutoScalingGroupLoadBalancer())
+	samsungcloudplatform.RegisterResource("Auto Scaling", "samsungcloudplatform_auto_scaling_group_load_balancer", ResourceAutoScalingGroupLoadBalancer())
 }
 
 func ResourceAutoScalingGroupLoadBalancer() *schema.Resource {

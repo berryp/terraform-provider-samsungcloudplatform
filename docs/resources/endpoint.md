@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_endpoint Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "Endpoint"
 description: |-
   Provides a VPC resource.
 ---
 
-# Resource: samsungcloudplatform_endpoint
+# samsungcloudplatform_endpoint (Resource)
 
 Provides a VPC resource.
 

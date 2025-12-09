@@ -2,6 +2,8 @@ package vpc
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/common"
@@ -10,11 +12,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/validation"
-	"regexp"
 )
 
 func init() {
-	samsungcloudplatform.RegisterResource("samsungcloudplatform_vpc", ResourceVpc())
+	samsungcloudplatform.RegisterResource("VPC", "samsungcloudplatform_vpc", ResourceVpc())
 }
 
 func ResourceVpc() *schema.Resource {

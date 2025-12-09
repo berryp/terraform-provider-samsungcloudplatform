@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_vpc_dns Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "VPC"
 description: |-
   Provides a VPC Dns resource.
 ---
 
-# Resource: samsungcloudplatform_vpc_dns
+# samsungcloudplatform_vpc_dns (Resource)
 
 Provides a VPC Dns resource.
 

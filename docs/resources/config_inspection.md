@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_config_inspection Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "Config Inspection"
 description: |-
   Save Config Inspection
 ---
 
-# Resource: samsungcloudplatform_config_inspection
+# samsungcloudplatform_config_inspection (Resource)
 
 Save Config Inspection
 

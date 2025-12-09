@@ -2,6 +2,7 @@ package publicip
 
 import (
 	"context"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	tfTags "github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/service/tag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/validation"
@@ -14,7 +15,7 @@ import (
 )
 
 func init() {
-	samsungcloudplatform.RegisterResource("samsungcloudplatform_public_ip", ResourceVpcPublicIp())
+	samsungcloudplatform.RegisterResource("Public IP", "samsungcloudplatform_public_ip", ResourceVpcPublicIp())
 }
 
 func ResourceVpcPublicIp() *schema.Resource {

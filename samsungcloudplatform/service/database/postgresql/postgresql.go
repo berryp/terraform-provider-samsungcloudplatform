@@ -3,6 +3,11 @@ package postgresql
 import (
 	"context"
 	"fmt"
+	"log"
+	"sort"
+	"strings"
+	"time"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/common"
@@ -12,14 +17,10 @@ import (
 	"github.com/antihax/optional"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
-	"log"
-	"sort"
-	"strings"
-	"time"
 )
 
 func init() {
-	samsungcloudplatform.RegisterResource("samsungcloudplatform_postgresql", ResourcePostgresql())
+	samsungcloudplatform.RegisterResource("PostgreSQL", "samsungcloudplatform_postgresql", ResourcePostgresql())
 }
 
 func ResourcePostgresql() *schema.Resource {
@@ -42,19 +43,6 @@ func ResourcePostgresql() *schema.Resource {
 				Type:        schema.TypeBool,
 				Required:    true,
 				Description: "Whether to use database audit logging.",
-			},
-			"contract_period": {
-				Type:             schema.TypeString,
-				Required:         true,
-				Description:      "Contract (None|1 Year|3 Year)",
-				ValidateDiagFunc: database_common.ValidateStringInOptions("None", database_common.OneYear, database_common.ThreeYear),
-			},
-			"next_contract_period": {
-				Type:             schema.TypeString,
-				Optional:         true,
-				Default:          "None",
-				Description:      "Next contract (None|1 Year|3 Year)",
-				ValidateDiagFunc: database_common.ValidateStringInOptions("None", database_common.OneYear, database_common.ThreeYear),
 			},
 			"image_id": {
 				Type:        schema.TypeString,
@@ -280,8 +268,6 @@ func resourcePostgresqlCreate(ctx context.Context, rd *schema.ResourceData, meta
 	inst := meta.(*client.Instance)
 
 	auditEnabled := rd.Get("audit_enabled").(bool)
-	contractPeriod := rd.Get("contract_period").(string)
-	nextContractPeriod := rd.Get("next_contract_period").(string)
 	imageId := rd.Get("image_id").(string)
 	natEnabled := rd.Get("nat_enabled").(bool)
 	natPublicIpId := rd.Get("nat_public_ip_id").(string)
@@ -350,7 +336,6 @@ func resourcePostgresqlCreate(ctx context.Context, rd *schema.ResourceData, meta
 
 	_, _, err = inst.Client.Postgresql.CreatePostgresqlCluster(ctx, postgresql.PostgresqlClusterCreateRequest{
 		AuditEnabled:          &auditEnabled,
-		ContractPeriod:        contractPeriod,
 		ImageId:               imageId,
 		NatEnabled:            &natEnabled,
 		NatPublicIpId:         natPublicIpId,
@@ -408,17 +393,6 @@ func resourcePostgresqlCreate(ctx context.Context, rd *schema.ResourceData, meta
 	}
 
 	rd.SetId(postgresqlClusterId)
-
-	if nextContractPeriod == database_common.OneYear || nextContractPeriod == database_common.ThreeYear {
-		err := modifyPostgresqlClusterNextContract(UpdatePostgresqlParam{
-			Ctx:  ctx,
-			Rd:   rd,
-			Inst: inst,
-		}, nextContractPeriod)
-		if err != nil {
-			return diag.FromErr(err)
-		}
-	}
 
 	if len(backup) != 0 {
 		backupObject := &postgresql.DbClusterCreateFullBackupConfigRequest{}
@@ -525,10 +499,6 @@ func resourcePostgresqlRead(ctx context.Context, rd *schema.ResourceData, meta i
 	})
 
 	err = rd.Set("audit_enabled", dbInfo.AuditEnabled)
-	if err != nil {
-		return diag.FromErr(err)
-	}
-	err = rd.Set("contract_period", dbInfo.Contract.ContractPeriod)
 	if err != nil {
 		return diag.FromErr(err)
 	}
@@ -676,12 +646,6 @@ func resourcePostgresqlUpdate(ctx context.Context, rd *schema.ResourceData, meta
 	if rd.HasChanges("postgresql_cluster_state") {
 		updateFuncs = append(updateFuncs, updatePostgresqlClusterServerState)
 	}
-	if rd.HasChanges("contract_period") {
-		updateFuncs = append(updateFuncs, updateContractPeriod)
-	}
-	if rd.HasChanges("next_contract_period") {
-		updateFuncs = append(updateFuncs, updateNextContractPeriod)
-	}
 	if rd.HasChanges("backup") {
 		updateFuncs = append(updateFuncs, updateBackup)
 	}
@@ -726,8 +690,6 @@ func resourcePostgresqlDiff(ctx context.Context, rd *schema.ResourceDiff, meta i
 		"block_storages",
 		"security_group_ids",
 		"postgresql_cluster_state",
-		"contract_period",
-		"next_contract_period",
 		"backup",
 		"tags",
 	}
@@ -951,68 +913,6 @@ func stopPostgresqlCluster(param UpdatePostgresqlParam) error {
 	}
 
 	err = waitForPostgresql(param.Ctx, param.Inst.Client, param.Rd.Id(), common.DatabaseProcessingStates(), []string{common.StoppedState}, true)
-	if err != nil {
-		return err
-	}
-	return nil
-}
-
-func updateContractPeriod(param UpdatePostgresqlParam) error {
-	o, n := param.Rd.GetChange("contract_period")
-
-	oldValue := o.(string)
-	newValue := n.(string)
-
-	if oldValue != database_common.None {
-		return fmt.Errorf("changing contract period is not allowed")
-	}
-
-	err := modifyPostgresqlClusterContract(param, newValue)
-	if err != nil {
-		return err
-	}
-
-	return nil
-
-}
-
-func modifyPostgresqlClusterContract(param UpdatePostgresqlParam, newValue string) error {
-	_, _, err := param.Inst.Client.Postgresql.ModifyPostgresqlClusterContract(param.Ctx, param.Rd.Id(), postgresql.DbClusterModifyContractRequest{
-		ContractPeriod: newValue,
-	})
-	if err != nil {
-		return err
-	}
-
-	err = waitForPostgresql(param.Ctx, param.Inst.Client, param.Rd.Id(), common.DatabaseProcessingStates(), []string{common.RunningState}, true)
-	if err != nil {
-		return err
-	}
-	return nil
-}
-
-func updateNextContractPeriod(param UpdatePostgresqlParam) error {
-	_, n := param.Rd.GetChange("next_contract_period")
-
-	newValue := n.(string)
-
-	err := modifyPostgresqlClusterNextContract(param, newValue)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func modifyPostgresqlClusterNextContract(param UpdatePostgresqlParam, newValue string) error {
-	_, _, err := param.Inst.Client.Postgresql.ModifyPostgresqlClusterNextContract(param.Ctx, param.Rd.Id(), postgresql.DbClusterModifyNextContractRequest{
-		NextContractPeriod: newValue,
-	})
-	if err != nil {
-		return err
-	}
-
-	err = waitForPostgresql(param.Ctx, param.Inst.Client, param.Rd.Id(), common.DatabaseProcessingStates(), []string{common.RunningState}, true)
 	if err != nil {
 		return err
 	}

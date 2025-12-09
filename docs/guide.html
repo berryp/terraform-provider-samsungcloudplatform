@@ -78,7 +78,7 @@
 			display: block;
 		}
 		.collapsible-header::before {
-			content: "";
+			content: "＞";
 			font-weight: 800;
 			font-size: 12px;
 			margin-right: 5px;
@@ -92,253 +92,648 @@
 <body>
 	<div id="menu">
 		<h3 class='home'><a href='index' target='contentFrame'>Home</a></h3>
-			<p class='category collapsible-header'>Data Sources</p>
+		<p class='category collapsible-header'>Auto Scaling</p>
 		<div class='collapsible'>
+			<p>Data Sources</p>
 			<ul>
-				<li><a href='data-sources/auto_scaling_group' target='contentFrame'>auto_scaling_group</a></li>
-				<li><a href='data-sources/auto_scaling_group_policies' target='contentFrame'>auto_scaling_group_policies</a></li>
-				<li><a href='data-sources/auto_scaling_group_policy' target='contentFrame'>auto_scaling_group_policy</a></li>
-				<li><a href='data-sources/auto_scaling_group_virtual_servers' target='contentFrame'>auto_scaling_group_virtual_servers</a></li>
-				<li><a href='data-sources/auto_scaling_groups' target='contentFrame'>auto_scaling_groups</a></li>
-				<li><a href='data-sources/backups' target='contentFrame'>backups</a></li>
-				<li><a href='data-sources/block_storages' target='contentFrame'>block_storages</a></li>
-				<li><a href='data-sources/bm_block_storage' target='contentFrame'>bm_block_storage</a></li>
-				<li><a href='data-sources/bm_block_storages' target='contentFrame'>bm_block_storages</a></li>
-				<li><a href='data-sources/bm_server' target='contentFrame'>bm_server</a></li>
-				<li><a href='data-sources/bm_servers' target='contentFrame'>bm_servers</a></li>
-				<li><a href='data-sources/bm_vdc_server' target='contentFrame'>bm_vdc_server</a></li>
-				<li><a href='data-sources/bm_vdc_servers' target='contentFrame'>bm_vdc_servers</a></li>
-				<li><a href='data-sources/certificate' target='contentFrame'>certificate</a></li>
-				<li><a href='data-sources/certificates' target='contentFrame'>certificates</a></li>
-				<li><a href='data-sources/config_inspection' target='contentFrame'>config_inspection</a></li>
-				<li><a href='data-sources/config_inspection_diagnoses' target='contentFrame'>config_inspection_diagnoses</a></li>
-				<li><a href='data-sources/config_inspection_diagnosis' target='contentFrame'>config_inspection_diagnosis</a></li>
-				<li><a href='data-sources/config_inspection_diagnosis_request' target='contentFrame'>config_inspection_diagnosis_request</a></li>
-				<li><a href='data-sources/config_inspections' target='contentFrame'>config_inspections</a></li>
-				<li><a href='data-sources/custom_image' target='contentFrame'>custom_image</a></li>
-				<li><a href='data-sources/custom_images' target='contentFrame'>custom_images</a></li>
-				<li><a href='data-sources/dcon_vpc_connections' target='contentFrame'>dcon_vpc_connections</a></li>
-				<li><a href='data-sources/direct_connect_routing_routes' target='contentFrame'>direct_connect_routing_routes</a></li>
-				<li><a href='data-sources/direct_connect_routing_rules' target='contentFrame'>direct_connect_routing_rules</a></li>
-				<li><a href='data-sources/direct_connect_routing_tables' target='contentFrame'>direct_connect_routing_tables</a></li>
-				<li><a href='data-sources/direct_connects' target='contentFrame'>direct_connects</a></li>
-				<li><a href='data-sources/dns_domains' target='contentFrame'>dns_domains</a></li>
-				<li><a href='data-sources/dns_records' target='contentFrame'>dns_records</a></li>
-				<li><a href='data-sources/endpoint' target='contentFrame'>endpoint</a></li>
-				<li><a href='data-sources/endpoints' target='contentFrame'>endpoints</a></li>
-				<li><a href='data-sources/epas' target='contentFrame'>epas</a></li>
-				<li><a href='data-sources/epass' target='contentFrame'>epass</a></li>
-				<li><a href='data-sources/file_storages' target='contentFrame'>file_storages</a></li>
-				<li><a href='data-sources/firewall' target='contentFrame'>firewall</a></li>
-				<li><a href='data-sources/firewalls' target='contentFrame'>firewalls</a></li>
-				<li><a href='data-sources/gslb_resources' target='contentFrame'>gslb_resources</a></li>
-				<li><a href='data-sources/gslbs' target='contentFrame'>gslbs</a></li>
-				<li><a href='data-sources/iam_access_keys' target='contentFrame'>iam_access_keys</a></li>
-				<li><a href='data-sources/iam_group' target='contentFrame'>iam_group</a></li>
-				<li><a href='data-sources/iam_group_members' target='contentFrame'>iam_group_members</a></li>
-				<li><a href='data-sources/iam_group_policies' target='contentFrame'>iam_group_policies</a></li>
-				<li><a href='data-sources/iam_groups' target='contentFrame'>iam_groups</a></li>
-				<li><a href='data-sources/iam_member' target='contentFrame'>iam_member</a></li>
-				<li><a href='data-sources/iam_member_groups' target='contentFrame'>iam_member_groups</a></li>
-				<li><a href='data-sources/iam_member_systemgroups' target='contentFrame'>iam_member_systemgroups</a></li>
-				<li><a href='data-sources/iam_members' target='contentFrame'>iam_members</a></li>
-				<li><a href='data-sources/iam_policies' target='contentFrame'>iam_policies</a></li>
-				<li><a href='data-sources/iam_policy' target='contentFrame'>iam_policy</a></li>
-				<li><a href='data-sources/iam_policy_groups' target='contentFrame'>iam_policy_groups</a></li>
-				<li><a href='data-sources/iam_policy_roles' target='contentFrame'>iam_policy_roles</a></li>
-				<li><a href='data-sources/iam_role' target='contentFrame'>iam_role</a></li>
-				<li><a href='data-sources/iam_role_policies' target='contentFrame'>iam_role_policies</a></li>
-				<li><a href='data-sources/iam_roles' target='contentFrame'>iam_roles</a></li>
-				<li><a href='data-sources/internet_gateways' target='contentFrame'>internet_gateways</a></li>
-				<li><a href='data-sources/kafka' target='contentFrame'>kafka</a></li>
-				<li><a href='data-sources/key_pairs' target='contentFrame'>key_pairs</a></li>
-				<li><a href='data-sources/kubernetes_apps_image' target='contentFrame'>kubernetes_apps_image</a></li>
-				<li><a href='data-sources/kubernetes_apps_images' target='contentFrame'>kubernetes_apps_images</a></li>
-				<li><a href='data-sources/kubernetes_engine' target='contentFrame'>kubernetes_engine</a></li>
-				<li><a href='data-sources/kubernetes_engine_versions' target='contentFrame'>kubernetes_engine_versions</a></li>
-				<li><a href='data-sources/kubernetes_engines' target='contentFrame'>kubernetes_engines</a></li>
-				<li><a href='data-sources/kubernetes_kubeconfig' target='contentFrame'>kubernetes_kubeconfig</a></li>
-				<li><a href='data-sources/kubernetes_node_pool' target='contentFrame'>kubernetes_node_pool</a></li>
-				<li><a href='data-sources/kubernetes_node_pools' target='contentFrame'>kubernetes_node_pools</a></li>
-				<li><a href='data-sources/kubernetes_subnet' target='contentFrame'>kubernetes_subnet</a></li>
-				<li><a href='data-sources/kubernetes_user_kubeconfig' target='contentFrame'>kubernetes_user_kubeconfig</a></li>
-				<li><a href='data-sources/launch_configuration' target='contentFrame'>launch_configuration</a></li>
-				<li><a href='data-sources/launch_configurations' target='contentFrame'>launch_configurations</a></li>
-				<li><a href='data-sources/lb_profiles' target='contentFrame'>lb_profiles</a></li>
-				<li><a href='data-sources/lb_server_groups' target='contentFrame'>lb_server_groups</a></li>
-				<li><a href='data-sources/lb_service_ips' target='contentFrame'>lb_service_ips</a></li>
-				<li><a href='data-sources/lb_services' target='contentFrame'>lb_services</a></li>
-				<li><a href='data-sources/lb_services_connectable_to_asg' target='contentFrame'>lb_services_connectable_to_asg</a></li>
-				<li><a href='data-sources/lb_services_connected_to_asg' target='contentFrame'>lb_services_connected_to_asg</a></li>
-				<li><a href='data-sources/load_balancers' target='contentFrame'>load_balancers</a></li>
-				<li><a href='data-sources/loggingaudit' target='contentFrame'>loggingaudit</a></li>
-				<li><a href='data-sources/loggingaudit_users' target='contentFrame'>loggingaudit_users</a></li>
-				<li><a href='data-sources/loggingaudits' target='contentFrame'>loggingaudits</a></li>
-				<li><a href='data-sources/mariadb' target='contentFrame'>mariadb</a></li>
-				<li><a href='data-sources/mariadbs' target='contentFrame'>mariadbs</a></li>
-				<li><a href='data-sources/migration_image' target='contentFrame'>migration_image</a></li>
-				<li><a href='data-sources/migration_images' target='contentFrame'>migration_images</a></li>
-				<li><a href='data-sources/mysql' target='contentFrame'>mysql</a></li>
-				<li><a href='data-sources/mysqls' target='contentFrame'>mysqls</a></li>
-				<li><a href='data-sources/nat_gateways' target='contentFrame'>nat_gateways</a></li>
-				<li><a href='data-sources/obs_bucket' target='contentFrame'>obs_bucket</a></li>
-				<li><a href='data-sources/obs_buckets' target='contentFrame'>obs_buckets</a></li>
-				<li><a href='data-sources/obs_storages' target='contentFrame'>obs_storages</a></li>
-				<li><a href='data-sources/placement_groups' target='contentFrame'>placement_groups</a></li>
-				<li><a href='data-sources/postgresql' target='contentFrame'>postgresql</a></li>
-				<li><a href='data-sources/postgresqls' target='contentFrame'>postgresqls</a></li>
-				<li><a href='data-sources/product' target='contentFrame'>product</a></li>
-				<li><a href='data-sources/product_categories' target='contentFrame'>product_categories</a></li>
-				<li><a href='data-sources/product_groups' target='contentFrame'>product_groups</a></li>
-				<li><a href='data-sources/products_by_group' target='contentFrame'>products_by_group</a></li>
-				<li><a href='data-sources/products_by_zone' target='contentFrame'>products_by_zone</a></li>
-				<li><a href='data-sources/project' target='contentFrame'>project</a></li>
-				<li><a href='data-sources/project_product_resources' target='contentFrame'>project_product_resources</a></li>
-				<li><a href='data-sources/project_products' target='contentFrame'>project_products</a></li>
-				<li><a href='data-sources/project_user_products_resources' target='contentFrame'>project_user_products_resources</a></li>
-				<li><a href='data-sources/project_zones' target='contentFrame'>project_zones</a></li>
-				<li><a href='data-sources/projects' target='contentFrame'>projects</a></li>
-				<li><a href='data-sources/public_ip' target='contentFrame'>public_ip</a></li>
-				<li><a href='data-sources/public_ips' target='contentFrame'>public_ips</a></li>
-				<li><a href='data-sources/redis' target='contentFrame'>redis</a></li>
-				<li><a href='data-sources/redis_cluster' target='contentFrame'>redis_cluster</a></li>
-				<li><a href='data-sources/redis_clusters' target='contentFrame'>redis_clusters</a></li>
-				<li><a href='data-sources/redis_list' target='contentFrame'>redis_list</a></li>
-				<li><a href='data-sources/region' target='contentFrame'>region</a></li>
-				<li><a href='data-sources/regions' target='contentFrame'>regions</a></li>
-				<li><a href='data-sources/resource' target='contentFrame'>resource</a></li>
-				<li><a href='data-sources/resource_group' target='contentFrame'>resource_group</a></li>
-				<li><a href='data-sources/resource_group_in_my_projects' target='contentFrame'>resource_group_in_my_projects</a></li>
-				<li><a href='data-sources/resource_group_resource_types' target='contentFrame'>resource_group_resource_types</a></li>
-				<li><a href='data-sources/resource_group_resources' target='contentFrame'>resource_group_resources</a></li>
-				<li><a href='data-sources/resource_group_resources_in_my_projects' target='contentFrame'>resource_group_resources_in_my_projects</a></li>
-				<li><a href='data-sources/resource_group_service_types' target='contentFrame'>resource_group_service_types</a></li>
-				<li><a href='data-sources/resource_groups' target='contentFrame'>resource_groups</a></li>
-				<li><a href='data-sources/resource_groups_in_my_projects' target='contentFrame'>resource_groups_in_my_projects</a></li>
-				<li><a href='data-sources/resource_in_my_project' target='contentFrame'>resource_in_my_project</a></li>
-				<li><a href='data-sources/resource_tags' target='contentFrame'>resource_tags</a></li>
-				<li><a href='data-sources/resources' target='contentFrame'>resources</a></li>
-				<li><a href='data-sources/resources_in_my_project' target='contentFrame'>resources_in_my_project</a></li>
-				<li><a href='data-sources/security_group' target='contentFrame'>security_group</a></li>
-				<li><a href='data-sources/security_group_log_storage' target='contentFrame'>security_group_log_storage</a></li>
-				<li><a href='data-sources/security_group_log_storages' target='contentFrame'>security_group_log_storages</a></li>
-				<li><a href='data-sources/security_group_rule' target='contentFrame'>security_group_rule</a></li>
-				<li><a href='data-sources/security_group_rules' target='contentFrame'>security_group_rules</a></li>
-				<li><a href='data-sources/security_group_user_ips' target='contentFrame'>security_group_user_ips</a></li>
-				<li><a href='data-sources/security_groups' target='contentFrame'>security_groups</a></li>
-				<li><a href='data-sources/sqlserver' target='contentFrame'>sqlserver</a></li>
-				<li><a href='data-sources/sqlservers' target='contentFrame'>sqlservers</a></li>
-				<li><a href='data-sources/standard_image' target='contentFrame'>standard_image</a></li>
-				<li><a href='data-sources/standard_images' target='contentFrame'>standard_images</a></li>
-				<li><a href='data-sources/subnet_available_ips' target='contentFrame'>subnet_available_ips</a></li>
-				<li><a href='data-sources/subnet_resources' target='contentFrame'>subnet_resources</a></li>
-				<li><a href='data-sources/subnet_vip_detail' target='contentFrame'>subnet_vip_detail</a></li>
-				<li><a href='data-sources/subnet_vips' target='contentFrame'>subnet_vips</a></li>
-				<li><a href='data-sources/subnets' target='contentFrame'>subnets</a></li>
-				<li><a href='data-sources/tgw_peerings_by_tgw' target='contentFrame'>tgw_peerings_by_tgw</a></li>
-				<li><a href='data-sources/trail' target='contentFrame'>trail</a></li>
-				<li><a href='data-sources/trails' target='contentFrame'>trails</a></li>
-				<li><a href='data-sources/transit_gateway_connections' target='contentFrame'>transit_gateway_connections</a></li>
-				<li><a href='data-sources/transit_gateway_peering_detail' target='contentFrame'>transit_gateway_peering_detail</a></li>
-				<li><a href='data-sources/transit_gateway_peerings' target='contentFrame'>transit_gateway_peerings</a></li>
-				<li><a href='data-sources/transit_gateway_routing_routes' target='contentFrame'>transit_gateway_routing_routes</a></li>
-				<li><a href='data-sources/transit_gateway_routing_rules' target='contentFrame'>transit_gateway_routing_rules</a></li>
-				<li><a href='data-sources/transit_gateway_routing_tables' target='contentFrame'>transit_gateway_routing_tables</a></li>
-				<li><a href='data-sources/transit_gateways' target='contentFrame'>transit_gateways</a></li>
-				<li><a href='data-sources/virtual_servers' target='contentFrame'>virtual_servers</a></li>
-				<li><a href='data-sources/vpc_dnss' target='contentFrame'>vpc_dnss</a></li>
-				<li><a href='data-sources/vpc_peering_detail' target='contentFrame'>vpc_peering_detail</a></li>
-				<li><a href='data-sources/vpc_peerings' target='contentFrame'>vpc_peerings</a></li>
-				<li><a href='data-sources/vpc_routing_routes' target='contentFrame'>vpc_routing_routes</a></li>
-				<li><a href='data-sources/vpc_routing_rules' target='contentFrame'>vpc_routing_rules</a></li>
-				<li><a href='data-sources/vpc_routing_tables' target='contentFrame'>vpc_routing_tables</a></li>
-				<li><a href='data-sources/vpcs' target='contentFrame'>vpcs</a></li>
+				<li><a href='data-sources/auto_scaling_group' target='contentFrame'>samsungcloudplatform_auto_scaling_group</a></li>
+				<li><a href='data-sources/auto_scaling_group_policies' target='contentFrame'>samsungcloudplatform_auto_scaling_group_policies</a></li>
+				<li><a href='data-sources/auto_scaling_group_policy' target='contentFrame'>samsungcloudplatform_auto_scaling_group_policy</a></li>
+				<li><a href='data-sources/auto_scaling_group_virtual_servers' target='contentFrame'>samsungcloudplatform_auto_scaling_group_virtual_servers</a></li>
+				<li><a href='data-sources/auto_scaling_groups' target='contentFrame'>samsungcloudplatform_auto_scaling_groups</a></li>
+				<li><a href='data-sources/launch_configuration' target='contentFrame'>samsungcloudplatform_launch_configuration</a></li>
+				<li><a href='data-sources/launch_configurations' target='contentFrame'>samsungcloudplatform_launch_configurations</a></li>
+			</ul>
+			<p>Resources</p>
+			<ul>
+				<li><a href='resources/auto_scaling_group' target='contentFrame'>samsungcloudplatform_auto_scaling_group</a></li>
+				<li><a href='resources/auto_scaling_group_load_balancer' target='contentFrame'>samsungcloudplatform_auto_scaling_group_load_balancer</a></li>
+				<li><a href='resources/auto_scaling_group_policy' target='contentFrame'>samsungcloudplatform_auto_scaling_group_policy</a></li>
+				<li><a href='resources/launch_configuration' target='contentFrame'>samsungcloudplatform_launch_configuration</a></li>
 			</ul>
 		</div>
-			<p class='category collapsible-header'>Resources</p>
-			  <div class='collapsible'>
+		<p class='category collapsible-header'>Backup</p>
+		<div class='collapsible'>
+			<p>Data Sources</p>
 			<ul>
-				<li><a href='resources/auto_scaling_group' target='contentFrame'>auto_scaling_group</a></li>
-				<li><a href='resources/auto_scaling_group_load_balancer' target='contentFrame'>auto_scaling_group_load_balancer</a></li>
-				<li><a href='resources/auto_scaling_group_policy' target='contentFrame'>auto_scaling_group_policy</a></li>
-				<li><a href='resources/backup' target='contentFrame'>backup</a></li>
-				<li><a href='resources/block_storage' target='contentFrame'>block_storage</a></li>
-				<li><a href='resources/bm_block_storage' target='contentFrame'>bm_block_storage</a></li>
-				<li><a href='resources/bm_server' target='contentFrame'>bm_server</a></li>
-				<li><a href='resources/bm_server_vdc' target='contentFrame'>bm_server_vdc</a></li>
-				<li><a href='resources/certificate' target='contentFrame'>certificate</a></li>
-				<li><a href='resources/certificate_self_sign' target='contentFrame'>certificate_self_sign</a></li>
-				<li><a href='resources/config_inspection' target='contentFrame'>config_inspection</a></li>
-				<li><a href='resources/custom_image' target='contentFrame'>custom_image</a></li>
-				<li><a href='resources/dcon_vpc_connection' target='contentFrame'>dcon_vpc_connection</a></li>
-				<li><a href='resources/direct_connect' target='contentFrame'>direct_connect</a></li>
-				<li><a href='resources/direct_connect_routing' target='contentFrame'>direct_connect_routing</a></li>
-				<li><a href='resources/dns_domain' target='contentFrame'>dns_domain</a></li>
-				<li><a href='resources/dns_record' target='contentFrame'>dns_record</a></li>
-				<li><a href='resources/endpoint' target='contentFrame'>endpoint</a></li>
-				<li><a href='resources/epas' target='contentFrame'>epas</a></li>
-				<li><a href='resources/file_storage' target='contentFrame'>file_storage</a></li>
-				<li><a href='resources/firewall' target='contentFrame'>firewall</a></li>
-				<li><a href='resources/firewall_bulk_rule' target='contentFrame'>firewall_bulk_rule</a></li>
-				<li><a href='resources/firewall_logstorage' target='contentFrame'>firewall_logstorage</a></li>
-				<li><a href='resources/firewall_rule' target='contentFrame'>firewall_rule</a></li>
-				<li><a href='resources/gslb' target='contentFrame'>gslb</a></li>
-				<li><a href='resources/hpc_lite_new' target='contentFrame'>hpc_lite_new</a></li>
-				<li><a href='resources/iam_access_key' target='contentFrame'>iam_access_key</a></li>
-				<li><a href='resources/iam_group' target='contentFrame'>iam_group</a></li>
-				<li><a href='resources/iam_member' target='contentFrame'>iam_member</a></li>
-				<li><a href='resources/iam_policy' target='contentFrame'>iam_policy</a></li>
-				<li><a href='resources/iam_role' target='contentFrame'>iam_role</a></li>
-				<li><a href='resources/internet_gateway' target='contentFrame'>internet_gateway</a></li>
-				<li><a href='resources/kafka' target='contentFrame'>kafka</a></li>
-				<li><a href='resources/key_pair' target='contentFrame'>key_pair</a></li>
-				<li><a href='resources/kubernetes_apps' target='contentFrame'>kubernetes_apps</a></li>
-				<li><a href='resources/kubernetes_engine' target='contentFrame'>kubernetes_engine</a></li>
-				<li><a href='resources/kubernetes_namespace' target='contentFrame'>kubernetes_namespace</a></li>
-				<li><a href='resources/kubernetes_node_pool' target='contentFrame'>kubernetes_node_pool</a></li>
-				<li><a href='resources/launch_configuration' target='contentFrame'>launch_configuration</a></li>
-				<li><a href='resources/lb_profile' target='contentFrame'>lb_profile</a></li>
-				<li><a href='resources/lb_server_group' target='contentFrame'>lb_server_group</a></li>
-				<li><a href='resources/lb_service' target='contentFrame'>lb_service</a></li>
-				<li><a href='resources/load_balancer' target='contentFrame'>load_balancer</a></li>
-				<li><a href='resources/mariadb' target='contentFrame'>mariadb</a></li>
-				<li><a href='resources/migration_image' target='contentFrame'>migration_image</a></li>
-				<li><a href='resources/mysql' target='contentFrame'>mysql</a></li>
-				<li><a href='resources/nat_gateway' target='contentFrame'>nat_gateway</a></li>
-				<li><a href='resources/obs_bucket' target='contentFrame'>obs_bucket</a></li>
-				<li><a href='resources/placement_group' target='contentFrame'>placement_group</a></li>
-				<li><a href='resources/postgresql' target='contentFrame'>postgresql</a></li>
-				<li><a href='resources/public_ip' target='contentFrame'>public_ip</a></li>
-				<li><a href='resources/redis' target='contentFrame'>redis</a></li>
-				<li><a href='resources/redis_cluster' target='contentFrame'>redis_cluster</a></li>
-				<li><a href='resources/resource_group' target='contentFrame'>resource_group</a></li>
-				<li><a href='resources/security_group' target='contentFrame'>security_group</a></li>
-				<li><a href='resources/security_group_bulk_rule' target='contentFrame'>security_group_bulk_rule</a></li>
-				<li><a href='resources/security_group_logstorage' target='contentFrame'>security_group_logstorage</a></li>
-				<li><a href='resources/security_group_rule' target='contentFrame'>security_group_rule</a></li>
-				<li><a href='resources/security_group_user_ip' target='contentFrame'>security_group_user_ip</a></li>
-				<li><a href='resources/sqlserver' target='contentFrame'>sqlserver</a></li>
-				<li><a href='resources/subnet' target='contentFrame'>subnet</a></li>
-				<li><a href='resources/subnet_public_ip' target='contentFrame'>subnet_public_ip</a></li>
-				<li><a href='resources/subnet_security_group' target='contentFrame'>subnet_security_group</a></li>
-				<li><a href='resources/subnet_vip' target='contentFrame'>subnet_vip</a></li>
-				<li><a href='resources/trail' target='contentFrame'>trail</a></li>
-				<li><a href='resources/transit_gateway' target='contentFrame'>transit_gateway</a></li>
-				<li><a href='resources/transit_gateway_connection' target='contentFrame'>transit_gateway_connection</a></li>
-				<li><a href='resources/transit_gateway_connection_approve' target='contentFrame'>transit_gateway_connection_approve</a></li>
-				<li><a href='resources/transit_gateway_peering' target='contentFrame'>transit_gateway_peering</a></li>
-				<li><a href='resources/transit_gateway_peering_approve' target='contentFrame'>transit_gateway_peering_approve</a></li>
-				<li><a href='resources/transit_gateway_peering_cancel' target='contentFrame'>transit_gateway_peering_cancel</a></li>
-				<li><a href='resources/transit_gateway_peering_reject' target='contentFrame'>transit_gateway_peering_reject</a></li>
-				<li><a href='resources/transit_gateway_routing' target='contentFrame'>transit_gateway_routing</a></li>
-				<li><a href='resources/virtual_server' target='contentFrame'>virtual_server</a></li>
-				<li><a href='resources/vpc' target='contentFrame'>vpc</a></li>
-				<li><a href='resources/vpc_dns' target='contentFrame'>vpc_dns</a></li>
-				<li><a href='resources/vpc_peering' target='contentFrame'>vpc_peering</a></li>
-				<li><a href='resources/vpc_peering_approve' target='contentFrame'>vpc_peering_approve</a></li>
-				<li><a href='resources/vpc_peering_cancel' target='contentFrame'>vpc_peering_cancel</a></li>
-				<li><a href='resources/vpc_peering_reject' target='contentFrame'>vpc_peering_reject</a></li>
-				<li><a href='resources/vpc_routing' target='contentFrame'>vpc_routing</a></li>
+				<li><a href='data-sources/backups' target='contentFrame'>samsungcloudplatform_backups</a></li>
+			</ul>
+			<p>Resources</p>
+			<ul>
+				<li><a href='resources/backup' target='contentFrame'>samsungcloudplatform_backup</a></li>
+			</ul>
+		</div>
+		<p class='category collapsible-header'>Bare Metal Server</p>
+		<div class='collapsible'>
+			<p>Data Sources</p>
+			<ul>
+				<li><a href='data-sources/bm_server' target='contentFrame'>samsungcloudplatform_bm_server</a></li>
+				<li><a href='data-sources/bm_servers' target='contentFrame'>samsungcloudplatform_bm_servers</a></li>
+			</ul>
+			<p>Resources</p>
+			<ul>
+				<li><a href='resources/bm_server' target='contentFrame'>samsungcloudplatform_bm_server</a></li>
+			</ul>
+		</div>
+		<p class='category collapsible-header'>Bare Metal Server(VDC)</p>
+		<div class='collapsible'>
+			<p>Data Sources</p>
+			<ul>
+				<li><a href='data-sources/bm_vdc_server' target='contentFrame'>samsungcloudplatform_bm_vdc_server</a></li>
+				<li><a href='data-sources/bm_vdc_servers' target='contentFrame'>samsungcloudplatform_bm_vdc_servers</a></li>
+			</ul>
+			<p>Resources</p>
+			<ul>
+				<li><a href='resources/bm_server_vdc' target='contentFrame'>samsungcloudplatform_bm_server_vdc</a></li>
+			</ul>
+		</div>
+		<p class='category collapsible-header'>Block Storage(BM)</p>
+		<div class='collapsible'>
+			<p>Data Sources</p>
+			<ul>
+				<li><a href='data-sources/bm_block_storage' target='contentFrame'>samsungcloudplatform_bm_block_storage</a></li>
+				<li><a href='data-sources/bm_block_storages' target='contentFrame'>samsungcloudplatform_bm_block_storages</a></li>
+			</ul>
+			<p>Resources</p>
+			<ul>
+				<li><a href='resources/bm_block_storage' target='contentFrame'>samsungcloudplatform_bm_block_storage</a></li>
+			</ul>
+		</div>
+		<p class='category collapsible-header'>Block Storage(VM)</p>
+		<div class='collapsible'>
+			<p>Data Sources</p>
+			<ul>
+				<li><a href='data-sources/block_storages' target='contentFrame'>samsungcloudplatform_block_storages</a></li>
+			</ul>
+			<p>Resources</p>
+			<ul>
+				<li><a href='resources/block_storage' target='contentFrame'>samsungcloudplatform_block_storage</a></li>
+			</ul>
+		</div>
+		<p class='category collapsible-header'>Certificate</p>
+		<div class='collapsible'>
+			<p>Data Sources</p>
+			<ul>
+				<li><a href='data-sources/certificate' target='contentFrame'>samsungcloudplatform_certificate</a></li>
+				<li><a href='data-sources/certificates' target='contentFrame'>samsungcloudplatform_certificates</a></li>
+			</ul>
+			<p>Resources</p>
+			<ul>
+				<li><a href='resources/certificate' target='contentFrame'>samsungcloudplatform_certificate</a></li>
+				<li><a href='resources/certificate_self_sign' target='contentFrame'>samsungcloudplatform_certificate_self_sign</a></li>
+			</ul>
+		</div>
+		<p class='category collapsible-header'>Config Inspection</p>
+		<div class='collapsible'>
+			<p>Data Sources</p>
+			<ul>
+				<li><a href='data-sources/config_inspection' target='contentFrame'>samsungcloudplatform_config_inspection</a></li>
+				<li><a href='data-sources/config_inspection_diagnoses' target='contentFrame'>samsungcloudplatform_config_inspection_diagnoses</a></li>
+				<li><a href='data-sources/config_inspection_diagnosis' target='contentFrame'>samsungcloudplatform_config_inspection_diagnosis</a></li>
+				<li><a href='data-sources/config_inspection_diagnosis_request' target='contentFrame'>samsungcloudplatform_config_inspection_diagnosis_request</a></li>
+				<li><a href='data-sources/config_inspections' target='contentFrame'>samsungcloudplatform_config_inspections</a></li>
+			</ul>
+			<p>Resources</p>
+			<ul>
+				<li><a href='resources/config_inspection' target='contentFrame'>samsungcloudplatform_config_inspection</a></li>
+			</ul>
+		</div>
+		<p class='category collapsible-header'>DNS</p>
+		<div class='collapsible'>
+			<p>Data Sources</p>
+			<ul>
+				<li><a href='data-sources/dns_domains' target='contentFrame'>samsungcloudplatform_dns_domains</a></li>
+				<li><a href='data-sources/dns_records' target='contentFrame'>samsungcloudplatform_dns_records</a></li>
+			</ul>
+			<p>Resources</p>
+			<ul>
+				<li><a href='resources/dns_domain' target='contentFrame'>samsungcloudplatform_dns_domain</a></li>
+				<li><a href='resources/dns_record' target='contentFrame'>samsungcloudplatform_dns_record</a></li>
+			</ul>
+		</div>
+		<p class='category collapsible-header'>Direct Connect</p>
+		<div class='collapsible'>
+			<p>Data Sources</p>
+			<ul>
+				<li><a href='data-sources/dcon_vpc_connections' target='contentFrame'>samsungcloudplatform_dcon_vpc_connections</a></li>
+				<li><a href='data-sources/direct_connects' target='contentFrame'>samsungcloudplatform_direct_connects</a></li>
+			</ul>
+			<p>Resources</p>
+			<ul>
+				<li><a href='resources/dcon_vpc_connection' target='contentFrame'>samsungcloudplatform_dcon_vpc_connection</a></li>
+				<li><a href='resources/direct_connect' target='contentFrame'>samsungcloudplatform_direct_connect</a></li>
+			</ul>
+		</div>
+		<p class='category collapsible-header'>Endpoint</p>
+		<div class='collapsible'>
+			<p>Data Sources</p>
+			<ul>
+				<li><a href='data-sources/endpoint' target='contentFrame'>samsungcloudplatform_endpoint</a></li>
+				<li><a href='data-sources/endpoints' target='contentFrame'>samsungcloudplatform_endpoints</a></li>
+			</ul>
+			<p>Resources</p>
+			<ul>
+				<li><a href='resources/endpoint' target='contentFrame'>samsungcloudplatform_endpoint</a></li>
+			</ul>
+		</div>
+		<p class='category collapsible-header'>Epas</p>
+		<div class='collapsible'>
+			<p>Data Sources</p>
+			<ul>
+				<li><a href='data-sources/epas' target='contentFrame'>samsungcloudplatform_epas</a></li>
+				<li><a href='data-sources/epass' target='contentFrame'>samsungcloudplatform_epass</a></li>
+			</ul>
+			<p>Resources</p>
+			<ul>
+				<li><a href='resources/epas' target='contentFrame'>samsungcloudplatform_epas</a></li>
+			</ul>
+		</div>
+		<p class='category collapsible-header'>File Storage</p>
+		<div class='collapsible'>
+			<p>Data Sources</p>
+			<ul>
+				<li><a href='data-sources/file_storages' target='contentFrame'>samsungcloudplatform_file_storages</a></li>
+			</ul>
+			<p>Resources</p>
+			<ul>
+				<li><a href='resources/file_storage' target='contentFrame'>samsungcloudplatform_file_storage</a></li>
+			</ul>
+		</div>
+		<p class='category collapsible-header'>Firewall</p>
+		<div class='collapsible'>
+			<p>Data Sources</p>
+			<ul>
+				<li><a href='data-sources/firewall' target='contentFrame'>samsungcloudplatform_firewall</a></li>
+				<li><a href='data-sources/firewalls' target='contentFrame'>samsungcloudplatform_firewalls</a></li>
+			</ul>
+			<p>Resources</p>
+			<ul>
+				<li><a href='resources/firewall' target='contentFrame'>samsungcloudplatform_firewall</a></li>
+				<li><a href='resources/firewall_bulk_rule' target='contentFrame'>samsungcloudplatform_firewall_bulk_rule</a></li>
+				<li><a href='resources/firewall_logstorage' target='contentFrame'>samsungcloudplatform_firewall_logstorage</a></li>
+				<li><a href='resources/firewall_rule' target='contentFrame'>samsungcloudplatform_firewall_rule</a></li>
+			</ul>
+		</div>
+		<p class='category collapsible-header'>GSLB</p>
+		<div class='collapsible'>
+			<p>Data Sources</p>
+			<ul>
+				<li><a href='data-sources/gslb_resources' target='contentFrame'>samsungcloudplatform_gslb_resources</a></li>
+				<li><a href='data-sources/gslbs' target='contentFrame'>samsungcloudplatform_gslbs</a></li>
+			</ul>
+			<p>Resources</p>
+			<ul>
+				<li><a href='resources/gslb' target='contentFrame'>samsungcloudplatform_gslb</a></li>
+			</ul>
+		</div>
+		<p class='category collapsible-header'>HPC Lite(NEW)</p>
+		<div class='collapsible'>
+			<p>Resources</p>
+			<ul>
+				<li><a href='resources/hpc_lite_new' target='contentFrame'>samsungcloudplatform_hpc_lite_new</a></li>
+			</ul>
+		</div>
+		<p class='category collapsible-header'>IAM</p>
+		<div class='collapsible'>
+			<p>Data Sources</p>
+			<ul>
+				<li><a href='data-sources/iam_access_keys' target='contentFrame'>samsungcloudplatform_iam_access_keys</a></li>
+				<li><a href='data-sources/iam_group' target='contentFrame'>samsungcloudplatform_iam_group</a></li>
+				<li><a href='data-sources/iam_group_members' target='contentFrame'>samsungcloudplatform_iam_group_members</a></li>
+				<li><a href='data-sources/iam_group_policies' target='contentFrame'>samsungcloudplatform_iam_group_policies</a></li>
+				<li><a href='data-sources/iam_groups' target='contentFrame'>samsungcloudplatform_iam_groups</a></li>
+				<li><a href='data-sources/iam_member' target='contentFrame'>samsungcloudplatform_iam_member</a></li>
+				<li><a href='data-sources/iam_member_groups' target='contentFrame'>samsungcloudplatform_iam_member_groups</a></li>
+				<li><a href='data-sources/iam_member_systemgroups' target='contentFrame'>samsungcloudplatform_iam_member_systemgroups</a></li>
+				<li><a href='data-sources/iam_members' target='contentFrame'>samsungcloudplatform_iam_members</a></li>
+				<li><a href='data-sources/iam_policies' target='contentFrame'>samsungcloudplatform_iam_policies</a></li>
+				<li><a href='data-sources/iam_policy' target='contentFrame'>samsungcloudplatform_iam_policy</a></li>
+				<li><a href='data-sources/iam_policy_groups' target='contentFrame'>samsungcloudplatform_iam_policy_groups</a></li>
+				<li><a href='data-sources/iam_policy_roles' target='contentFrame'>samsungcloudplatform_iam_policy_roles</a></li>
+				<li><a href='data-sources/iam_role' target='contentFrame'>samsungcloudplatform_iam_role</a></li>
+				<li><a href='data-sources/iam_role_policies' target='contentFrame'>samsungcloudplatform_iam_role_policies</a></li>
+				<li><a href='data-sources/iam_roles' target='contentFrame'>samsungcloudplatform_iam_roles</a></li>
+			</ul>
+			<p>Resources</p>
+			<ul>
+				<li><a href='resources/iam_access_key' target='contentFrame'>samsungcloudplatform_iam_access_key</a></li>
+				<li><a href='resources/iam_group' target='contentFrame'>samsungcloudplatform_iam_group</a></li>
+				<li><a href='resources/iam_member' target='contentFrame'>samsungcloudplatform_iam_member</a></li>
+				<li><a href='resources/iam_policy' target='contentFrame'>samsungcloudplatform_iam_policy</a></li>
+				<li><a href='resources/iam_role' target='contentFrame'>samsungcloudplatform_iam_role</a></li>
+			</ul>
+		</div>
+		<p class='category collapsible-header'>Image</p>
+		<div class='collapsible'>
+			<p>Data Sources</p>
+			<ul>
+				<li><a href='data-sources/custom_image' target='contentFrame'>samsungcloudplatform_custom_image</a></li>
+				<li><a href='data-sources/custom_images' target='contentFrame'>samsungcloudplatform_custom_images</a></li>
+				<li><a href='data-sources/migration_image' target='contentFrame'>samsungcloudplatform_migration_image</a></li>
+				<li><a href='data-sources/migration_images' target='contentFrame'>samsungcloudplatform_migration_images</a></li>
+				<li><a href='data-sources/standard_image' target='contentFrame'>samsungcloudplatform_standard_image</a></li>
+				<li><a href='data-sources/standard_images' target='contentFrame'>samsungcloudplatform_standard_images</a></li>
+			</ul>
+			<p>Resources</p>
+			<ul>
+				<li><a href='resources/custom_image' target='contentFrame'>samsungcloudplatform_custom_image</a></li>
+				<li><a href='resources/migration_image' target='contentFrame'>samsungcloudplatform_migration_image</a></li>
+			</ul>
+		</div>
+		<p class='category collapsible-header'>Internet Gateway</p>
+		<div class='collapsible'>
+			<p>Data Sources</p>
+			<ul>
+				<li><a href='data-sources/internet_gateways' target='contentFrame'>samsungcloudplatform_internet_gateways</a></li>
+			</ul>
+			<p>Resources</p>
+			<ul>
+				<li><a href='resources/internet_gateway' target='contentFrame'>samsungcloudplatform_internet_gateway</a></li>
+			</ul>
+		</div>
+		<p class='category collapsible-header'>Kafka</p>
+		<div class='collapsible'>
+			<p>Data Sources</p>
+			<ul>
+				<li><a href='data-sources/kafka' target='contentFrame'>samsungcloudplatform_kafka</a></li>
+			</ul>
+			<p>Resources</p>
+			<ul>
+				<li><a href='resources/kafka' target='contentFrame'>samsungcloudplatform_kafka</a></li>
+			</ul>
+		</div>
+		<p class='category collapsible-header'>Key Pair</p>
+		<div class='collapsible'>
+			<p>Data Sources</p>
+			<ul>
+				<li><a href='data-sources/key_pairs' target='contentFrame'>samsungcloudplatform_key_pairs</a></li>
+			</ul>
+			<p>Resources</p>
+			<ul>
+				<li><a href='resources/key_pair' target='contentFrame'>samsungcloudplatform_key_pair</a></li>
+			</ul>
+		</div>
+		<p class='category collapsible-header'>Kubernetes</p>
+		<div class='collapsible'>
+			<p>Data Sources</p>
+			<ul>
+				<li><a href='data-sources/kubernetes_apps_image' target='contentFrame'>samsungcloudplatform_kubernetes_apps_image</a></li>
+				<li><a href='data-sources/kubernetes_apps_images' target='contentFrame'>samsungcloudplatform_kubernetes_apps_images</a></li>
+				<li><a href='data-sources/kubernetes_engine' target='contentFrame'>samsungcloudplatform_kubernetes_engine</a></li>
+				<li><a href='data-sources/kubernetes_engine_versions' target='contentFrame'>samsungcloudplatform_kubernetes_engine_versions</a></li>
+				<li><a href='data-sources/kubernetes_engines' target='contentFrame'>samsungcloudplatform_kubernetes_engines</a></li>
+				<li><a href='data-sources/kubernetes_node_pool' target='contentFrame'>samsungcloudplatform_kubernetes_node_pool</a></li>
+				<li><a href='data-sources/kubernetes_node_pools' target='contentFrame'>samsungcloudplatform_kubernetes_node_pools</a></li>
+				<li><a href='data-sources/kubernetes_subnet' target='contentFrame'>samsungcloudplatform_kubernetes_subnet</a></li>
+				<li><a href='data-sources/kubernetes_user_kubeconfig' target='contentFrame'>samsungcloudplatform_kubernetes_user_kubeconfig</a></li>
+			</ul>
+			<p>Resources</p>
+			<ul>
+				<li><a href='resources/kubernetes_admin_kubeconfig' target='contentFrame'>samsungcloudplatform_kubernetes_admin_kubeconfig</a></li>
+				<li><a href='resources/kubernetes_apps' target='contentFrame'>samsungcloudplatform_kubernetes_apps</a></li>
+				<li><a href='resources/kubernetes_engine' target='contentFrame'>samsungcloudplatform_kubernetes_engine</a></li>
+				<li><a href='resources/kubernetes_namespace' target='contentFrame'>samsungcloudplatform_kubernetes_namespace</a></li>
+				<li><a href='resources/kubernetes_node_pool' target='contentFrame'>samsungcloudplatform_kubernetes_node_pool</a></li>
+			</ul>
+		</div>
+		<p class='category collapsible-header'>Load Balancer</p>
+		<div class='collapsible'>
+			<p>Data Sources</p>
+			<ul>
+				<li><a href='data-sources/lb_profiles' target='contentFrame'>samsungcloudplatform_lb_profiles</a></li>
+				<li><a href='data-sources/lb_server_groups' target='contentFrame'>samsungcloudplatform_lb_server_groups</a></li>
+				<li><a href='data-sources/lb_service_ips' target='contentFrame'>samsungcloudplatform_lb_service_ips</a></li>
+				<li><a href='data-sources/lb_services' target='contentFrame'>samsungcloudplatform_lb_services</a></li>
+				<li><a href='data-sources/lb_services_connectable_to_asg' target='contentFrame'>samsungcloudplatform_lb_services_connectable_to_asg</a></li>
+				<li><a href='data-sources/lb_services_connected_to_asg' target='contentFrame'>samsungcloudplatform_lb_services_connected_to_asg</a></li>
+				<li><a href='data-sources/load_balancers' target='contentFrame'>samsungcloudplatform_load_balancers</a></li>
+			</ul>
+			<p>Resources</p>
+			<ul>
+				<li><a href='resources/lb_profile' target='contentFrame'>samsungcloudplatform_lb_profile</a></li>
+				<li><a href='resources/lb_server_group' target='contentFrame'>samsungcloudplatform_lb_server_group</a></li>
+				<li><a href='resources/lb_service' target='contentFrame'>samsungcloudplatform_lb_service</a></li>
+				<li><a href='resources/load_balancer' target='contentFrame'>samsungcloudplatform_load_balancer</a></li>
+			</ul>
+		</div>
+		<p class='category collapsible-header'>Logging&Audit</p>
+		<div class='collapsible'>
+			<p>Data Sources</p>
+			<ul>
+				<li><a href='data-sources/loggingaudit' target='contentFrame'>samsungcloudplatform_loggingaudit</a></li>
+				<li><a href='data-sources/loggingaudit_users' target='contentFrame'>samsungcloudplatform_loggingaudit_users</a></li>
+				<li><a href='data-sources/loggingaudits' target='contentFrame'>samsungcloudplatform_loggingaudits</a></li>
+			</ul>
+		</div>
+		<p class='category collapsible-header'>MariaDB</p>
+		<div class='collapsible'>
+			<p>Data Sources</p>
+			<ul>
+				<li><a href='data-sources/mariadb' target='contentFrame'>samsungcloudplatform_mariadb</a></li>
+				<li><a href='data-sources/mariadbs' target='contentFrame'>samsungcloudplatform_mariadbs</a></li>
+			</ul>
+			<p>Resources</p>
+			<ul>
+				<li><a href='resources/mariadb' target='contentFrame'>samsungcloudplatform_mariadb</a></li>
+			</ul>
+		</div>
+		<p class='category collapsible-header'>MySQL</p>
+		<div class='collapsible'>
+			<p>Data Sources</p>
+			<ul>
+				<li><a href='data-sources/mysql' target='contentFrame'>samsungcloudplatform_mysql</a></li>
+				<li><a href='data-sources/mysqls' target='contentFrame'>samsungcloudplatform_mysqls</a></li>
+			</ul>
+			<p>Resources</p>
+			<ul>
+				<li><a href='resources/mysql' target='contentFrame'>samsungcloudplatform_mysql</a></li>
+			</ul>
+		</div>
+		<p class='category collapsible-header'>NAT Gateway</p>
+		<div class='collapsible'>
+			<p>Data Sources</p>
+			<ul>
+				<li><a href='data-sources/nat_gateways' target='contentFrame'>samsungcloudplatform_nat_gateways</a></li>
+			</ul>
+			<p>Resources</p>
+			<ul>
+				<li><a href='resources/nat_gateway' target='contentFrame'>samsungcloudplatform_nat_gateway</a></li>
+			</ul>
+		</div>
+		<p class='category collapsible-header'>Object Storage</p>
+		<div class='collapsible'>
+			<p>Data Sources</p>
+			<ul>
+				<li><a href='data-sources/obs_bucket' target='contentFrame'>samsungcloudplatform_obs_bucket</a></li>
+				<li><a href='data-sources/obs_buckets' target='contentFrame'>samsungcloudplatform_obs_buckets</a></li>
+				<li><a href='data-sources/obs_storages' target='contentFrame'>samsungcloudplatform_obs_storages</a></li>
+			</ul>
+			<p>Resources</p>
+			<ul>
+				<li><a href='resources/obs_bucket' target='contentFrame'>samsungcloudplatform_obs_bucket</a></li>
+			</ul>
+		</div>
+		<p class='category collapsible-header'>Placement Group</p>
+		<div class='collapsible'>
+			<p>Data Sources</p>
+			<ul>
+				<li><a href='data-sources/placement_groups' target='contentFrame'>samsungcloudplatform_placement_groups</a></li>
+			</ul>
+			<p>Resources</p>
+			<ul>
+				<li><a href='resources/placement_group' target='contentFrame'>samsungcloudplatform_placement_group</a></li>
+			</ul>
+		</div>
+		<p class='category collapsible-header'>PostgreSQL</p>
+		<div class='collapsible'>
+			<p>Data Sources</p>
+			<ul>
+				<li><a href='data-sources/postgresql' target='contentFrame'>samsungcloudplatform_postgresql</a></li>
+				<li><a href='data-sources/postgresqls' target='contentFrame'>samsungcloudplatform_postgresqls</a></li>
+			</ul>
+			<p>Resources</p>
+			<ul>
+				<li><a href='resources/postgresql' target='contentFrame'>samsungcloudplatform_postgresql</a></li>
+			</ul>
+		</div>
+		<p class='category collapsible-header'>Product</p>
+		<div class='collapsible'>
+			<p>Data Sources</p>
+			<ul>
+				<li><a href='data-sources/product' target='contentFrame'>samsungcloudplatform_product</a></li>
+				<li><a href='data-sources/product_categories' target='contentFrame'>samsungcloudplatform_product_categories</a></li>
+				<li><a href='data-sources/product_groups' target='contentFrame'>samsungcloudplatform_product_groups</a></li>
+				<li><a href='data-sources/products_by_group' target='contentFrame'>samsungcloudplatform_products_by_group</a></li>
+				<li><a href='data-sources/products_by_zone' target='contentFrame'>samsungcloudplatform_products_by_zone</a></li>
+			</ul>
+		</div>
+		<p class='category collapsible-header'>Project</p>
+		<div class='collapsible'>
+			<p>Data Sources</p>
+			<ul>
+				<li><a href='data-sources/project' target='contentFrame'>samsungcloudplatform_project</a></li>
+				<li><a href='data-sources/project_product_resources' target='contentFrame'>samsungcloudplatform_project_product_resources</a></li>
+				<li><a href='data-sources/project_products' target='contentFrame'>samsungcloudplatform_project_products</a></li>
+				<li><a href='data-sources/project_user_products_resources' target='contentFrame'>samsungcloudplatform_project_user_products_resources</a></li>
+				<li><a href='data-sources/project_zones' target='contentFrame'>samsungcloudplatform_project_zones</a></li>
+				<li><a href='data-sources/projects' target='contentFrame'>samsungcloudplatform_projects</a></li>
+			</ul>
+		</div>
+		<p class='category collapsible-header'>Public IP</p>
+		<div class='collapsible'>
+			<p>Data Sources</p>
+			<ul>
+				<li><a href='data-sources/public_ip' target='contentFrame'>samsungcloudplatform_public_ip</a></li>
+				<li><a href='data-sources/public_ips' target='contentFrame'>samsungcloudplatform_public_ips</a></li>
+			</ul>
+			<p>Resources</p>
+			<ul>
+				<li><a href='resources/public_ip' target='contentFrame'>samsungcloudplatform_public_ip</a></li>
+			</ul>
+		</div>
+		<p class='category collapsible-header'>Redis</p>
+		<div class='collapsible'>
+			<p>Data Sources</p>
+			<ul>
+				<li><a href='data-sources/redis' target='contentFrame'>samsungcloudplatform_redis</a></li>
+				<li><a href='data-sources/redis_list' target='contentFrame'>samsungcloudplatform_redis_list</a></li>
+			</ul>
+			<p>Resources</p>
+			<ul>
+				<li><a href='resources/redis' target='contentFrame'>samsungcloudplatform_redis</a></li>
+			</ul>
+		</div>
+		<p class='category collapsible-header'>Redis Cluster</p>
+		<div class='collapsible'>
+			<p>Data Sources</p>
+			<ul>
+				<li><a href='data-sources/redis_cluster' target='contentFrame'>samsungcloudplatform_redis_cluster</a></li>
+				<li><a href='data-sources/redis_clusters' target='contentFrame'>samsungcloudplatform_redis_clusters</a></li>
+			</ul>
+			<p>Resources</p>
+			<ul>
+				<li><a href='resources/redis_cluster' target='contentFrame'>samsungcloudplatform_redis_cluster</a></li>
+			</ul>
+		</div>
+		<p class='category collapsible-header'>Region</p>
+		<div class='collapsible'>
+			<p>Data Sources</p>
+			<ul>
+				<li><a href='data-sources/region' target='contentFrame'>samsungcloudplatform_region</a></li>
+				<li><a href='data-sources/regions' target='contentFrame'>samsungcloudplatform_regions</a></li>
+			</ul>
+		</div>
+		<p class='category collapsible-header'>Resource Group</p>
+		<div class='collapsible'>
+			<p>Data Sources</p>
+			<ul>
+				<li><a href='data-sources/resource' target='contentFrame'>samsungcloudplatform_resource</a></li>
+				<li><a href='data-sources/resource_group' target='contentFrame'>samsungcloudplatform_resource_group</a></li>
+				<li><a href='data-sources/resource_group_in_my_projects' target='contentFrame'>samsungcloudplatform_resource_group_in_my_projects</a></li>
+				<li><a href='data-sources/resource_group_resource_types' target='contentFrame'>samsungcloudplatform_resource_group_resource_types</a></li>
+				<li><a href='data-sources/resource_group_resources' target='contentFrame'>samsungcloudplatform_resource_group_resources</a></li>
+				<li><a href='data-sources/resource_group_resources_in_my_projects' target='contentFrame'>samsungcloudplatform_resource_group_resources_in_my_projects</a></li>
+				<li><a href='data-sources/resource_group_service_types' target='contentFrame'>samsungcloudplatform_resource_group_service_types</a></li>
+				<li><a href='data-sources/resource_groups' target='contentFrame'>samsungcloudplatform_resource_groups</a></li>
+				<li><a href='data-sources/resource_groups_in_my_projects' target='contentFrame'>samsungcloudplatform_resource_groups_in_my_projects</a></li>
+				<li><a href='data-sources/resource_in_my_project' target='contentFrame'>samsungcloudplatform_resource_in_my_project</a></li>
+				<li><a href='data-sources/resources' target='contentFrame'>samsungcloudplatform_resources</a></li>
+				<li><a href='data-sources/resources_in_my_project' target='contentFrame'>samsungcloudplatform_resources_in_my_project</a></li>
+			</ul>
+			<p>Resources</p>
+			<ul>
+				<li><a href='resources/resource_group' target='contentFrame'>samsungcloudplatform_resource_group</a></li>
+			</ul>
+		</div>
+		<p class='category collapsible-header'>Routing</p>
+		<div class='collapsible'>
+			<p>Data Sources</p>
+			<ul>
+				<li><a href='data-sources/direct_connect_routing_routes' target='contentFrame'>samsungcloudplatform_direct_connect_routing_routes</a></li>
+				<li><a href='data-sources/direct_connect_routing_rules' target='contentFrame'>samsungcloudplatform_direct_connect_routing_rules</a></li>
+				<li><a href='data-sources/direct_connect_routing_tables' target='contentFrame'>samsungcloudplatform_direct_connect_routing_tables</a></li>
+				<li><a href='data-sources/transit_gateway_routing_routes' target='contentFrame'>samsungcloudplatform_transit_gateway_routing_routes</a></li>
+				<li><a href='data-sources/transit_gateway_routing_rules' target='contentFrame'>samsungcloudplatform_transit_gateway_routing_rules</a></li>
+				<li><a href='data-sources/transit_gateway_routing_tables' target='contentFrame'>samsungcloudplatform_transit_gateway_routing_tables</a></li>
+				<li><a href='data-sources/vpc_routing_routes' target='contentFrame'>samsungcloudplatform_vpc_routing_routes</a></li>
+				<li><a href='data-sources/vpc_routing_rules' target='contentFrame'>samsungcloudplatform_vpc_routing_rules</a></li>
+				<li><a href='data-sources/vpc_routing_tables' target='contentFrame'>samsungcloudplatform_vpc_routing_tables</a></li>
+			</ul>
+			<p>Resources</p>
+			<ul>
+				<li><a href='resources/direct_connect_routing' target='contentFrame'>samsungcloudplatform_direct_connect_routing</a></li>
+				<li><a href='resources/transit_gateway_routing' target='contentFrame'>samsungcloudplatform_transit_gateway_routing</a></li>
+				<li><a href='resources/vpc_routing' target='contentFrame'>samsungcloudplatform_vpc_routing</a></li>
+			</ul>
+		</div>
+		<p class='category collapsible-header'>SQL Server</p>
+		<div class='collapsible'>
+			<p>Data Sources</p>
+			<ul>
+				<li><a href='data-sources/sqlserver' target='contentFrame'>samsungcloudplatform_sqlserver</a></li>
+				<li><a href='data-sources/sqlservers' target='contentFrame'>samsungcloudplatform_sqlservers</a></li>
+			</ul>
+			<p>Resources</p>
+			<ul>
+				<li><a href='resources/sqlserver' target='contentFrame'>samsungcloudplatform_sqlserver</a></li>
+			</ul>
+		</div>
+		<p class='category collapsible-header'>Security Group</p>
+		<div class='collapsible'>
+			<p>Data Sources</p>
+			<ul>
+				<li><a href='data-sources/security_group' target='contentFrame'>samsungcloudplatform_security_group</a></li>
+				<li><a href='data-sources/security_group_log_storage' target='contentFrame'>samsungcloudplatform_security_group_log_storage</a></li>
+				<li><a href='data-sources/security_group_log_storages' target='contentFrame'>samsungcloudplatform_security_group_log_storages</a></li>
+				<li><a href='data-sources/security_group_rule' target='contentFrame'>samsungcloudplatform_security_group_rule</a></li>
+				<li><a href='data-sources/security_group_rules' target='contentFrame'>samsungcloudplatform_security_group_rules</a></li>
+				<li><a href='data-sources/security_group_user_ips' target='contentFrame'>samsungcloudplatform_security_group_user_ips</a></li>
+				<li><a href='data-sources/security_groups' target='contentFrame'>samsungcloudplatform_security_groups</a></li>
+			</ul>
+			<p>Resources</p>
+			<ul>
+				<li><a href='resources/security_group' target='contentFrame'>samsungcloudplatform_security_group</a></li>
+				<li><a href='resources/security_group_bulk_rule' target='contentFrame'>samsungcloudplatform_security_group_bulk_rule</a></li>
+				<li><a href='resources/security_group_logstorage' target='contentFrame'>samsungcloudplatform_security_group_logstorage</a></li>
+				<li><a href='resources/security_group_rule' target='contentFrame'>samsungcloudplatform_security_group_rule</a></li>
+				<li><a href='resources/security_group_user_ip' target='contentFrame'>samsungcloudplatform_security_group_user_ip</a></li>
+			</ul>
+		</div>
+		<p class='category collapsible-header'>Subnet</p>
+		<div class='collapsible'>
+			<p>Data Sources</p>
+			<ul>
+				<li><a href='data-sources/subnet_available_ips' target='contentFrame'>samsungcloudplatform_subnet_available_ips</a></li>
+				<li><a href='data-sources/subnet_resources' target='contentFrame'>samsungcloudplatform_subnet_resources</a></li>
+				<li><a href='data-sources/subnet_vip_detail' target='contentFrame'>samsungcloudplatform_subnet_vip_detail</a></li>
+				<li><a href='data-sources/subnet_vips' target='contentFrame'>samsungcloudplatform_subnet_vips</a></li>
+				<li><a href='data-sources/subnets' target='contentFrame'>samsungcloudplatform_subnets</a></li>
+			</ul>
+			<p>Resources</p>
+			<ul>
+				<li><a href='resources/subnet' target='contentFrame'>samsungcloudplatform_subnet</a></li>
+				<li><a href='resources/subnet_public_ip' target='contentFrame'>samsungcloudplatform_subnet_public_ip</a></li>
+				<li><a href='resources/subnet_security_group' target='contentFrame'>samsungcloudplatform_subnet_security_group</a></li>
+				<li><a href='resources/subnet_vip' target='contentFrame'>samsungcloudplatform_subnet_vip</a></li>
+			</ul>
+		</div>
+		<p class='category collapsible-header'>Tag</p>
+		<div class='collapsible'>
+			<p>Data Sources</p>
+			<ul>
+				<li><a href='data-sources/resource_tags' target='contentFrame'>samsungcloudplatform_resource_tags</a></li>
+			</ul>
+		</div>
+		<p class='category collapsible-header'>Trail</p>
+		<div class='collapsible'>
+			<p>Data Sources</p>
+			<ul>
+				<li><a href='data-sources/trail' target='contentFrame'>samsungcloudplatform_trail</a></li>
+				<li><a href='data-sources/trails' target='contentFrame'>samsungcloudplatform_trails</a></li>
+			</ul>
+			<p>Resources</p>
+			<ul>
+				<li><a href='resources/trail' target='contentFrame'>samsungcloudplatform_trail</a></li>
+			</ul>
+		</div>
+		<p class='category collapsible-header'>Transit Gateway</p>
+		<div class='collapsible'>
+			<p>Data Sources</p>
+			<ul>
+				<li><a href='data-sources/tgw_peerings_by_tgw' target='contentFrame'>samsungcloudplatform_tgw_peerings_by_tgw</a></li>
+				<li><a href='data-sources/transit_gateway_connections' target='contentFrame'>samsungcloudplatform_transit_gateway_connections</a></li>
+				<li><a href='data-sources/transit_gateway_peering_detail' target='contentFrame'>samsungcloudplatform_transit_gateway_peering_detail</a></li>
+				<li><a href='data-sources/transit_gateway_peerings' target='contentFrame'>samsungcloudplatform_transit_gateway_peerings</a></li>
+				<li><a href='data-sources/transit_gateways' target='contentFrame'>samsungcloudplatform_transit_gateways</a></li>
+			</ul>
+			<p>Resources</p>
+			<ul>
+				<li><a href='resources/transit_gateway' target='contentFrame'>samsungcloudplatform_transit_gateway</a></li>
+				<li><a href='resources/transit_gateway_connection' target='contentFrame'>samsungcloudplatform_transit_gateway_connection</a></li>
+				<li><a href='resources/transit_gateway_connection_approve' target='contentFrame'>samsungcloudplatform_transit_gateway_connection_approve</a></li>
+				<li><a href='resources/transit_gateway_peering' target='contentFrame'>samsungcloudplatform_transit_gateway_peering</a></li>
+				<li><a href='resources/transit_gateway_peering_approve' target='contentFrame'>samsungcloudplatform_transit_gateway_peering_approve</a></li>
+				<li><a href='resources/transit_gateway_peering_cancel' target='contentFrame'>samsungcloudplatform_transit_gateway_peering_cancel</a></li>
+				<li><a href='resources/transit_gateway_peering_reject' target='contentFrame'>samsungcloudplatform_transit_gateway_peering_reject</a></li>
+			</ul>
+		</div>
+		<p class='category collapsible-header'>VPC</p>
+		<div class='collapsible'>
+			<p>Data Sources</p>
+			<ul>
+				<li><a href='data-sources/vpc_dnss' target='contentFrame'>samsungcloudplatform_vpc_dnss</a></li>
+				<li><a href='data-sources/vpcs' target='contentFrame'>samsungcloudplatform_vpcs</a></li>
+			</ul>
+			<p>Resources</p>
+			<ul>
+				<li><a href='resources/vpc' target='contentFrame'>samsungcloudplatform_vpc</a></li>
+				<li><a href='resources/vpc_dns' target='contentFrame'>samsungcloudplatform_vpc_dns</a></li>
+			</ul>
+		</div>
+		<p class='category collapsible-header'>VPC Peering</p>
+		<div class='collapsible'>
+			<p>Data Sources</p>
+			<ul>
+				<li><a href='data-sources/vpc_peering_detail' target='contentFrame'>samsungcloudplatform_vpc_peering_detail</a></li>
+				<li><a href='data-sources/vpc_peerings' target='contentFrame'>samsungcloudplatform_vpc_peerings</a></li>
+			</ul>
+			<p>Resources</p>
+			<ul>
+				<li><a href='resources/vpc_peering' target='contentFrame'>samsungcloudplatform_vpc_peering</a></li>
+				<li><a href='resources/vpc_peering_approve' target='contentFrame'>samsungcloudplatform_vpc_peering_approve</a></li>
+				<li><a href='resources/vpc_peering_cancel' target='contentFrame'>samsungcloudplatform_vpc_peering_cancel</a></li>
+				<li><a href='resources/vpc_peering_reject' target='contentFrame'>samsungcloudplatform_vpc_peering_reject</a></li>
+			</ul>
+		</div>
+		<p class='category collapsible-header'>Virtual Server</p>
+		<div class='collapsible'>
+			<p>Data Sources</p>
+			<ul>
+				<li><a href='data-sources/virtual_servers' target='contentFrame'>samsungcloudplatform_virtual_servers</a></li>
+			</ul>
+			<p>Resources</p>
+			<ul>
+				<li><a href='resources/virtual_server' target='contentFrame'>samsungcloudplatform_virtual_server</a></li>
 			</ul>
 		</div>
 	</div>

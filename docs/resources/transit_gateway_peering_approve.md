@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_transit_gateway_peering_approve Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "Transit Gateway"
 description: |-
   Approve TGW Peering Request.
 ---
 
-# Resource: samsungcloudplatform_transit_gateway_peering_approve
+# samsungcloudplatform_transit_gateway_peering_approve (Resource)
 
 Approve TGW Peering Request.
 

@@ -2,6 +2,7 @@ package kubernetes
 
 import (
 	"context"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/common"
@@ -11,7 +12,7 @@ import (
 )
 
 func init() {
-	samsungcloudplatform.RegisterResource("samsungcloudplatform_kubernetes_namespace", ResourceKubernetesNamespace())
+	samsungcloudplatform.RegisterResource("Kubernetes", "samsungcloudplatform_kubernetes_namespace", ResourceKubernetesNamespace())
 }
 
 func ResourceKubernetesNamespace() *schema.Resource {

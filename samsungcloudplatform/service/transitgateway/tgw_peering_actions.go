@@ -2,6 +2,7 @@ package transitgateway
 
 import (
 	"context"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/client"
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform/common"
@@ -10,9 +11,9 @@ import (
 )
 
 func init() {
-	samsungcloudplatform.RegisterResource("samsungcloudplatform_transit_gateway_peering_approve", ResourceTransitGatewayPeeringApprove())
-	samsungcloudplatform.RegisterResource("samsungcloudplatform_transit_gateway_peering_reject", ResourceTransitGatewayPeeringReject())
-	samsungcloudplatform.RegisterResource("samsungcloudplatform_transit_gateway_peering_cancel", ResourceTransitGatewayPeeringCancel())
+	samsungcloudplatform.RegisterResource("Transit Gateway", "samsungcloudplatform_transit_gateway_peering_approve", ResourceTransitGatewayPeeringApprove())
+	samsungcloudplatform.RegisterResource("Transit Gateway", "samsungcloudplatform_transit_gateway_peering_reject", ResourceTransitGatewayPeeringReject())
+	samsungcloudplatform.RegisterResource("Transit Gateway", "samsungcloudplatform_transit_gateway_peering_cancel", ResourceTransitGatewayPeeringCancel())
 }
 
 func ResourceTransitGatewayPeeringApprove() *schema.Resource {

@@ -1,11 +1,11 @@
 ---
 page_title: "samsungcloudplatform_subnet_security_group Resource - samsungcloudplatform"
-subcategory: ""
+subcategory: "Subnet"
 description: |-
   Provides a Subnet Vip reserve resource.
 ---
 
-# Resource: samsungcloudplatform_subnet_security_group
+# samsungcloudplatform_subnet_security_group (Resource)
 
 Provides a Subnet Vip reserve resource.
 

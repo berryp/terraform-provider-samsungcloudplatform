@@ -2,6 +2,7 @@ package subnet
 
 import (
 	"context"
+
 	"github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatform/v3/samsungcloudplatform"
 	"github.com/SamsungSDSCloud/terraform-sdk-samsungcloudplatform/v3/library/subnet2"
 	"github.com/antihax/optional"
@@ -14,8 +15,8 @@ import (
 )
 
 func init() {
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_subnets", DatasourceSubnets())
-	samsungcloudplatform.RegisterDataSource("samsungcloudplatform_subnet_resources", DatasourceSubnetResources())
+	samsungcloudplatform.RegisterDataSource("Subnet", "samsungcloudplatform_subnets", DatasourceSubnets())
+	samsungcloudplatform.RegisterDataSource("Subnet", "samsungcloudplatform_subnet_resources", DatasourceSubnetResources())
 }
 
 func DatasourceSubnets() *schema.Resource {
